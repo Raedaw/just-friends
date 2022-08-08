@@ -39,7 +39,15 @@ function Login() {
         />
         <button
           className="login__btn"
-          onClick={() => signInWithEmailAndPassword(email, password)}
+          onClick={() =>
+            signInWithEmailAndPassword(auth, email, password)
+              .then((userCredential) => {
+                user = userCredential.user;
+              })
+              .catch((error) => {
+                console.log(error);
+              })
+          }
         >
           Login
         </button>
