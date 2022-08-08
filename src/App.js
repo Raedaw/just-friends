@@ -3,6 +3,13 @@ import { getDatabase } from "firebase/database";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import axios from "axios";
 import Login from "./components/Login";
+import Dashboard from "./components/Dashboard";
+import Register from "./components/Register";
+import Reset from "./components/Reset";
+import Area from "./components/Area";
+import Gender from "./components/Gender";
+import Interests from "./components/Interests";
+import Profile from "./components/Profile";
 
 function App() {
   // axios
@@ -22,6 +29,13 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<Login />} />
+          <Route exact path="/register" element={<Register />} />
+          {/* <Route exact path="/reset" element={<Reset />} /> */}
+          <Route exact path="/dashboard" element={<Dashboard />} />
+          <Route exact path="/area" element={<Area />} />
+          <Route exact path="/gender" element={<Gender />} />
+          <Route exact path="/interests" element={<Interests />} />
+          <Route exact path="/profile" element={<Profile />} />
         </Routes>
       </Router>
     </div>
