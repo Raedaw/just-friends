@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import {
   auth,
   signInWithEmailAndPassword,
-  signInWithGoogle,
+  // signInWithGoogle,
 } from "../utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import "../Styles/Login.css";
@@ -28,7 +28,7 @@ function Login() {
           className="login__textBox"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
+          placeholder="Email Address"
         />
         <input
           type="password"
@@ -51,9 +51,9 @@ function Login() {
         >
           Login
         </button>
-        <button className="login__btn login__google" onClick={signInWithGoogle}>
+        {/* <button className="login__btn login__google" onClick={signInWithGoogle}>
           Login with Google
-        </button>
+        </button> */}
         <div>
           <Link to="/reset">Forgot Password</Link>
         </div>
