@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import {
   auth,
   registerWithEmailAndPassword,
-  signInWithGoogle,
+  // signInWithGoogle,
 } from "../utils/firebase";
 import "../Styles/Register.css";
 function Register() {
@@ -20,7 +20,7 @@ function Register() {
   };
   useEffect(() => {
     if (loading) return;
-    if (user) navigate("/dashboard");
+    if (user) navigate("/area");
   }, [user, loading]);
   return (
     <div className="register">
@@ -56,12 +56,12 @@ function Register() {
         <button className="register__btn" onClick={register}>
           Register
         </button>
-        <button
+        {/* <button
           className="register__btn register__google"
           onClick={signInWithGoogle}
         >
           Register with Google
-        </button>
+        </button> */}
         <div>
           Already have an account? <Link to="/">Login</Link> now.
         </div>

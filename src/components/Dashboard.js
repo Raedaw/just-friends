@@ -15,7 +15,6 @@ function Dashboard() {
       const doc = await getDocs(q);
       const data = doc.docs[0].data();
       setName(data.name);
-    
     } catch (err) {
       console.error(err);
       alert("An error occured while fetching user data");
@@ -26,9 +25,6 @@ function Dashboard() {
     if (!user) return navigate("/");
     fetchUserName();
   }, [user, loading]);
-
-
-
 
   return (
     <div className="dashboard">

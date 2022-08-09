@@ -24,7 +24,7 @@ function App() {
 
   return (
     <div className="app">
-      <h1>Hello</h1>
+      <h1>JustFriends</h1>
       <Router>
         <Routes>
           <Route exact path="/" element={<Login />} />
