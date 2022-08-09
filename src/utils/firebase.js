@@ -123,6 +123,7 @@ const setArea = async () => {
   }
 };
 
+
 const setGender = async (myGender) => {
   const user = await auth.currentUser;
   const currentUserDoc = doc(db, "users", user.uid);
@@ -160,7 +161,7 @@ export {
   signInWithEmailAndPassword,
   setArea,
   setGender,
-  setGenderPreference
+  setGenderPreference,
 };
 
 // const analytics = getAnalytics(app);
