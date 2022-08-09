@@ -1,7 +1,6 @@
 import "./Styles/App.css";
 import { getDatabase } from "firebase/database";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import axios from "axios";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 import Register from "./components/Register";
