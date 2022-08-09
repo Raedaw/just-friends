@@ -36,3 +36,26 @@
     transform: rotate(360deg);
   }
 }
+
+.interest-grid {
+  margin: 2em 2em;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(200px, 1fr));
+  grid-gap: 30px;
+}
+
+.interest {
+  grid-column-end: span 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #ebebeb;
+  cursor: pointer;
+  transition: all 0.1s ease 0s;
+}
+
+.interest:hover {
+  transform: translateX(5px);
+}
+.selected {
+  background-color: red;
+}
