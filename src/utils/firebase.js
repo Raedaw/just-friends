@@ -123,6 +123,32 @@ const setArea = async () => {
   }
 };
 
+const setGender = async (myGender) => {
+  const user = await auth.currentUser;
+  const currentUserDoc = doc(db, "users", user.uid);
+  try {
+    await updateDoc(currentUserDoc, {
+      My_gender: `${myGender}`,
+    });
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
+};
+
+const setGenderPreference = async (preference) => {
+  const user = await auth.currentUser;
+  const currentUserDoc = doc(db, "users", user.uid);
+  try {
+    await updateDoc(currentUserDoc, {
+      Gender_Preference: `${preference}`,
+    });
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
+};
+
 const setInterest = async (selectedInterest) => {
   const user = await auth.currentUser;
   const currentUserDoc = doc(db, "users", user.uid);
@@ -146,6 +172,8 @@ export {
   logout,
   signInWithEmailAndPassword,
   setArea,
+  setGender,
+  setGenderPreference,
   setInterest,
 };
 

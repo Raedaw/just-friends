@@ -41,7 +41,7 @@ const Interests = () => {
 
         <button
           onClick={() => {
-            navigate("/gender");
+            navigate("/profile");
           }}
         >
           Next
