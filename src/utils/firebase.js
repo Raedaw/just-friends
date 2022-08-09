@@ -123,7 +123,6 @@ const setArea = async () => {
   }
 };
 
-
 const setProfile = async (submitInfo) => {
   const user = await auth.currentUser;
   const currentUserDoc = doc(db, "users", user.uid);
@@ -132,6 +131,12 @@ const setProfile = async (submitInfo) => {
     await updateDoc(currentUserDoc, {
       bio,
       avatarURL,
+    });
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
+};
 
 const setGender = async (myGender) => {
   const user = await auth.currentUser;
@@ -165,7 +170,6 @@ const setInterest = async (selectedInterest) => {
   try {
     await updateDoc(currentUserDoc, {
       interest: selectedInterest,
-
     });
   } catch (err) {
     console.error(err);
@@ -183,13 +187,10 @@ export {
   logout,
   signInWithEmailAndPassword,
   setArea,
-
   setProfile,
-
   setGender,
   setGenderPreference,
   setInterest,
-
 };
 
 // const analytics = getAnalytics(app);
