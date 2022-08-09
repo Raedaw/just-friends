@@ -123,6 +123,21 @@ const setArea = async () => {
   }
 };
 
+const setProfile = async (submitInfo) => {
+  const user = await auth.currentUser;
+  const currentUserDoc = doc(db, "users", user.uid);
+  const { bio, avatarURL } = submitInfo;
+  try {
+    await updateDoc(currentUserDoc, {
+      bio,
+      avatarURL,
+    });
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
+};
+
 export {
   auth,
   db,
@@ -133,6 +148,7 @@ export {
   logout,
   signInWithEmailAndPassword,
   setArea,
+  setProfile,
 };
 
 // const analytics = getAnalytics(app);
