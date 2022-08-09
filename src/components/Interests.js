@@ -1,12 +1,10 @@
 import { useState } from "react";
-import { getAuth, updateProfile } from "firebase/auth";
-import axios from "axios";
+import { setInterest } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
 
 const Interests = () => {
-  const auth = getAuth();
-  const user = auth.currentUser;
-  console.log(auth.currentUser);
-  const [selectedInterest, setSelectedInterest] = useState("");
+  const navigate = useNavigate();
+
   const interests = [
     "Arts & Culture",
     "Sport",
@@ -20,50 +18,35 @@ const Interests = () => {
     "Pets",
   ];
 
-  function handleClick(e) {
-    if (!selectedInterest) {
-      setSelectedInterest(e.target.value);
-      axios
-        .get(
-          "https://just-friends-4c0f0-default-rtdb.europe-west1.firebasedatabase.app/"
-        )
-        .then((response) => {
-          console.log(response.data);
-        });
-      // axios.post(
-      //   "https://just-friends-4c0f0-default-rtdb.europe-west1.firebasedatabase.app/manchester/users"
-      // );
-      updateProfile(auth.currentUser, {
-        age: 32,
-      }).then(() => {
-        console.log("profile updated");
-        console.log(auth.currentUser);
-      });
-    } else {
-      setSelectedInterest("");
-    }
-    console.log(selectedInterest);
+  function handleSelect(e) {
+    setInterest(e.target.value);
   }
 
   return (
     <div>
-      <ul className="interest-grid">
+      <form className="interest-grid">
         {interests.map((interest) => {
           return (
-            <li className="interest" key={interest}>
-              <button
-                className={
-                  interest === selectedInterest ? "selected" : "not-selected"
-                }
+            <label className="interest" key={`${interest}`}>
+              <input
+                type="radio"
                 value={interest}
-                onClick={handleClick}
-              >
-                {interest}
-              </button>
-            </li>
+                name="interest"
+                onChange={handleSelect}
+              />
+              {interest}
+            </label>
           );
         })}
-      </ul>
+
+        <button
+          onClick={() => {
+            navigate("/gender");
+          }}
+        >
+          Next
+        </button>
+      </form>
     </div>
   );
 };

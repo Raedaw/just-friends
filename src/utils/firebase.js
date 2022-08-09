@@ -123,6 +123,19 @@ const setArea = async () => {
   }
 };
 
+const setInterest = async (selectedInterest) => {
+  const user = await auth.currentUser;
+  const currentUserDoc = doc(db, "users", user.uid);
+  try {
+    await updateDoc(currentUserDoc, {
+      interest: selectedInterest,
+    });
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
+};
+
 export {
   auth,
   db,
@@ -133,6 +146,7 @@ export {
   logout,
   signInWithEmailAndPassword,
   setArea,
+  setInterest,
 };
 
 // const analytics = getAnalytics(app);
