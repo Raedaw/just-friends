@@ -10,6 +10,7 @@ import {
   setDoc,
   doc,
   updateDoc,
+  getDoc,
 } from "firebase/firestore";
 import {
   GoogleAuthProvider,
@@ -177,6 +178,31 @@ const setInterest = async (selectedInterest) => {
   }
 };
 
+const setChat = async () => {
+  // const user = await auth.currentUser;
+  // console.log(user.uid);
+  // const docRef = doc(db, "users", user.uid);
+  // const docSnap = await getDoc(docRef);
+
+  // if (docSnap.exists()) {
+  //   console.log("Document data:", docSnap.data());
+  // } else {
+  //   // doc.data() will be undefined in this case
+  //   console.log("No such document!");
+  // }
+
+  const user = await auth.currentUser;
+  const currentUserDoc = doc(db, "users", user.uid);
+  const snapshot = await getDoc(currentUserDoc);
+  return snapshot.data();
+
+  // createDoc(db, userdata.area, userdata.interest);
+
+  // updateDoc();
+
+  // users: [user.uid];
+};
+
 export {
   auth,
   db,
@@ -191,6 +217,7 @@ export {
   setGender,
   setGenderPreference,
   setInterest,
+  setChat,
 };
 
 // const analytics = getAnalytics(app);
