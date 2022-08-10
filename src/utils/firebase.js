@@ -10,6 +10,7 @@ import {
   setDoc,
   doc,
   updateDoc,
+  connectFirestoreEmulator,
 } from "firebase/firestore";
 import {
   GoogleAuthProvider,
@@ -19,6 +20,7 @@ import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signOut,
+  connectAuthEmulator,
 } from "firebase/auth";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -47,7 +49,13 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+
 const db = getFirestore(app);
+
+// emulator connections:
+connectAuthEmulator(auth, "http://localhost:9099");
+connectFirestoreEmulator(db, "localhost", 8080);
+
 // const googleProvider = new GoogleAuthProvider();
 // const signInWithGoogle = async () => {
 //   try {
