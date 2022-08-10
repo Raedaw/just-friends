@@ -1,16 +1,23 @@
 // Import the functions you need from the SDKs you need
+import { useEffect, useState } from "react";
+
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import {
   getFirestore,
   query,
   getDocs,
+  getDoc,
   collection,
   where,
   setDoc,
   doc,
   updateDoc,
+
+  onSnapshot
+
   getDoc,
+
 } from "firebase/firestore";
 import {
   GoogleAuthProvider,
@@ -20,7 +27,13 @@ import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signOut,
+  // signInWithGoogle
 } from "firebase/auth";
+
+
+
+
+
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -178,6 +191,7 @@ const setInterest = async (selectedInterest) => {
   }
 };
 
+
 const setChat = async () => {
   // const user = await auth.currentUser;
   // console.log(user.uid);
@@ -202,6 +216,7 @@ const setChat = async () => {
 
   // users: [user.uid];
 };
+
 
 export {
   auth,

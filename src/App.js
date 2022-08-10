@@ -9,8 +9,11 @@ import Area from "./components/Area";
 import Gender from "./components/Gender";
 import Interests from "./components/Interests";
 import Profile from "./components/Profile";
+
+
 import Chatroom from "./components/Chatroom";
 import Groupchat from "./components/Groupchat";
+
 
 function App() {
   // axios
@@ -26,12 +29,12 @@ function App() {
 
   return (
     <div className="app">
-      <h1>JustFriends</h1>
       <Router>
         <Routes>
           <Route exact path="/" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
           {/* <Route exact path="/reset" element={<Reset />} /> */}
+          <Route exact path ="/chat" element={<Chat />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
           <Route exact path="/area" element={<Area />} />
           <Route exact path="/gender" element={<Gender />} />

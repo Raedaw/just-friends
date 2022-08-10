@@ -20,9 +20,13 @@ function Login() {
     }
     if (user) navigate("/chatroom");
   }, [user, loading]);
+
   return (
+    <div className ="login_area"> 
+
     <div className="login">
       <div className="login__container">
+      <img className ="login_logo" alt ="just friends logo" src={require('../Just-friends_images/just-friends_logo.png')}/>
         <input
           type="text"
           className="login__textBox"
@@ -61,6 +65,7 @@ function Login() {
           Don't have an account? <Link to="/register">Register</Link> now.
         </div>
       </div>
+    </div>
     </div>
   );
 }

@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import {
   auth,
   registerWithEmailAndPassword,
-  // signInWithGoogle,
 } from "../utils/firebase";
 import "../Styles/Register.css";
 function Register() {
@@ -21,10 +20,12 @@ function Register() {
   useEffect(() => {
     if (loading) return;
     if (user) navigate("/area");
-  }, [user, loading]);
+  }, [user, loading]); 
+
   return (
     <div className="register">
       <div className="register__container">
+      <img className ="login_logo" alt ="just friends logo" src={require('../Just-friends_images/just-friends_logo.png')}/>
         <input
           type="text"
           className="register__textBox"
@@ -56,17 +57,12 @@ function Register() {
         <button className="register__btn" onClick={register}>
           Register
         </button>
-        {/* <button
-          className="register__btn register__google"
-          onClick={signInWithGoogle}
-        >
-          Register with Google
-        </button> */}
         <div>
           Already have an account? <Link to="/">Login</Link> now.
         </div>
       </div>
     </div>
+    
   );
 }
 export default Register;
