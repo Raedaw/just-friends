@@ -1,15 +1,19 @@
 // Import the functions you need from the SDKs you need
+import { useEffect, useState } from "react";
+
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import {
   getFirestore,
   query,
   getDocs,
+  getDoc,
   collection,
   where,
   setDoc,
   doc,
   updateDoc,
+  onSnapshot
 } from "firebase/firestore";
 import {
   GoogleAuthProvider,
@@ -20,6 +24,11 @@ import {
   sendPasswordResetEmail,
   signOut,
 } from "firebase/auth";
+
+
+
+
+
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -177,6 +186,22 @@ const setInterest = async (selectedInterest) => {
   }
 };
 
+
+
+const colRef = collection(db, "users");
+const q = query(colRef)
+onSnapshot(q, (snapshot) => {
+  let users = [];
+  snapshot.docs.forEach((doc) => {
+    users.push({ ...doc.data(), id: doc.id });
+  })
+console.log(JSON.stringify(users))
+    
+});
+
+
+  
+
 export {
   auth,
   db,
@@ -191,6 +216,7 @@ export {
   setGender,
   setGenderPreference,
   setInterest,
+  getCurrentUser,
 };
 
 // const analytics = getAnalytics(app);

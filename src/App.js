@@ -9,7 +9,7 @@ import Area from "./components/Area";
 import Gender from "./components/Gender";
 import Interests from "./components/Interests";
 import Profile from "./components/Profile";
-
+import Chat from "./components/Chat.js";
 function App() {
   // axios
   //   .get(
@@ -30,6 +30,7 @@ function App() {
           <Route exact path="/" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
           {/* <Route exact path="/reset" element={<Reset />} /> */}
+          <Route exact path ="/chat" element={<Chat />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
           <Route exact path="/area" element={<Area />} />
           <Route exact path="/gender" element={<Gender />} />
