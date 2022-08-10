@@ -13,7 +13,11 @@ import {
   setDoc,
   doc,
   updateDoc,
+
   onSnapshot
+
+  getDoc,
+
 } from "firebase/firestore";
 import {
   GoogleAuthProvider,
@@ -188,20 +192,31 @@ const setInterest = async (selectedInterest) => {
 };
 
 
+const setChat = async () => {
+  // const user = await auth.currentUser;
+  // console.log(user.uid);
+  // const docRef = doc(db, "users", user.uid);
+  // const docSnap = await getDoc(docRef);
 
-const colRef = collection(db, "users");
-const q = query(colRef)
-onSnapshot(q, (snapshot) => {
-  let users = [];
-  snapshot.docs.forEach((doc) => {
-    users.push({ ...doc.data(), id: doc.id });
-  })
-console.log(JSON.stringify(users))
-  
-});
+  // if (docSnap.exists()) {
+  //   console.log("Document data:", docSnap.data());
+  // } else {
+  //   // doc.data() will be undefined in this case
+  //   console.log("No such document!");
+  // }
 
+  const user = await auth.currentUser;
+  const currentUserDoc = doc(db, "users", user.uid);
+  const snapshot = await getDoc(currentUserDoc);
+  return snapshot.data();
 
-  
+  // createDoc(db, userdata.area, userdata.interest);
+
+  // updateDoc();
+
+  // users: [user.uid];
+};
+
 
 export {
   auth,
@@ -217,6 +232,7 @@ export {
   setGender,
   setGenderPreference,
   setInterest,
+  setChat,
 };
 
 // const analytics = getAnalytics(app);

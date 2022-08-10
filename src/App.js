@@ -9,7 +9,12 @@ import Area from "./components/Area";
 import Gender from "./components/Gender";
 import Interests from "./components/Interests";
 import Profile from "./components/Profile";
-import Chat from "./components/Chat.js";
+
+
+import Chatroom from "./components/Chatroom";
+import Groupchat from "./components/Groupchat";
+
+
 function App() {
   // axios
   //   .get(
@@ -35,6 +40,7 @@ function App() {
           <Route exact path="/gender" element={<Gender />} />
           <Route exact path="/interests" element={<Interests />} />
           <Route exact path="/profile" element={<Profile />} />
+          <Route exact path="/chatroom" element={<Chatroom />} />
         </Routes>
       </Router>
     </div>

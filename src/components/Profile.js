@@ -35,7 +35,7 @@ const Profile = () => {
   useEffect(() => {
     if (submitInfo.bio) {
       setProfile(submitInfo).then(() => {
-        navigate("/dashboard");
+        navigate("/chatroom");
       });
     }
   }, [submitInfo]);
