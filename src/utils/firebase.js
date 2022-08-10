@@ -23,6 +23,7 @@ import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signOut,
+  // signInWithGoogle
 } from "firebase/auth";
 
 
@@ -196,7 +197,7 @@ onSnapshot(q, (snapshot) => {
     users.push({ ...doc.data(), id: doc.id });
   })
 console.log(JSON.stringify(users))
-    
+  
 });
 
 
@@ -216,7 +217,6 @@ export {
   setGender,
   setGenderPreference,
   setInterest,
-  getCurrentUser,
 };
 
 // const analytics = getAnalytics(app);
