@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { setChat } from "../utils/firebase";
-import { auth, db, logout } from "../utils/firebase";
-import { query, collection, getDocs, where } from "firebase/firestore";
+import { auth, db, logout, sendMessage } from "../utils/firebase";
+import { query, collection, getDocs, where, orderBy } from "firebase/firestore";
 
 const Groupchat = (props) => {
   const navigate = useNavigate();
   const { userData } = props;
   const [chatUsers, setChatUsers] = useState([]);
+  const [currentMessageInput, setCurrentMessageInput] = useState("");
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     fetchUsers();
@@ -27,6 +29,25 @@ const Groupchat = (props) => {
     setChatUsers(userNames);
   };
 
+  const handleChange = (e) => {
+    setCurrentMessageInput(e.target.value);
+  };
+
+  const clickHandler = (e) => {
+    e.preventDefault();
+    setMessage(currentMessageInput);
+  };
+
+  useEffect(() => {
+    if (message) {
+      sendMessage(message, userData);
+    }
+  }, [message]);
+
+  // const fetchMessages = () => {
+
+  // }
+
   return (
     <div className="selectArea">
       <h2>
@@ -42,8 +63,20 @@ const Groupchat = (props) => {
       <h3>Messages:</h3>
       <ul></ul>
       <label htmlFor="messageInput">Write Message</label>
-      <textarea id="messageInput"></textarea>
-      <button>Send Message</button>
+      <textarea
+        id="messageInput"
+        onChange={(e) => {
+          handleChange(e);
+        }}
+      ></textarea>
+      <button
+        onClick={(e) => {
+          clickHandler(e);
+        }}
+        disabled={!currentMessageInput}
+      >
+        Send Message
+      </button>
     </div>
   );
 };

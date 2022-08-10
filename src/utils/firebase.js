@@ -13,11 +13,9 @@ import {
   setDoc,
   doc,
   updateDoc,
-
-  onSnapshot
-
-  getDoc,
-
+  onSnapshot,
+  addDoc,
+  serverTimestamp,
 } from "firebase/firestore";
 import {
   GoogleAuthProvider,
@@ -29,11 +27,6 @@ import {
   signOut,
   // signInWithGoogle
 } from "firebase/auth";
-
-
-
-
-
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -191,7 +184,6 @@ const setInterest = async (selectedInterest) => {
   }
 };
 
-
 const setChat = async () => {
   // const user = await auth.currentUser;
   // console.log(user.uid);
@@ -217,6 +209,14 @@ const setChat = async () => {
   // users: [user.uid];
 };
 
+const sendMessage = async (message, userData) => {
+  const createdAt = serverTimestamp();
+  await addDoc(collection(db, "Chatrooms", "Manchester", userData.interest), {
+    message,
+    author: userData.uid,
+    createdAt,
+  });
+};
 
 export {
   auth,
@@ -233,6 +233,7 @@ export {
   setGenderPreference,
   setInterest,
   setChat,
+  sendMessage,
 };
 
 // const analytics = getAnalytics(app);
