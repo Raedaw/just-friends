@@ -1,0 +1,130 @@
+textarea{
+    display: flex;
+ width: 300px;
+   max-width: 100%;
+   height: 150px;
+   max-height: 100%;
+  border-radius: 20px;
+  margin-top: 3%;
+  text-align: center;
+  box-shadow: 15px 15px 15px #000000b9;
+  overflow-y: scroll;
+  font-size: large;
+  font-family: 'PT Sans', sans-serif;
+}
+
+input{
+    display: flex;
+ width: 300px;
+   max-width: 100%;
+   height: 50px;
+   max-height: 100%;
+   border-radius: 20px;
+   margin-top: 3%;
+   text-align: center;
+   box-shadow: 15px 15px 15px #000000b9;
+   overflow-y: scroll;
+   font-size: large;
+   font-family: 'PT Sans', sans-serif;
+}
+
+.submit{
+        padding: 10px;
+        font-size: 18px;
+        margin-bottom: 10px;
+        border: none;
+        background-color: #14213D;
+        border: 0;
+        border-radius: 56px;
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        font-family: 'PT Sans', sans-serif;
+        font-weight: bold;
+        font-size: 18px;
+        font-weight: 600;
+        outline: 0;
+        padding: 16px 21px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: all .3s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+      }
+
+
+.photo_placeholder{
+   
+    width: 250px;
+    height: 250px;
+    max-width: 50%;
+    max-width: 50%;
+    display: flex;
+    flex-direction: row;
+   align-self: center;
+  border-radius: 50%;
+  box-shadow: 15px 15px 20px #000000b9;
+  border-color: #000000b9;;
+  
+     
+}
+
+@keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  
+  }
+  
+  
+  .submit:before {
+    background-color: initial;
+    background-image: linear-gradient(#fff 0, rgba(255, 255, 255, 0) 100%);
+    border-radius: 125px;
+    content: "";
+    height: 50%;
+    left: 4%;
+    opacity: .5;
+    position: absolute;
+    top: 0;
+    transition: all .3s;
+    width: 92%;
+  }
+  
+  .submit:hover {
+    box-shadow: rgba(255, 255, 255, .2) 0 3px 15px inset, rgba(0, 0, 0, .1) 0 3px 5px, rgba(0, 0, 0, .1) 0 10px 13px;
+    transform: scale(1.05);
+  }
+  
+  @media (min-width: 768px) {
+    .submit {
+      padding: 16px 48px;
+    }
+  }
+
+  label{
+    font-family: 'PT Sans', sans-serif;
+    font-weight: bold;
+    color: white;   
+    font-size: x-large;
+   
+  }
+
+  .edit_profile{
+      margin-top: 2%;
+      margin-bottom: 1%;
+    font-family: 'PT Sans', sans-serif;
+    color: #ffffff; 
+    font-size: xx-large;
+    align-items: center;
+    justify-content: center;
+   font-weight: bolder;
+  }

@@ -5,6 +5,7 @@ import { imageRegex } from "../utils/imageRegex";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import "../Styles/profile.css";
 
 const schema = yup.object().shape({
   bio: yup.string().min(10).required(),
@@ -45,8 +46,8 @@ const Profile = () => {
   }, [submitInfo]);
   
 
- const changePic = (url) => {
-
+ const changePic = (e) => {
+setAvatarUrl(e.target.value)
  }
 
 
@@ -56,11 +57,11 @@ const Profile = () => {
       <img className="photo_placeholder" alt="yourprofilepicture" src={avatarUrl}/>
       <h2>Edit Profile:</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="bio">Write Bio:</label>
+        <label className="write_bio" htmlFor="bio">Write Bio:</label>
         <textarea id="bio" {...register("bio")}></textarea>
         <p>{errors.bio?.message}</p>
         <label htmlFor="avatar">Avatar URL:</label>
-        <input id="avatar" onFocus={(event) => changePic(event.target.value)} {...register("avatarURL")}></input>
+        <input id="avatar" onFocus={changePic} {...register("avatarURL")}></input>
         <p>{errors.avatarURL?.message}</p>
         <input type="submit" className="submit" />
       </form>
