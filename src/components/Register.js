@@ -8,34 +8,33 @@ import { auth, registerWithEmailAndPassword } from "../utils/firebase";
 import "../Styles/Register.css";
 
 const schema = yup.object().shape({
-  firstname: yup.string().required(),
-  surname: yup.string().required(),
+  firstname: yup.string().required().min(2),
+  surname: yup.string().required().min(2),
   email: yup.string().email().required(),
   password: yup.string().min(4).max(15).required(),
-  passwordConf: yup.string().oneOf([yup.ref("password"), null]),
+  confirmPassword: yup.string().oneOf([yup.ref("password"), null]),
 });
 
 function Register() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [firstname, setFirstname] = useState("");
-  const [surname, setSurname] = useState("");
-  const [passwordConf, setPasswordConf] = useState("");
   const [user, loading, error] = useAuthState(auth);
+  const navigate = useNavigate();
 
-  const { register, handleSubmit, errors } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(schema),
   });
 
-  const submitForm = (data) => {
-    console.log(data);
-  };
-  console.log(errors);
-  const navigate = useNavigate();
-  // const register = () => {
-  //   if (!firstname) alert("Please enter name");
-  //   registerWithEmailAndPassword(firstname, surname, email, password);
-  // };
+  const onSubmit = (data) =>
+    registerWithEmailAndPassword(
+      data.firstname,
+      data.surname,
+      data.email,
+      data.password
+    );
+
   useEffect(() => {
     if (loading) return;
     if (user) navigate("/area");
@@ -49,61 +48,45 @@ function Register() {
           alt="just friends logo"
           src={require("../Just-friends_images/just-friends_logo.png")}
         />
-        <form onSubmit={handleSubmit(submitForm)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <input
             type="text"
             className="register__textBox"
-            name="firstname"
-            value={firstname}
-            onChange={(e) => setFirstname(e.target.value)}
             placeholder="First Name"
-            ref={register}
+            {...register("firstname")}
           />
-          {/* <p>{errors.firstname?.message}</p> */}
+          <p>{errors.firstname?.message}</p>
           <input
             type="text"
             className="register__textBox"
-            name="surname"
-            value={surname}
-            onChange={(e) => setSurname(e.target.value)}
             placeholder="Surname"
-            ref={register}
+            {...register("surname")}
           />
-          <p>{errors.lastname?.message}</p>
+          <p>{errors.surname?.message}</p>
           <input
             type="text"
             className="register__textBox"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
             placeholder="E-mail Address"
-            ref={register}
+            {...register("email")}
           />
           <p>{errors.email?.message}</p>
           <input
             type="password"
             className="register__textBox"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
-            ref={register}
+            {...register("password")}
           />
           <p>{errors.password?.message}</p>
           <input
             type="password"
             className="register__textBox"
-            name="passwordConf"
-            value={passwordConf}
-            onChange={(e) => setPasswordConf(e.target.value)}
             placeholder="Confirm password"
-            ref={register}
+            {...register("confirmPassword")}
           />
-          <p>{errors.passwordConf && "Passwords must match"}</p>
+          <p>{errors.confirmPassword?.message && "Passwords must match"}</p>
+          <input type="submit" className="register__btn" />
         </form>
-        <button className="register__btn" onClick={register}>
-          Register
-        </button>
+
         <div>
           Already have an account? <Link to="/">Login</Link> now.
         </div>
