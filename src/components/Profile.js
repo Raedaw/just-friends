@@ -44,12 +44,14 @@ const Profile = () => {
 
   return (
     <div className="selectArea">
-      <h2>Edit Profile:</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="bio">Write Bio:</label>
+        <legend>
+          <h2>Edit Profile:</h2>
+        </legend>
+        <label for="bio">Write Bio:</label>
         <textarea id="bio" {...register("bio")}></textarea>
         <p>{errors.bio?.message}</p>
-        <label htmlFor="avatar">Avatar URL:</label>
+        <label for="avatar">Avatar URL:</label>
         <input id="avatar" {...register("avatarURL")}></input>
         <p>{errors.avatarURL?.message}</p>
         <input type="submit" className="submit" />
