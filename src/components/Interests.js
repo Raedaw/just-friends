@@ -24,18 +24,22 @@ const Interests = () => {
 
   return (
     <div>
-      <form className="interest-grid">
+      <fieldset className="interest-grid">
+        <legend>Select an interest</legend>
         {interests.map((interest) => {
           return (
-            <label className="interest" key={`${interest}`}>
+            <div>
               <input
                 type="radio"
                 value={interest}
                 name="interest"
                 onChange={handleSelect}
+                id={interest}
               />
-              {interest}
-            </label>
+              <label for={interest} className="interest" key={`${interest}`}>
+                {interest}
+              </label>
+            </div>
           );
         })}
 
@@ -46,7 +50,7 @@ const Interests = () => {
         >
           Next
         </button>
-      </form>
+      </fieldset>
     </div>
   );
 };
