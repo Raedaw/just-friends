@@ -16,6 +16,7 @@ import {
   onSnapshot,
   addDoc,
   serverTimestamp,
+  DocumentReference,
 } from "firebase/firestore";
 import {
   GoogleAuthProvider,
@@ -210,11 +211,14 @@ const setChat = async () => {
 };
 
 const sendMessage = async (message, userData) => {
-  const createdAt = serverTimestamp();
+  // const createdAt = await serverTimestamp();
   await addDoc(collection(db, "Chatrooms", "Manchester", userData.interest), {
     message,
     author: userData.uid,
-    createdAt,
+    createdAt: Date.now(),
+    firstname: userData.firstname,
+    surname: userData.surname,
+    avatarURL: userData.avatarURL,
   });
 };
 
