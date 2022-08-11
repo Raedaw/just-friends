@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { setChat } from "../utils/firebase";
 import { auth, db, logout, sendMessage } from "../utils/firebase";
 import { query, collection, getDocs, where, orderBy } from "firebase/firestore";
+import { async } from "@firebase/util";
 
 const Groupchat = (props) => {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ const Groupchat = (props) => {
   const [chatUsers, setChatUsers] = useState([]);
   const [currentMessageInput, setCurrentMessageInput] = useState("");
   const [message, setMessage] = useState("");
+  const [messagesData, setMessagesData] = useState([]);
 
   useEffect(() => {
     fetchUsers();
@@ -38,15 +40,26 @@ const Groupchat = (props) => {
     setMessage(currentMessageInput);
   };
 
+  
+
+  const fetchMessages = async () => {
+    const q = query(
+      collection(db, "Chatrooms", "Manchester", userData.interest),
+      orderBy("createdAt")
+    );
+    const messages= await getDocs(q)
+    // const messagesData = messages.docs;
+    // console.log(messagesData[0].data().createdAt.toDate());
+    // console.log(messagesData[0].id)
+    setMessagesData(messages.docs)
+  }
+   
   useEffect(() => {
     if (message) {
       sendMessage(message, userData);
     }
+    fetchMessages()
   }, [message]);
-
-  // const fetchMessages = () => {
-
-  // }
 
   return (
     <div className="selectArea">
@@ -61,7 +74,17 @@ const Groupchat = (props) => {
         })}
       </ul>
       <h3>Messages:</h3>
-      <ul></ul>
+      <ul>
+        {messagesData.map((message) =>{
+          return (
+              <li key={message.id}>
+                <p>
+                  {message.data().message}
+                </p>
+              </li>
+          )
+        })}
+      </ul>
       <label htmlFor="messageInput">Write Message</label>
       <textarea
         id="messageInput"
