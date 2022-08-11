@@ -1,17 +1,15 @@
 import "./Styles/App.css";
-import { getDatabase } from "firebase/database";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 import Register from "./components/Register";
-import Reset from "./components/Reset";
 import Area from "./components/Area";
 import Gender from "./components/Gender";
 import Interests from "./components/Interests";
 import Profile from "./components/Profile";
 
 import Chatroom from "./components/Chatroom";
-import Groupchat from "./components/Groupchat";
+
 
 function App() {
   // axios
