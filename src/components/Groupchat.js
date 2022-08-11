@@ -23,7 +23,6 @@ const Groupchat = (props) => {
 
   useEffect(() => {
     fetchUsers();
-    console.log(userData, "Current User's Info");
   }, []);
 
   const fetchUsers = async () => {
@@ -57,7 +56,7 @@ const Groupchat = (props) => {
     const messages = await onSnapshot(q, (querySnapshot) => {
       const allmessage = [];
       querySnapshot.forEach((doc) => {
-        allmessage.push(doc.data());
+        allmessage.push(doc);
       });
       setMessagesData(allmessage);
     });
@@ -89,7 +88,7 @@ const Groupchat = (props) => {
 
   useEffect(() => {
     fetchMessages();
-  }, [messagesData]);
+  }, [messagesData.length]);
 
   return (
     <div className="selectArea">
@@ -106,9 +105,19 @@ const Groupchat = (props) => {
       <h3>Messages:</h3>
       <ul>
         {messagesData.map((message) => {
+          // const date = new Date(message.data().createdAt.seconds * 1000);
           return (
             <li key={message.id}>
-              <p>{message.message}</p>
+              <p>
+                {message.data().firstname} {message.data().surname}:{" "}
+                {message.data().message}
+              </p>
+              <p>
+                Sent at:{" "}
+                {`${new Date(message.data().createdAt)
+                  .toString()
+                  .slice(0, -31)}`}
+              </p>
             </li>
           );
         })}
