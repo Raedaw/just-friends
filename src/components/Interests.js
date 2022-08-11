@@ -2,8 +2,10 @@ import { useState } from "react";
 import { setInterest } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 
+import  "../Styles/interests.css" ;
 const Interests = () => {
   const navigate = useNavigate();
+
 
   const interests = [
     "Arts & Culture",
@@ -22,12 +24,19 @@ const Interests = () => {
     setInterest(e.target.value);
   }
 
+  let count = 1;
+
+  
+
   return (
+    <div className="interests_body">
+      
     <div>
+    <h1>Select your main interest</h1>
       <form className="interest-grid">
         {interests.map((interest) => {
           return (
-            <label className="interest" key={`${interest}`}>
+            <label className={`div${count++}`} key={`${interest}`}>
               <input
                 type="radio"
                 value={interest}
@@ -38,15 +47,17 @@ const Interests = () => {
             </label>
           );
         })}
-
-        <button
+      </form>
+ 
+        <button className ="next"
           onClick={() => {
             navigate("/profile");
           }}
         >
-          Next
+          Next Page
         </button>
-      </form>
+        </div>
+   
     </div>
   );
 };
