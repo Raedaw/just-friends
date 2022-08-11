@@ -9,9 +9,11 @@ import Area from "./components/Area";
 import Gender from "./components/Gender";
 import Interests from "./components/Interests";
 import Profile from "./components/Profile";
+import MyProfile from "./components/MyProfile";
 
 import Chatroom from "./components/Chatroom";
 import Groupchat from "./components/Groupchat";
+import Nav from "./components/Navbar";
 
 function App() {
   // axios
@@ -28,6 +30,7 @@ function App() {
   return (
     <div className="app">
       <Router>
+        <Nav />
         <Routes>
           <Route exact path="/" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
@@ -39,6 +42,7 @@ function App() {
           <Route exact path="/interests" element={<Interests />} />
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/chatroom" element={<Chatroom />} />
+          <Route exact path="/myprofile" element={<MyProfile />} />
         </Routes>
       </Router>
     </div>
