@@ -2,8 +2,16 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { setChat } from "../utils/firebase";
 import { auth, db, logout, sendMessage } from "../utils/firebase";
-import { query, collection, getDocs, where, orderBy } from "firebase/firestore";
+import {
+  query,
+  collection,
+  getDocs,
+  where,
+  orderBy,
+  onSnapshot,
+} from "firebase/firestore";
 import { async } from "@firebase/util";
+import "../Styles/Groupchat.css";
 
 const Groupchat = (props) => {
   const navigate = useNavigate();
@@ -38,28 +46,50 @@ const Groupchat = (props) => {
   const clickHandler = (e) => {
     e.preventDefault();
     setMessage(currentMessageInput);
+    setCurrentMessageInput("");
   };
-
-  
 
   const fetchMessages = async () => {
     const q = query(
       collection(db, "Chatrooms", "Manchester", userData.interest),
       orderBy("createdAt")
     );
-    const messages= await getDocs(q)
-    // const messagesData = messages.docs;
-    // console.log(messagesData[0].data().createdAt.toDate());
-    // console.log(messagesData[0].id)
-    setMessagesData(messages.docs)
-  }
-   
+    const messages = await onSnapshot(q, (querySnapshot) => {
+      const allmessage = [];
+      querySnapshot.forEach((doc) => {
+        allmessage.push(doc.data());
+      });
+      setMessagesData(allmessage);
+    });
+
+    // await setMessagesData(allmessage)
+
+    // .then((messages) => {
+    //   console.log(messages, "dis one");
+    //   setMessagesData(messages);
+    // });
+  };
+
+  // const q = query(collection(db, "cities"), where("state", "==", "CA"));
+  // const unsubscribe = onSnapshot(q,
+
+  // (querySnapshot) => {
+  //   const cities = [];
+  //   querySnapshot.forEach((doc) => {
+  //       cities.push(doc.data().name);
+  //   });
+  //   console.log("Current cities in CA: ", cities.join(", "));
+  // });
+
   useEffect(() => {
     if (message) {
       sendMessage(message, userData);
     }
-    fetchMessages()
   }, [message]);
+
+  useEffect(() => {
+    fetchMessages();
+  }, [messagesData]);
 
   return (
     <div className="selectArea">
@@ -75,19 +105,19 @@ const Groupchat = (props) => {
       </ul>
       <h3>Messages:</h3>
       <ul>
-        {messagesData.map((message) =>{
+        {messagesData.map((message) => {
           return (
-              <li key={message.id}>
-                <p>
-                  {message.data().message}
-                </p>
-              </li>
-          )
+            <li key={message.id}>
+              <p>{message.message}</p>
+            </li>
+          );
         })}
       </ul>
       <label htmlFor="messageInput">Write Message</label>
       <textarea
         id="messageInput"
+        value={currentMessageInput}
+        placeholder="Type message here..."
         onChange={(e) => {
           handleChange(e);
         }}
