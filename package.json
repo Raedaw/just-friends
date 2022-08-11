@@ -8,6 +8,8 @@
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
+    "bad-words": "^3.0.4",
+    "capitalize-sentence": "^0.1.5",
     "firebase": "^9.9.2",
     "firestore": "^1.1.6",
     "lottie-web": "^5.9.6",
