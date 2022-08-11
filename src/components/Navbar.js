@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "../Styles/Nav.css";
 import { auth, db, logout } from "../utils/firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
@@ -29,25 +29,40 @@ const Nav = () => {
     if (!user) return navigate("/");
     fetchUserName();
   }, [user, loading, logout]);
-
+  console.log(window.location.pathname);
   if (!user) return null;
 
   return (
     <div className="nav">
       <div className="nav__container">
-        <div className="logged-in-as">
-          <p>Logged in as: </p>
-          <Link to="/myprofile">
-            <p>
-              {currentUserData.firstname}
-              <img
-                className="navatar"
-                src={currentUserData.avatarURL}
-                alt="your avatar image"
-              />
-            </p>
-          </Link>
+        <div className="logo">
+          <img
+            className="login_logo"
+            alt="just friends logo"
+            src={require("../Just-friends_images/just-friends_logo.png")}
+          />
         </div>
+        {window.location.pathname !== "/myprofile" ? (
+          <div className="logged-in-as">
+            <p>Logged in as: </p>
+            <Link to="/myprofile">
+              <p>
+                {currentUserData.firstname}
+                <img
+                  className="navatar"
+                  src={currentUserData.avatarURL}
+                  alt="your avatar image"
+                />
+              </p>
+            </Link>
+          </div>
+        ) : (
+          <div className="myprofileview">
+            <Link to="/Chatroom">
+              <p>Go back to chat</p>
+            </Link>
+          </div>
+        )}
 
         <button className="dashboard__btn" onClick={logout}>
           Logout
