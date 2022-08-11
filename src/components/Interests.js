@@ -2,6 +2,8 @@ import { useState } from "react";
 import { setInterest } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 
+import "../Styles/interests.css";
+
 const Interests = () => {
   const navigate = useNavigate();
 
@@ -22,10 +24,12 @@ const Interests = () => {
     setInterest(e.target.value);
   }
 
+  let count = 1;
+
   return (
-    <div>
+    <div className="interests_body">
       <fieldset className="interest-grid">
-        <legend>Select an interest</legend>
+        <legend>Select your main interest</legend>
         {interests.map((interest) => {
           return (
             <div>
@@ -36,7 +40,11 @@ const Interests = () => {
                 onChange={handleSelect}
                 id={interest}
               />
-              <label for={interest} className="interest" key={`${interest}`}>
+              <label
+                for={interest}
+                className={`div${count++}`}
+                key={`${interest}`}
+              >
                 {interest}
               </label>
             </div>
@@ -44,11 +52,12 @@ const Interests = () => {
         })}
 
         <button
+          className="next"
           onClick={() => {
             navigate("/profile");
           }}
         >
-          Next
+          Next page
         </button>
       </fieldset>
     </div>

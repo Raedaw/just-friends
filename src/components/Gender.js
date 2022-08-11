@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { setGender, setGenderPreference } from "../utils/firebase";
 import "../Styles/gender.css";
+import lottie from "lottie-web";
+import { useEffect, useRef } from "react";
 
 const Gender = () => {
   const navigate = useNavigate();
@@ -13,13 +15,26 @@ const Gender = () => {
     setGenderPreference(e.target.value);
   };
 
+  const containertwo = useRef(null);
+
+  useEffect(() => {
+    lottie.loadAnimation({
+      container: containertwo.current,
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      animationData: require("../Just-friends_images/gender.json"),
+    });
+  }, []);
+
   return (
     <div className="body">
       <img
-        className="login_logo"
+        className="gender_app_logo"
         alt="just friends logo"
         src={require("../Just-friends_images/just-friends_logo.png")}
       />
+      <div className="containertwo" ref={containertwo}></div>
 
       <fieldset className="selectGender">
         <legend>
