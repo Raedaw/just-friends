@@ -76,6 +76,7 @@ const db = getFirestore(app);
 //     alert(err.message);
 //   }
 // };
+
 const logInWithEmailAndPassword = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
@@ -210,10 +211,14 @@ const setChat = async () => {
   // users: [user.uid];
 };
 
+const Filter = require("bad-words"),
+  filter = new Filter();
+
 const sendMessage = async (message, userData) => {
+  const cleanMessage = filter.clean(message);
   // const createdAt = await serverTimestamp();
   await addDoc(collection(db, "Chatrooms", "Manchester", userData.interest), {
-    message,
+    message: cleanMessage,
     author: userData.uid,
     createdAt: Date.now(),
     firstname: userData.firstname,
