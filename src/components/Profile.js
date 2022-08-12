@@ -1,12 +1,20 @@
-import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { setProfile } from "../utils/firebase";
-import { imageRegex } from "../utils/imageRegex";
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  listAll,
+  list,
+} from "firebase/storage";
+import { v4 } from "uuid";
+import React from "react";
+import "../Styles/profile.css";
+import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import "../Styles/profile.css";
-import React from "react";
+import { setBio, setNewAvatar, setProfile, storage } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
 const schema = yup.object().shape({
   bio: yup.string().min(10).required(),
   // avatarURL: yup
@@ -15,41 +23,56 @@ const schema = yup.object().shape({
   //   .required(),
 });
 
-const Profile = () => {
+function Profile() {
   const navigate = useNavigate();
-  const [profileInfo, setProfileInfo] = useState({});
-  const [submitInfo, setSubmitInfo] = useState({});
-  const [buttonDisabled, setButtonDisabled] = useState(true);
-  const [errorMsg, setErrorMsg] = useState("");
-  const [images, setImages] = useState([]);
-  const [avatarURL, setAvatarURL] = useState([
-    "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
-  ]);
+  const [imageUpload, setImageUpload] = useState(null);
+  const [imageUrl, setImageUrl] = useState(
+    "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
+  );
   const {
     register,
-    handleSubmit,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
   });
+  const [avatarURL, setAvatarURL] = useState([
+    "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
+  ]);
+  const [images, setImages] = useState([]);
+  const [changeBio, setChangeBio] = useState("");
+  const [submitInfo, setSubmitInfo] = useState({});
 
-  const onSubmit = (data) => {
-    console.log(data);
-    data.avatarURL = avatarURL[0];
-    console.log(data);
-    setProfileInfo(data);
-    setSubmitInfo(data);
-    console.log(data);
+  const imagesListRef = ref(storage, "images/");
+  const uploadFile = (e) => {
+    e.preventDefault();
+    if (imageUpload == null) return;
+    const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
+    uploadBytes(imageRef, imageUpload).then((snapshot) => {
+      getDownloadURL(snapshot.ref)
+        .then((url) => {
+          return { bio: changeBio, avatarURL: url };
+        })
+        .then((info) => {
+          setProfile(info);
+          navigate("/chatroom");
+        });
+    });
   };
 
-  useEffect(() => {
-    if (submitInfo.bio) {
-      console.log(submitInfo);
-      setProfile(submitInfo).then(() => {
-        navigate("/chatroom");
-      });
-    }
-  }, [submitInfo, navigate]);
+  //   useEffect(() => {
+  //     listAll(imagesListRef).then((response) => {
+  //       response.items.forEach((item) => {
+  //         getDownloadURL(item).then((url) => {
+  //           setImageUrls((prev) => [...prev, url]);
+  //         });
+  //       });
+  //     });
+  //   }, []);
+
+  function onImageChange(e) {
+    console.log(e.target.files);
+    setImages([...e.target.files]);
+  }
 
   useEffect(() => {
     if (images.length < 1) return;
@@ -61,39 +84,79 @@ const Profile = () => {
     console.log(avatarURL);
   }, [images]);
 
-  function onImageChange(e) {
-    console.log(e.target.files);
-    setImages([...e.target.files]);
-  }
-  // {...register("avatarURL")}
   return (
     <div className="selectArea">
-      <>
-        {avatarURL.map((imageSrc) => (
-          <img src={imageSrc} className="upload_picture" alt=" your avatar" />
-        ))}
-        <h2>Edit Profile:</h2>
+      <img src={avatarURL} className="upload_picture" alt=" your avatar" />
+      <h2>Edit Profile:</h2>
+      <form
+      // onSubmit={(e) => {
+      //   onSubmit(e);
+      // }}
+      >
         <label className="custom-file-upload">
           {" "}
           Upload Photo
           <input
             type="file"
-            multiple
-            accepts="image/*"
-            onChange={onImageChange}
+            onChange={(event) => {
+              onImageChange(event);
+              setImageUpload(event.target.files[0]);
+            }}
+            accept="image/*"
           />
         </label>
-      </>
-      <form onSubmit={handleSubmit(onSubmit)}>
+        {/* <label className="write_bio" htmlFor="bio">
+          Write Bio:
+        </label>
+        {/* <textarea id="bio" {...register("bio")}></textarea> */}
+        {/* <p>{errors.bio?.message}</p> */}
+        {/* <input type="submit" className="submit" /> */}
+        <br></br>
         <label className="write_bio" htmlFor="bio">
           Write Bio:
         </label>
-        <textarea id="bio" {...register("bio")}></textarea>
+        <textarea
+          id="bio"
+          onChange={(e) => {
+            setChangeBio(e.target.value);
+          }}
+          value={changeBio}
+        ></textarea>
         <p>{errors.bio?.message}</p>
-        <input type="submit" className="submit" />
+        <button
+          onClick={(e) => {
+            uploadFile(e);
+          }}
+        >
+          Submit
+        </button>
       </form>
     </div>
   );
-};
+}
+
+{
+  /* <div className="random">
+      <input></input>
+      <input
+        type="file"
+        onChange={(event) => {
+          setImageUpload(event.target.files[0]);
+        }}
+      />
+      <input
+        type="file"
+        multiple
+        accepts="image/*"
+        onChange={(event) => {
+          setImageUpload(event.target.files[0]);
+        }}
+      />
+      <button onClick={uploadFile}> Upload Image</button>
+      {imageUrls.map((url) => {
+        return <img src={url} />;
+      })}
+    </div> */
+}
 
 export default Profile;
