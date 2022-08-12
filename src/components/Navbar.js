@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Switch, Route, Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import "../Styles/Nav.css";
 import { auth, db, logout } from "../utils/firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
-import Button from "react-bootstrap/Button";
-
-import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
-
-import NavDropdown from "react-bootstrap/NavDropdown";
 
 function Navigation() {
   const [user, loading, error] = useAuthState(auth);
@@ -24,7 +19,7 @@ function Navigation() {
       const q = query(collection(db, "users"), where("uid", "==", user?.uid));
       const doc = await getDocs(q);
       const data = doc.docs[0].data();
-      // console.log(data);
+
       setName(data.name);
       setCurrentUserData(data);
     } catch (err) {
