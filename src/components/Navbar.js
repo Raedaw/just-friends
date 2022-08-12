@@ -16,7 +16,7 @@ const Nav = () => {
       const q = query(collection(db, "users"), where("uid", "==", user?.uid));
       const doc = await getDocs(q);
       const data = doc.docs[0].data();
-      console.log(data);
+      // console.log(data);
       setName(data.name);
       setCurrentUserData(data);
     } catch (err) {
@@ -26,10 +26,10 @@ const Nav = () => {
   };
   useEffect(() => {
     if (loading) return;
-    if (!user) return navigate("/");
-    fetchUserName();
+    // if (!user) return navigate("/");
+    if (user) fetchUserName();
   }, [user, loading, navigate]);
-  console.log(window.location.pathname);
+  // console.log(window.location.pathname);
   if (!user) return null;
 
   return (
