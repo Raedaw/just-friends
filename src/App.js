@@ -13,6 +13,7 @@ import MyProfile from "./components/MyProfile";
 import Chatroom from "./components/Chatroom";
 import Groupchat from "./components/Groupchat";
 import Nav from "./components/Navbar";
+import NotFoundPage from "./components/NotFoundPage";
 
 function App() {
   // axios
@@ -42,6 +43,7 @@ function App() {
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/chatroom" element={<Chatroom />} />
           <Route exact path="/myprofile" element={<MyProfile />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>
     </div>
