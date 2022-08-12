@@ -7,6 +7,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import "../Styles/profile.css";
 import React from "react";
+import { getStorage, ref, uploadBytes } from "firebase/storage";
+
 const schema = yup.object().shape({
   bio: yup.string().min(10).required(),
   // avatarURL: yup
@@ -34,12 +36,18 @@ const Profile = () => {
   });
 
   const onSubmit = (data) => {
-    console.log(data);
     data.avatarURL = avatarURL[0];
-    console.log(data);
     setProfileInfo(data);
     setSubmitInfo(data);
-    console.log(data);
+  
+const storage = getStorage();
+const storageRef = ref(storage, 'avatarURL');
+const metadata = {
+  contentType: "image/png"
+}
+uploadBytes(storageRef, avatarURL, metadata).then((snapshot) => {
+  console.log('Uploaded a blob or file!');
+});
   };
 
   useEffect(() => {
@@ -61,10 +69,22 @@ const Profile = () => {
     console.log(avatarURL);
   }, [images]);
 
+
+
   function onImageChange(e) {
     console.log(e.target.files);
     setImages([...e.target.files]);
-  }
+const storage = getStorage();
+const storageRef = ref(storage, 'some-other-type-child');
+const metadata = {
+  contentType: "image/jpg"
+}
+uploadBytes(storageRef, avatarURL, metadata).then((snapshot) => {
+  console.log('Uploaded a blob or file!');
+
+  })}
+
+
   // {...register("avatarURL")}
   return (
     <div className="selectArea">
@@ -80,7 +100,7 @@ const Profile = () => {
             type="file"
             multiple
             accepts="image/*"
-            onChange={onImageChange}
+            onChange={(e) => {onImageChange(e)}}
           />
         </label>
       </>
