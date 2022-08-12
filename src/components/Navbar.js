@@ -38,7 +38,14 @@ function Navigation() {
     if (user) fetchUserName();
   }, [user, loading, navigate]);
   // console.log(window.location.pathname);
-  if (!user) return null;
+  if (
+    !user ||
+    window.location.pathname === "/area" ||
+    window.location.pathname === "/gender" ||
+    window.location.pathname === "/interests" ||
+    window.location.pathname === "/profile"
+  )
+    return null;
 
   return (
     <>
@@ -59,6 +66,8 @@ function Navigation() {
             className="navatar"
             src={currentUserData.avatarURL}
             alt="your avatar"
+            width="130"
+            height="130"
           />
           <br />
           <Navbar.Text>Signed in as:{"  "} </Navbar.Text>
