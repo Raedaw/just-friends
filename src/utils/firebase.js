@@ -28,6 +28,7 @@ import {
   signOut,
   // signInWithGoogle
 } from "firebase/auth";
+import { getStorage } from "firebase/storage";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -56,6 +57,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+export const storage = getStorage(app);
 
 // const googleProvider = new GoogleAuthProvider();
 // const signInWithGoogle = async () => {
@@ -176,6 +178,32 @@ const setGender = async (myGender) => {
   }
 };
 
+const setBio = async (bio) => {
+  const user = await auth.currentUser;
+  const currentUserDoc = doc(db, "users", user.uid);
+  try {
+    await updateDoc(currentUserDoc, {
+      bio,
+    });
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
+};
+
+const setNewAvatar = async (bio) => {
+  const user = await auth.currentUser;
+  const currentUserDoc = doc(db, "users", user.uid);
+  try {
+    await updateDoc(currentUserDoc, {
+      bio,
+    });
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
+};
+
 const setGenderPreference = async (preference) => {
   const user = await auth.currentUser;
   const currentUserDoc = doc(db, "users", user.uid);
@@ -253,12 +281,14 @@ export {
   logout,
   signInWithEmailAndPassword,
   setArea,
-  setProfile,
   setGender,
   setGenderPreference,
   setInterest,
   setChat,
   sendMessage,
+  setBio,
+  setNewAvatar,
+  setProfile,
 };
 
 // const analytics = getAnalytics(app);

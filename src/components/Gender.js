@@ -38,6 +38,7 @@ const Gender = () => {
       <h2>Select your gender</h2>
       <div className="selectGender">
         <div className="gender_radio_buttons">
+        Male Identifying
           <input
             type="radio"
             value="Male identifying"
@@ -46,7 +47,7 @@ const Gender = () => {
               myGenderHandler(e);
             }}
           />{" "}
-          Male Identifying
+          Female Identifying
           <input
             type="radio"
             value="Female identifying"
@@ -55,7 +56,7 @@ const Gender = () => {
               myGenderHandler(e);
             }}
           />{" "}
-          Female Identifying
+          Non Binary
           <input
             type="radio"
             value="Non Binary"
@@ -64,7 +65,7 @@ const Gender = () => {
               myGenderHandler(e);
             }}
           />{" "}
-          Non Binary
+           Prefer Not to Say
           <input
             type="radio"
             value="Prefer not to say"
@@ -73,50 +74,6 @@ const Gender = () => {
               myGenderHandler(e);
             }}
           />{" "}
-          Prefer Not to Say
-        </div>
-      </div>
-      <h2>Select your preference of gender to be friends with</h2>
-      <div className="selectGenderPreference">
-        <div className="gender_preference_radio_buttons">
-          <label>
-            <input
-              type="radio"
-              value="Male"
-              name="myGenderPreference"
-              onChange={(e) => {
-                genderPreferenceHandler(e);
-              }}
-            />{" "}
-            Male
-          </label>
-          <input
-            type="radio"
-            value="Female"
-            name="myGenderPreference"
-            onChange={(e) => {
-              genderPreferenceHandler(e);
-            }}
-          />{" "}
-          Female
-          <input
-            type="radio"
-            value="Non Binary"
-            name="myGenderPreference"
-            onChange={(e) => {
-              genderPreferenceHandler(e);
-            }}
-          />{" "}
-          Non Binary
-          <input
-            type="radio"
-            value="No Preference"
-            name="myGenderPreference"
-            onChange={(e) => {
-              genderPreferenceHandler(e);
-            }}
-          />{" "}
-          No Preference
         </div>
       </div>
       <button

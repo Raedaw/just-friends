@@ -18,9 +18,11 @@
     flex-direction: column;
 background-color: #ffffffa8;
 width: 550px;
-max-width: 88%;
+max-width: 95%;
 border-radius: 20px;
 padding: 3%;
+padding-top: 5%;
+padding-bottom: 5%;
 box-shadow: 15px 15px 20px #000000b9;
 justify-content: space-around;
 flex-wrap: wrap-reverse;
@@ -157,3 +159,5 @@ font-weight: bold
  margin-bottom: 4%;
   border-color: #000000b9;;
   }
+
+  

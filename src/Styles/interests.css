@@ -1,38 +1,27 @@
 .interests_body{
-    height: 100vh;
-    width: 100vw;
+  height: 100vh;
+  width: 100vw;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
     background: linear-gradient(-45deg, #ffffff, #fca211c6, #000c46, #8ECAE6);
-  background-size: 400% 400%;
+    background-size: 400% 400%;
   animation: gradient 10s ease infinite;  
 }
 
-.interest-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
-    margin-bottom: -5%;
 
-    
-    }
 
-    
-    
-    .div1 { grid-area: 1 / 2 / 2 / 3; background-color: rgba(255, 255, 255, 0.702); padding: 5%; border-radius: 20px; display: flex; flex-direction: column; flex-wrap: wrap; font-family: 'PT Sans', sans-serif; box-shadow: 10px 10px 20px #0000006b;}
-    .div2 { grid-area: 1 / 3 / 2 / 4; background-color: rgba(255, 255, 255, 0.702); padding: 5%; border-radius: 20px;  display: flex;flex-direction: column; flex-wrap: wrap; font-family: 'PT Sans', sans-serif;box-shadow: 10px 10px 20px #0000006b;}
-    .div3 { grid-area: 1 / 4 / 2 / 5;background-color: rgba(255, 255, 255, 0.702); padding: 5%; border-radius: 20px;  display: flex; flex-direction: column; flex-wrap: wrap; font-family: 'PT Sans', sans-serif;box-shadow: 10px 10px 20px #0000006b;}
-    .div4 { grid-area: 2 / 4 / 3 / 5; background-color: rgba(255, 255, 255, 0.702); padding: 5%; border-radius: 20px; display: flex;flex-direction: column; flex-wrap: wrap; padding-right: 10px; font-family: 'PT Sans', sans-serif; box-shadow: 10px 10px 20px #0000006b;}
-    .div5 { grid-area: 2 / 3 / 3 / 4; background-color: rgba(255, 255, 255, 0.702); padding: 5%; border-radius: 20px; display: flex; flex-direction: column; flex-wrap: wrap; font-family: 'PT Sans', sans-serif; box-shadow: 10px 10px 20px #0000006b;}
-    .div6 { grid-area: 2 / 2 / 3 / 3; background-color: rgba(255, 255, 255, 0.702); padding: 5%; border-radius: 20px; display: flex;flex-direction: column; flex-wrap: wrap;padding-right: 5px; font-family: 'PT Sans', sans-serif;box-shadow: 10px 10px 20px #0000006b;}
-    .div7 { grid-area: 3 / 2 / 4 / 3; background-color: rgba(255, 255, 255, 0.702); padding: 5%; border-radius: 20px; display: flex;flex-direction: column; flex-wrap: wrap; font-family: 'PT Sans', sans-serif;box-shadow: 10px 10px 20px #0000006b;}
-    .div8 { grid-area: 3 / 3 / 4 / 4; background-color: rgba(255, 255, 255, 0.702); padding: 5%; border-radius: 20px; display: flex;flex-direction: column; flex-wrap: wrap;padding-right: 6px; font-family: 'PT Sans', sans-serif;box-shadow: 10px 10px 20px #0000006b;}
-    .div9 { grid-area: 3 / 4 / 4 / 5; background-color: rgba(255, 255, 255, 0.702); padding: 5%; border-radius: 20px; display: flex;flex-direction: column; flex-wrap: wrap; font-family: 'PT Sans', sans-serif;box-shadow: 10px 10px 20px #0000006b;}
-    .div10 { grid-area: 4 / 3 / 5 / 4;background-color: rgba(255, 255, 255, 0.702); padding: 5%; border-radius: 20px; display: flex;flex-direction: column; flex-wrap: wrap; font-family: 'PT Sans', sans-serif; margin-bottom: 25%; box-shadow: 10px 10px 20px #0000006b;}
+.interest-grid{
+display: flex;
+flex-wrap: wrap;
+width: 370px;
+max-width: 90%;
+max-height: 90%;
+background: #06060677;
+padding: 5%;
+border-radius: 20px;
+}
 
 
     .next {
