@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 import { setChat } from "../utils/firebase";
 import Groupchat from "./Groupchat";
 
 const Chatroom = () => {
-  const navigate = useNavigate();
+
   const [userData, setUserData] = useState({});
   const [joined, setJoined] = useState(false);
 
