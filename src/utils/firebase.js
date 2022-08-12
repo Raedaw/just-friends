@@ -56,6 +56,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+
 // const googleProvider = new GoogleAuthProvider();
 // const signInWithGoogle = async () => {
 //   try {
@@ -100,6 +101,7 @@ const registerWithEmailAndPassword = async (
       surname,
       authProvider: "local",
       email,
+      isOnline: true,
     });
   } catch (err) {
     console.error(err);
@@ -116,7 +118,21 @@ const sendPasswordReset = async (email) => {
   }
 };
 const logout = () => {
-  signOut(auth);
+  const docRef = doc(db, "users", auth.currentUser.uid);
+  const data = {
+    isOnline: false,
+  };
+
+  setDoc(docRef, data, { merge: true })
+    .then((docRef) => {
+      console.log(docRef);
+    })
+    .then(() => {
+      signOut(auth);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
 
 const setArea = async () => {

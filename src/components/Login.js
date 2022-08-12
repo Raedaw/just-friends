@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { doc, setDoc } from "firebase/firestore";
+import { db, firebaseConfig } from "../utils/firebase";
 import {
   auth,
   signInWithEmailAndPassword,
@@ -18,54 +20,72 @@ function Login() {
       // maybe trigger a loading screen
       return;
     }
-    if (user) navigate("/chatroom");
+    if (user) {
+      console.log(user.uid);
+      const docRef = doc(db, "users", user.uid);
+      const data = {
+        isOnline: true,
+      };
+
+      setDoc(docRef, data, { merge: true })
+        .then((docRef) => {
+          console.log(docRef);
+        })
+        .then(() => {
+          navigate("/chatroom");
+        });
+    }
   }, [user, loading]);
 
   return (
-    <div className ="login_area"> 
+    <div className="login_area">
+      <div className="login">
+        <div className="login__container">
+          <img
+            className="login_logo"
+            alt="just friends logo"
+            src={require("../Just-friends_images/just-friends_logo.png")}
+          />
+          <input
+            type="text"
+            className="login__textBox"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email Address"
+          />
+          <input
+            type="password"
+            className="login__textBox"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+          />
+          <button
+            className="login__btn"
+            onClick={() =>
+              signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                  user = userCredential.user;
+                })
 
-    <div className="login">
-      <div className="login__container">
-      <img className ="login_logo" alt ="just friends logo" src={require('../Just-friends_images/just-friends_logo.png')}/>
-        <input
-          type="text"
-          className="login__textBox"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email Address"
-        />
-        <input
-          type="password"
-          className="login__textBox"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-        <button
-          className="login__btn"
-          onClick={() =>
-            signInWithEmailAndPassword(auth, email, password)
-              .then((userCredential) => {
-                user = userCredential.user;
-              })
-              .catch((error) => {
-                console.log(error);
-              })
-          }
-        >
-          Login
-        </button>
-        {/* <button className="login__btn login__google" onClick={signInWithGoogle}>
+                .catch((error) => {
+                  console.log(error);
+                })
+            }
+          >
+            Login
+          </button>
+          {/* <button className="login__btn login__google" onClick={signInWithGoogle}>
           Login with Google
         </button> */}
-        <div>
-          <Link to="/reset">Forgot Password</Link>
-        </div>
-        <div>
-          Don't have an account? <Link to="/register">Register</Link> now.
+          <div>
+            <Link to="/reset">Forgot Password</Link>
+          </div>
+          <div>
+            Don't have an account? <Link to="/register">Register</Link> now.
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 }
