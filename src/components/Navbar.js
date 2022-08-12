@@ -34,7 +34,7 @@ function Navigation() {
   };
   useEffect(() => {
     if (loading) return;
-    if (!user) return navigate("/");
+    if (!user && window.location.pathname !== "/register") return navigate("/");
     if (user) fetchUserName();
   }, [user, loading, navigate]);
   // console.log(window.location.pathname);
