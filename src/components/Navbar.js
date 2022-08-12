@@ -34,7 +34,7 @@ function Navigation() {
   };
   useEffect(() => {
     if (loading) return;
-    // if (!user) return navigate("/");
+    if (!user) return navigate("/");
     if (user) fetchUserName();
   }, [user, loading, navigate]);
   // console.log(window.location.pathname);
@@ -42,7 +42,7 @@ function Navigation() {
 
   return (
     <>
-      <Navbar bg="light" variant="light">
+      <Navbar bg="light" expand="lg">
         <Container>
           <Navbar.Brand as={Link} to="/">
             <img
@@ -55,33 +55,32 @@ function Navigation() {
             />{" "}
             Just Friends
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbarScroll" />
-          <Navbar.Collapse id="navbarScroll" className="justify-content-end">
-            <Nav
-              className="me-auto my-2 my-lg-0"
-              style={{ maxHeight: "100px" }}
-              navbarScroll
-            >
-              <Navbar.Text>
-                Signed in as: <a href="#login">{currentUserData.firstname}</a>
-              </Navbar.Text>
-              <NavDropdown title="" id="navbarScrollingDropdown">
-                <NavDropdown.Item as={Link} to="/myprofile">
-                  View profile
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/gender">
-                  Edit profile
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item as={Link} to="/chatroom">
-                  View chat
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/chatmembers">
-                  View chat members
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action6">Logout</NavDropdown.Item>
-              </NavDropdown>
+          <img
+            className="navatar"
+            src={currentUserData.avatarURL}
+            alt="your avatar"
+          />
+          <br />
+          <Navbar.Text>Signed in as:{"  "} </Navbar.Text>
+          <Navbar.Text as={Link} to="/myprofile">
+            {currentUserData.firstname}
+          </Navbar.Text>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link as={Link} to="/myprofile">
+                View profile
+              </Nav.Link>
+              <Nav.Link as={Link} to="/gender">
+                Edit profile
+              </Nav.Link>
+              <Nav.Link as={Link} to="/chatroom">
+                View chat
+              </Nav.Link>
+              <Nav.Link as={Link} to="/chatmembers">
+                View chat members
+              </Nav.Link>
+              <Nav.Item onClick={logout}>Logout</Nav.Item>
             </Nav>
           </Navbar.Collapse>
         </Container>
