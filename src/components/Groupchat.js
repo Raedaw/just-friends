@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { useNavigate } from "react-router-dom";
 import { setChat } from "../utils/firebase";
 import { auth, db, logout, sendMessage } from "../utils/firebase";
@@ -20,6 +20,7 @@ const Groupchat = (props) => {
   const [currentMessageInput, setCurrentMessageInput] = useState("");
   const [message, setMessage] = useState("");
   const [messagesData, setMessagesData] = useState([]);
+  const [onlineUsers, setOnlineUsers] = useState([]);
 
   useEffect(() => {
     fetchUsers();
@@ -33,7 +34,11 @@ const Groupchat = (props) => {
     const doc = await getDocs(q);
     const allDocs = doc.docs;
     const userNames = allDocs.map((user) => {
-      return { uid: user.data().uid, name: user.data().firstname };
+      return {
+        uid: user.data().uid,
+        name: user.data().firstname,
+        isOnline: user.data().isOnline,
+      };
     });
     setChatUsers(userNames);
   };
@@ -80,6 +85,14 @@ const Groupchat = (props) => {
   //   console.log("Current cities in CA: ", cities.join(", "));
   // });
 
+  const fetchOnlineUsers = () => {
+    setOnlineUsers(chatUsers.filter((user) => user.isOnline));
+  };
+
+  useEffect(() => {
+    fetchOnlineUsers();
+  }, [onlineUsers]);
+
   useEffect(() => {
     if (message) {
       sendMessage(message, userData);
@@ -100,7 +113,12 @@ const Groupchat = (props) => {
       <h3>Members in Chat:</h3>
       <ul>
         {chatUsers.map((user) => {
-          return <li key={user.uid}>{user.name}</li>;
+          return (
+            <li key={user.uid}>
+              {user.name}
+              {user.isOnline && "🙂"}
+            </li>
+          );
         })}
       </ul>
       <h3>Messages:</h3>

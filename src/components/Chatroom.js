@@ -4,7 +4,6 @@ import { setChat } from "../utils/firebase";
 import Groupchat from "./Groupchat";
 
 const Chatroom = () => {
-
   const [userData, setUserData] = useState({});
   const [joined, setJoined] = useState(false);
 
