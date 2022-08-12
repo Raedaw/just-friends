@@ -1,0 +1,20 @@
+
+.nav__container {
+  display: flex;
+}
+
+.nav-logo {
+  margin-right: auto;
+}
+
+/*need to sort logout button*/
+
+.navatar {
+    margin-top: 1%;
+    width: 150px;
+    max-width: 50%;
+  border-radius: 50%;
+  box-shadow: 15px 15px 20px #000000b9;
+  margin-bottom:1% ;
+  border-color: #000000b9;;
+}
