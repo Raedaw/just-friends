@@ -87,6 +87,7 @@ const Groupchat = (props) => {
   }, [message]);
 
   useEffect(() => {
+    console.log(messagesData);
     fetchMessages();
   }, [messagesData.length]);
 
@@ -107,10 +108,15 @@ const Groupchat = (props) => {
         {messagesData.map((message) => {
           // const date = new Date(message.data().createdAt.seconds * 1000);
           return (
-            <li key={message.id}>
+            <li key={message.id} className="message-card">
               <p>
                 {message.data().firstname} {message.data().surname}:{" "}
                 {message.data().message}
+                <img
+                  src={message.data().avatarURL}
+                  alt={message.firstname}
+                  className="message-avatar"
+                ></img>
               </p>
               <p>
                 Sent at:{" "}
