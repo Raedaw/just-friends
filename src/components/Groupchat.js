@@ -85,13 +85,41 @@ const Groupchat = (props) => {
   //   console.log("Current cities in CA: ", cities.join(", "));
   // });
 
+  // useEffect(() => {
+  //   const fetchOnlineUsers = async () => {
+  //     const q = query(collection(db, "users", userData.isOnline));
+  //     const onlineUsersSnap = await onSnapshot(q, (querySnapshot) => {
+  //       const allUsersOnline = [];
+  //       querySnapshot.forEach((doc) => {
+  //         console.log(doc.data());
+  //         allUsersOnline.push(doc);
+  //       });
+  //       console.log(allUsersOnline);
+  //       setOnlineUsers(allUsersOnline);
+  //     }).then(() => {
+  //       fetchOnlineUsers();
+  //     });
+  //   };
+  // }, [onlineUsers]);
   const fetchOnlineUsers = () => {
-    setOnlineUsers(chatUsers.filter((user) => user.isOnline));
+    const q = query(
+      collection(db, "users"),
+      where("interest", "==", userData.interest)
+    );
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const allPeopleOnline = [];
+      querySnapshot.forEach((doc) => {
+        if (doc.data().isOnline) {
+          allPeopleOnline.push(doc.data());
+        }
+        setOnlineUsers(allPeopleOnline);
+      });
+    });
   };
 
   useEffect(() => {
     fetchOnlineUsers();
-  }, [onlineUsers]);
+  }, [onlineUsers.length]);
 
   useEffect(() => {
     if (message) {
@@ -100,7 +128,6 @@ const Groupchat = (props) => {
   }, [message]);
 
   useEffect(() => {
-    console.log(messagesData);
     fetchMessages();
   }, [messagesData.length]);
 
@@ -110,15 +137,10 @@ const Groupchat = (props) => {
         Welcome to the <br></br>
         {userData.area} {userData.interest} Chat
       </h2>
-      <h3>Members in Chat:</h3>
+      <h3>Members online:</h3>
       <ul>
-        {chatUsers.map((user) => {
-          return (
-            <li key={user.uid}>
-              {user.name}
-              {user.isOnline && "🙂"}
-            </li>
-          );
+        {onlineUsers.map((user) => {
+          return <li key={user.uid}>{user.firstname + "🟢"}</li>;
         })}
       </ul>
       <h3>Messages:</h3>
@@ -166,7 +188,6 @@ const Groupchat = (props) => {
     </div>
   );
 };
-
 export default Groupchat;
 
 // import { collection, query, where, onSnapshot } from "firebase/firestore";
@@ -178,4 +199,4 @@ export default Groupchat;
 //       cities.push(doc.data().name);
 //   });
 //   console.log("Current cities in CA: ", cities.join(", "));
-// });
+// })

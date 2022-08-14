@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Switch, Route, Link, useNavigate } from "react-router-dom";
-// import "../Styles/Nav.css";
+import "../Styles/Nav.css";
 import { auth, db, logout } from "../utils/firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import Container from "react-bootstrap/Container";
@@ -49,35 +49,25 @@ function Navigation() {
 
   return (
     <>
-      <Navbar bg="light" expand="lg">
-        <Container>
+      <Navbar className="navbar_container" bg="dark" variant="dark" expand="lg" >
+      <Container>
           <Navbar.Brand as={Link} to="/">
+         
             <img
               alt="Just friends logo"
               src={require("../Just-friends_images/just-friends_logo.png")}
               width="130"
               height="130"
               id="logo"
-              className="d-inline-block align-top"
-            />{" "}
-            Just Friends
+              className="d-inline-block-align-top"
+            /> 
           </Navbar.Brand>
-          <img
-            className="navatar"
-            src={currentUserData.avatarURL}
-            alt="your avatar"
-            width="130"
-            height="130"
-          />
-          <br />
-          <Navbar.Text>Signed in as:{"  "} </Navbar.Text>
-          <Navbar.Text as={Link} to="/myprofile">
-            {currentUserData.firstname}
-          </Navbar.Text>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
+          </Container>
+       
+          <Navbar.Toggle aria-controls="basic-navbar-nav" className="toggle" />
+          <Navbar.Collapse id="basic-navbar-nav" >
             <Nav className="me-auto">
-              <Nav.Link as={Link} to="/myprofile">
+              <Nav.Link as={Link} to="/myprofile" className="navLinks">
                 View profile
               </Nav.Link>
               <Nav.Link as={Link} to="/gender">
@@ -89,10 +79,22 @@ function Navigation() {
               <Nav.Link as={Link} to="/chatmembers">
                 View chat members
               </Nav.Link>
-              <Nav.Item onClick={logout}>Logout</Nav.Item>
+              <Nav.Item onClick={logout} bg="dark" variant="dark" >Logout</Nav.Item>
             </Nav>
           </Navbar.Collapse>
-        </Container>
+          <div className ="loggedIn">
+          <Navbar.Text>Signed in as:{"  "} </Navbar.Text>
+          <Navbar.Text as={Link} to="/myprofile" >
+            {currentUserData.firstname}
+          </Navbar.Text>
+          <img
+            className="navatar"
+            src={currentUserData.avatarURL}
+            alt="your avatar"
+            width="130"
+            height="130"
+          />
+          </div>
       </Navbar>
     </>
   );
