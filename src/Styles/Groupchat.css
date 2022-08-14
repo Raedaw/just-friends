@@ -2,7 +2,147 @@ ul {
   list-style: none;
 }
 
+
+
 .message-avatar{
+ 
   width: 50px;
-  height: 50px;
+  height:50px;
+  max-width: 50%;
+  max-height: 50%;
+border-radius: 50%;
+box-shadow: 15px 15px 20px #000000b9;
+border-color: #ffffffb9;;
+
 }
+
+
+.myMessage-avatar{
+
+  width: 50px;
+  height:50px;
+  max-width: 50%;
+  max-height: 50%;
+border-radius: 50%;
+box-shadow: 15px 15px 20px #000000b9;
+border-color: #ffffffb9;;
+
+}
+
+.myMessageCard{
+  background-color: #fff1ac91;
+  text-align: right;
+  margin-top: 3%;
+padding-right: 4%;
+margin-right: 5%;
+margin-top: 3%;
+margin-bottom: 4%;
+margin-left: 20%;
+border-top-left-radius: 30px;
+border-top-right-radius: 30px;
+border-bottom-left-radius: 30px;
+}
+
+
+.messageCard{
+  background-color: #e7dee5b5;
+text-align: left;
+  margin-top: 3%;
+padding-right: 4%;
+margin-right: 20%;
+margin-bottom: 4%;
+margin-left: -2%;
+border-top-left-radius: 30px;
+border-top-right-radius: 30px;
+border-bottom-right-radius: 30px;
+
+}
+
+.messages_box{
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+height: 100%;
+max-width:90%;
+width: 500px;
+background-color: rgba(1, 1, 10, 0.34);
+border-radius: 10px;
+
+}
+
+.myMessage-avatar{
+  align-content: flex-end;
+  margin-left: 2%;
+  margin-top: 3%;
+  
+}
+
+
+.message-avatar{
+  display: flex;
+  flex-direction: row-reverse;
+  margin-left: 2%;
+  margin-top: 3%;
+  }
+
+  .myName{
+    display: flex;
+    flex-direction: row;
+    margin-left: 2%;
+    margin-top: 3%;
+    
+    text-transform: capitalize;
+    
+  }
+
+  .name{
+    display: flex;
+    flex-direction: row;
+    margin-left: 2%;
+    margin-top: 3%;
+    text-transform: capitalize;
+  }
+
+  .myMessageSent{
+    display: flex;
+    flex-direction: row;
+    margin-left: 2%;
+    margin-top: 3%;
+font-size: small;
+  }
+
+  .messageSent{
+    display: flex;
+    flex-direction: row;
+    margin-left: 2%;
+    margin-top: 3%;
+    font-size: small;
+  }
+
+  .myMessage{
+    display: flex;
+    flex-direction: row;
+    margin-left: 2%;
+    margin-top: 3%;
+    font-size:large;
+    font-weight: bold;
+  }
+
+  .message{
+    display: flex;
+    flex-direction: row;
+    margin-left: 2%;
+    margin-top: 3%;
+    font-size: large;
+    font-weight: bold;
+    
+  }
+
+  .writeMessage{
+    width: 500px;
+    max-width: 92%;
+    height: 100px;
+ margin-bottom: 10%;
+    margin-top: 0%;
+    background-color: rgba(240, 255, 255, 0.561);
+  }
