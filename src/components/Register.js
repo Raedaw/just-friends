@@ -59,6 +59,7 @@ function Register() {
             className="register__textBox"
             placeholder="First Name"
             {...register("firstname")}
+            aria-label="first name"
             aria-required="true"
             aria-invalid={errors.firstname ? "true" : "false"}
             aria-describedby="error-firstname-required error-firstname-minLength"
@@ -69,6 +70,7 @@ function Register() {
             className="register__textBox"
             placeholder="Surname"
             {...register("surname")}
+            aria-label="surname"
             aria-required="true"
             aria-invalid={errors.surname ? "true" : "false"}
             aria-describedby="error-surname-required error-surname-minLength"
@@ -79,23 +81,24 @@ function Register() {
             className="register__textBox"
             placeholder="E-mail Address"
             {...register("email")}
+            aria-label="email address"
             aria-required="true"
             aria-invalid={errors.email ? "true" : "false"}
             aria-describedby="error-email-required"
           />
 
           <p role="alert">{errors.email?.message}</p>
-          <label>D.O.B</label>
+          {/* <label>D.O.B</label> */}
 
           <p>{errors.email?.message}</p>
-          <label className="dateOfBirthLabel">D.O.B</label>
-          <br/>
+          <label className="dateOfBirthLabel">D.O.B:</label>
 
           <input
             type="date"
             className="register__textBox"
             placeholder="Date of birth"
             {...register("dob")}
+            aria-label="date of birth"
             aria-required="true"
             aria-invalid={errors.dob ? "true" : "false"}
           />
@@ -106,6 +109,7 @@ function Register() {
             className="register__textBox"
             placeholder="Password"
             {...register("password")}
+            aria-label="password"
             aria-required="true"
             aria-invalid={errors.password ? "true" : "false"}
           />
@@ -116,6 +120,7 @@ function Register() {
             className="register__textBox"
             placeholder="Confirm password"
             {...register("confirmPassword")}
+            aria-label="confirm password"
             aria-required="true"
             aria-invalid={errors.confirmPassword ? "true" : "false"}
           />
