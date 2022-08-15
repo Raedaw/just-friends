@@ -71,7 +71,6 @@ function Profile() {
 
   return (
     <div className="selectArea">
-
       {err ? (
         <p>{err.message}</p>
       ) : (
@@ -91,12 +90,12 @@ function Profile() {
                 accept="image/*"
               />
             </label>
-            {/* <label className="write_bio" htmlFor="bio">
-      Write Bio:
-    </label>
-    {/* <textarea id="bio" {...register("bio")}></textarea> */}
-            {/* <p>{errors.bio?.message}</p> */}
-            {/* <input type="submit" className="submit" /> */}
+            <label className="write_bio" htmlFor="bio">
+              Write Bio:
+            </label>
+            <textarea id="bio" {...register("bio")}></textarea>
+            <p>{errors.bio?.message}</p>
+            <input type="submit" className="submit" />
             <br></br>
             <label className="write_bio" htmlFor="bio">
               Write Bio:
@@ -120,7 +119,7 @@ function Profile() {
         </>
       )}
 
-      <img src={avatarURL} className="upload_picture" alt=" your avatar" />
+      {/* <img src={avatarURL} className="upload_picture" alt=" your avatar" />
       <h2>Edit Profile:</h2>
       <form>
         <label className="custom-file-upload">
@@ -157,11 +156,9 @@ function Profile() {
         >
           Submit
         </button>
-      </form>
-
+      </form> */}
     </div>
   );
 }
 
 export default Profile;
-
