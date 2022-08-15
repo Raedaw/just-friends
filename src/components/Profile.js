@@ -140,6 +140,7 @@ function Profile() {
           Write Bio:
         </label>
         <textarea
+        className="writeBioHere"
           id="bio"
           onChange={(e) => {
             setChangeBio(e.target.value);
@@ -148,6 +149,7 @@ function Profile() {
         ></textarea>
         <p>{errors.bio?.message}</p>
         <button
+        className = "submit"
           onClick={(e) => {
             uploadFile(e);
           }}
@@ -161,3 +163,4 @@ function Profile() {
 }
 
 export default Profile;
+

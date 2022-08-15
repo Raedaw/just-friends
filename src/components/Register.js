@@ -75,7 +75,8 @@ function Register() {
             {...register("email")}
           />
           <p>{errors.email?.message}</p>
-          <label>D.O.B</label>
+          <label className="dateOfBirthLabel">D.O.B</label>
+          <br/>
           <input
             type="date"
             className="register__textBox"

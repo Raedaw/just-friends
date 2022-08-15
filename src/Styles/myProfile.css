@@ -1,0 +1,140 @@
+.myProfile{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(-45deg, #ffffff, #fca211c6, #000c46, #8ECAE6);
+  background-size: 400% 400%;
+  overflow-y: scroll;
+  animation: gradient 10s ease infinite;
+}
+
+.edit-file-upload{
+    background-color: #ffffffaa;
+    color: black;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 20px;
+    margin-bottom: 1%;
+    font-family: 'PT Sans', sans-serif;
+    margin-top: 2%;
+   
+}
+
+.edit-file-upload:hover{
+    cursor: pointer;
+}
+
+.profileBox{
+display: flex;
+flex-direction: column;
+overflow-y: scroll;
+padding:5%;
+margin-top: 4%;
+width: 800px;
+max-width: 95%;
+margin-bottom: 3%;
+}
+
+.uploadPhoto{
+ border-radius: 20px;
+ background: rgba(0, 0, 0, 0.445);
+ color: white;
+ font-family: 'PT Sans', sans-serif;
+
+}
+
+.myProfileTitle{
+    color: white;
+    font-family: 'PT Sans', sans-serif;
+    font-weight: bold;
+}
+
+h3{
+    margin-top: 2%;
+    color: white;
+    font-family: 'PT Sans', sans-serif;
+}
+
+p{
+    font-family: 'PT Sans', sans-serif;
+    margin-top: 2%;
+    color: white;   
+    font-size: large;
+}
+
+.edit_gender_radio_buttons{
+    font-family: 'PT Sans', sans-serif; 
+    color: white;   
+    font-size: large;
+
+}
+
+.accountInfoBox{
+    margin-top: 2%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.372);
+    padding: 2%;
+    border-radius: 10px;
+   padding-bottom: 1%;
+width: 500px;
+max-width: 90%;
+}
+
+.editGenderBox{
+ 
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.403);
+    padding: 2%;
+    border-radius: 10px; 
+    margin-bottom: 3%;
+    
+}
+
+.editAreaBox{
+margin-bottom: 3%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.403);
+    padding: 2%;
+    border-radius: 10px; 
+}
+
+.editInterestsBox{
+    margin-bottom: 3%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.403);
+    padding: 2%;
+    border-radius: 10px;  
+}
+.editBioBox{
+    margin-bottom: 3%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.403);
+    padding: 2%;
+    border-radius: 10px;  
+    align-content: center;   
+    
+}
+
+.updatebio{
+    display: flex;
+  flex-direction: column;
+   
+}
+
+
+
+textarea{
+    display: flex;
+   width: 100%;
+    text-align: center;
+   
+}

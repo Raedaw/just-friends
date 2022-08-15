@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import "../Styles/Dashboard.css";
+import "../Styles/myProfile.css";
 import {
   auth,
   db,
@@ -135,15 +136,15 @@ const MyProfile = () => {
 
   return (
     <div className="myProfile">
-      <h2>My Profile</h2>
+      <h2 className="myProfileTitle">My Profile</h2>
       <img
         src={currentUserData.avatarURL}
         className="upload_picture"
         alt=" your avatar"
       />
-      <label className="custom-file-upload">
+      <label className="edit-file-upload">
         {" "}
-        Select Photo
+        Select new photo
         <input
           type="file"
           onChange={(event) => {
@@ -153,23 +154,28 @@ const MyProfile = () => {
           accept="image/*"
         />
       </label>
-      <button
+      < button
+      className="uploadPhoto"
         onClick={(e) => {
           uploadFile(e);
         }}
       >
-        Upload
+        Upload photo
       </button>
+      <div className="accountInfoBox">
       <h3>Account Info</h3>
       <p>
         Name: {currentUserData.firstname} {currentUserData.surname}
       </p>
       <p>Email: {currentUserData.email}</p>
+      </div>
+      <div className="profileBox">
+        <div className="editGenderBox">
       <h3>Gender</h3>
       {editGender ? (
         <div className="editSelectGender">
           <div className="edit_gender_radio_buttons">
-            Male Identifying
+              Male Identifying
             <input
               type="radio"
               value="Male identifying"
@@ -178,7 +184,7 @@ const MyProfile = () => {
                 myGenderHandler(e);
               }}
             />{" "}
-            Female Identifying
+             Female Identifying
             <input
               type="radio"
               value="Female identifying"
@@ -187,7 +193,7 @@ const MyProfile = () => {
                 myGenderHandler(e);
               }}
             />{" "}
-            Non Binary
+             Non Binary
             <input
               type="radio"
               value="Non Binary"
@@ -196,7 +202,7 @@ const MyProfile = () => {
                 myGenderHandler(e);
               }}
             />{" "}
-            Prefer Not to Say
+             Prefer Not to Say
             <input
               type="radio"
               value="Prefer not to say"
@@ -219,7 +225,10 @@ const MyProfile = () => {
             Edit
           </button>
         </div>
+        
       )}
+      </div>
+      <div className="editAreaBox">
       <h3>Area</h3>
       {editArea ? (
         <div className="myProfArea">
@@ -241,11 +250,12 @@ const MyProfile = () => {
           </button>
         </div>
       )}
+      </div>
+      <div className="editInterestsBox">
       <h3>Interest</h3>
       {editInterest ? (
-        <div className="editMyInterests">
-          <h1>Select your main interest</h1>
-          <form className="interest-grid">
+        <div>
+          <form>
             {interests.map((interest) => {
               return (
                 <label className="interests" key={`${interest}`}>
@@ -274,11 +284,13 @@ const MyProfile = () => {
           </button>
         </div>
       )}
+      </div>
+      <div className="editBioBox">
       <h3>Bio</h3>
       {editBio ? (
         <div className="editMyBio">
-          <label className="write_bio" htmlFor="bio">
-            Write Bio:
+          <label className="updatebio" htmlFor="bio">
+            Update your bio:
           </label>
           <textarea
             id="bio"
@@ -300,7 +312,10 @@ const MyProfile = () => {
             Edit
           </button>
         </div>
+        
       )}
+      </div>
+      </div>
     </div>
   );
 };

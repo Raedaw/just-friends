@@ -14,6 +14,7 @@ import {
 import { async } from "@firebase/util";
 import "../Styles/Groupchat.css";
 import Online from "./online";
+
 const Groupchat = (props) => {
   const navigate = useNavigate();
   const { userData } = props;
@@ -143,8 +144,8 @@ const Groupchat = (props) => {
         {onlineUsers.map((user) => {
           return (
             <li className="isActive" key={user.uid}>
-              <Link to={`/profile/${user.uid}`}>
-                {user.firstname} <Online />
+              <Link className="isActive" to={`/profile/${user.uid}`}>
+              <Online />  {user.firstname} 
               </Link>
             </li>
           );
