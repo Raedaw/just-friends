@@ -51,14 +51,22 @@ function Login() {
                 alt="just friends logo"
                 src={require("../Just-friends_images/just-friends_logo.png")}
               />
+              <label for="email" hidden="hidden">
+                Email address
+              </label>
               <input
                 type="text"
                 className="login__textBox"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                name="email"
                 placeholder="Email Address"
                 aria-required="true"
+                aria-label="email-address"
               />
+              <label for="password" hidden="hidden">
+                Password
+              </label>
               <input
                 type="password"
                 className="login__textBox"
@@ -66,6 +74,7 @@ function Login() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
                 aria-required="true"
+                aria-label="password"
               />
               <button
                 className="login__btn"

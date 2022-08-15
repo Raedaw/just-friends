@@ -89,6 +89,7 @@ function Profile() {
                 }}
                 accept="image/*"
                 role="button"
+                className="upload"
               />
             </label>
             <br></br>

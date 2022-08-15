@@ -9,7 +9,6 @@
   flex-direction: row;
   margin-top: 20%;
 
- 
 
 }
 .login__container {
@@ -123,4 +122,9 @@ border-color: #000000b9;;
   .login__btn {
     padding: 16px 48px;
   }
+}
+
+::placeholder {
+	 color: #767676;
+	 opacity: 1;
 }

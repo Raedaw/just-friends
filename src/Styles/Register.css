@@ -73,6 +73,12 @@
     box-shadow: rgba(255, 255, 255, .2) 0 3px 15px inset, rgba(0, 0, 0, .1) 0 3px 5px, rgba(0, 0, 0, .1) 0 10px 13px;
     transform: scale(1.05);
   }
+
+  .register__btn:focus {
+    outline: 3px solid #fca211c6;
+    box-shadow: rgba(255, 255, 255, .2) 0 3px 15px inset, rgba(0, 0, 0, .1) 0 3px 5px, rgba(0, 0, 0, .1) 0 10px 13px;
+    transform: scale(1.05);
+  }
   
   @media (min-width: 768px) {
     .register__btn {
@@ -104,4 +110,19 @@
   .dateOfBirthLabel{
     color: black;
     font-size: small;
+    padding-right: 1rem;
   }
+
+  ::placeholder {
+    color: #767676;
+    opacity: 1;
+ }
+
+ ::-webkit-datetime-edit {
+  color: #767676;
+  opacity: 1;
+ }
+
+ .error-msg {
+  color: black
+ }
