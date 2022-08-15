@@ -64,7 +64,9 @@ function Register() {
             aria-invalid={errors.firstname ? "true" : "false"}
             aria-describedby="error-firstname-required error-firstname-minLength"
           />
-          <p role="alert">{errors.firstname?.message}</p>
+          <p className="error-msg" role="alert">
+            {errors.firstname?.message}
+          </p>
           <input
             type="text"
             className="register__textBox"
@@ -75,7 +77,9 @@ function Register() {
             aria-invalid={errors.surname ? "true" : "false"}
             aria-describedby="error-surname-required error-surname-minLength"
           />
-          <p role="alert">{errors.surname?.message}</p>
+          <p className="error-msg" role="alert">
+            {errors.surname?.message}
+          </p>
           <input
             type="text"
             className="register__textBox"
@@ -87,10 +91,10 @@ function Register() {
             aria-describedby="error-email-required"
           />
 
-          <p role="alert">{errors.email?.message}</p>
-          {/* <label>D.O.B</label> */}
+          <p className="error-msg" role="alert">
+            {errors.email?.message}
+          </p>
 
-          <p>{errors.email?.message}</p>
           <label className="dateOfBirthLabel">D.O.B:</label>
 
           <input
@@ -102,7 +106,9 @@ function Register() {
             aria-required="true"
             aria-invalid={errors.dob ? "true" : "false"}
           />
-          <p role="alert">{errors.dob?.message}</p>
+          <p className="error-msg" role="alert">
+            {errors.dob?.message}
+          </p>
 
           <input
             type="password"
@@ -114,7 +120,9 @@ function Register() {
             aria-invalid={errors.password ? "true" : "false"}
           />
 
-          <p role="alert">{errors.password?.message}</p>
+          <p className="error-msg" role="alert">
+            {errors.password?.message}
+          </p>
           <input
             type="password"
             className="register__textBox"
@@ -124,7 +132,7 @@ function Register() {
             aria-required="true"
             aria-invalid={errors.confirmPassword ? "true" : "false"}
           />
-          <p role="alert">
+          <p className="error-msg" role="alert">
             {errors.confirmPassword?.message && "Passwords must match"}
           </p>
           <input type="submit" className="register__btn" />
