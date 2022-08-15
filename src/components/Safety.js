@@ -4,6 +4,7 @@ const Safety = () => {
 
 
   return (
+    <div className="stayingSafeBody">
     <article className="safety">
       <h3>Staying safe on Just Friends:</h3>
       <ul>
@@ -34,6 +35,10 @@ const Safety = () => {
         <li>
           Share your location with a trusted friend or family member when meeting up for the first time with people.
           You can find a link below on how you can do this on different devices. 
+         <br/>
+         </li>
+         <br/>
+         <li>
 <h4> Iphone </h4>
           <iframe width="560"  height="315" src="https://www.youtube.com/embed/vl2cMa8wCU4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           <h4> Android </h4>
@@ -41,6 +46,7 @@ const Safety = () => {
         </li>
       </ul>
     </article>
+    </div>
   );
 };
 
