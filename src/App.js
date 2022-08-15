@@ -9,6 +9,7 @@ import Gender from "./components/Gender";
 import Interests from "./components/Interests";
 import Profile from "./components/Profile";
 import MyProfile from "./components/MyProfile";
+import UserProfile from "./components/UserProfile";
 
 import Chatroom from "./components/Chatroom";
 import Groupchat from "./components/Groupchat";
@@ -44,6 +45,7 @@ function App() {
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/chatroom" element={<Chatroom />} />
           <Route exact path="/myprofile" element={<MyProfile />} />
+          <Route exact path="/profile/:uid" element={<UserProfile />} />
           {/* <Route exact path="/upload" element={<Upload />} /> */}
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
