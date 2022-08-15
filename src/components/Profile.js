@@ -133,6 +133,7 @@ function Profile() {
               setImageUpload(event.target.files[0]);
             }}
             accept="image/*"
+            role="button"
           />
         </label>
         <br></br>
@@ -147,7 +148,7 @@ function Profile() {
           }}
           value={changeBio}
         ></textarea>
-        <p>{errors.bio?.message}</p>
+        <p role="alert">{errors.bio?.message}</p>
         <button
         className = "submit"
           onClick={(e) => {

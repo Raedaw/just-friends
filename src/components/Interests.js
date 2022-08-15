@@ -27,7 +27,7 @@ const Interests = () => {
     <div className="interests_body">
       <div>
         <h1>Select your main interest</h1>
-        <form className="interest-grid">
+        <form className="interest-grid" role="radiogroup">
           {interests.map((interest) => {
             return (
               <label className="interests" key={`${interest}`}>

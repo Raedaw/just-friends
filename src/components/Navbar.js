@@ -59,13 +59,14 @@ function Navigation() {
               height="130"
               id="logo"
               className="d-inline-block-align-top"
+              role="logo"
             />
           </Navbar.Brand>
         </Container>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" className="toggle" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
+          <Nav className="me-auto" role="navigation">
             <Nav.Link as={Link} to="/myprofile" className="navLinks">
               View profile
             </Nav.Link>

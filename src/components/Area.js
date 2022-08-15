@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { setArea } from "../utils/firebase";
 import "../Styles/area.css";
 import lottie from "lottie-web";
-import { useEffect, useRef} from "react";
+import { useEffect, useRef } from "react";
 const Area = () => {
   const navigate = useNavigate();
 
@@ -12,19 +12,20 @@ const Area = () => {
     });
   };
 
-const container = useRef(null)
+  const container = useRef(null);
 
   useEffect(() => {
-lottie.loadAnimation({
-container: container.current,
-renderer: 'svg',
-loop:true,
-autoplay: true,
-animationData: require('../Just-friends_images/location (1).json')})
-  }, [])
+    lottie.loadAnimation({
+      container: container.current,
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      animationData: require("../Just-friends_images/location (1).json"),
+    });
+  }, []);
 
   return (
-    <div className="selectArea">
+    <div className="selectArea" role="select location">
       <h1>Select your location</h1>
       <button className="manchester" onClick={clickHandler}>
         MANCHESTER

@@ -33,7 +33,7 @@ const Gender = () => {
       <div className="containertwo" ref={containertwo}></div>
       <h2>Select your gender</h2>
       <div className="selectGender">
-        <div className="gender_radio_buttons">
+        <div className="gender_radio_buttons" role="radiogroup">
           Male Identifying
           <input
             type="radio"
