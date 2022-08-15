@@ -16,6 +16,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 function Navigation() {
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
+  const [err, setErr] = useState(null);
   const [currentUserData, setCurrentUserData] = useState("");
   const navigate = useNavigate();
 
@@ -28,8 +29,7 @@ function Navigation() {
       setName(data.name);
       setCurrentUserData(data);
     } catch (err) {
-      console.error(err);
-      alert("An error occured while fetching user data");
+      setErr("An error occured while fetching user data");
     }
   };
   useEffect(() => {
@@ -49,10 +49,9 @@ function Navigation() {
 
   return (
     <>
-      <Navbar className="navbar_container" bg="dark" variant="dark" expand="lg" >
-      <Container>
+      <Navbar className="navbar_container" bg="dark" variant="dark" expand="lg">
+        <Container>
           <Navbar.Brand as={Link} to="/">
-         
             <img
               alt="Just friends logo"
               src={require("../Just-friends_images/just-friends_logo.png")}
@@ -60,31 +59,33 @@ function Navigation() {
               height="130"
               id="logo"
               className="d-inline-block-align-top"
-            /> 
+            />
           </Navbar.Brand>
-          </Container>
-       
-          <Navbar.Toggle aria-controls="basic-navbar-nav" className="toggle" />
-          <Navbar.Collapse id="basic-navbar-nav" >
-            <Nav className="me-auto">
-              <Nav.Link as={Link} to="/myprofile" className="navLinks">
-                View profile
-              </Nav.Link>
-              <Nav.Link as={Link} to="/gender">
-                Edit profile
-              </Nav.Link>
-              <Nav.Link as={Link} to="/chatroom">
-                View chat
-              </Nav.Link>
-              <Nav.Link as={Link} to="/chatmembers">
-                View chat members
-              </Nav.Link>
-              <Nav.Item onClick={logout} bg="dark" variant="dark" >Logout</Nav.Item>
-            </Nav>
-          </Navbar.Collapse>
-          <div className ="loggedIn">
+        </Container>
+
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className="toggle" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link as={Link} to="/myprofile" className="navLinks">
+              View profile
+            </Nav.Link>
+            <Nav.Link as={Link} to="/gender">
+              Edit profile
+            </Nav.Link>
+            <Nav.Link as={Link} to="/chatroom">
+              View chat
+            </Nav.Link>
+            <Nav.Link as={Link} to="/chatmembers">
+              View chat members
+            </Nav.Link>
+            <Nav.Item onClick={logout} bg="dark" variant="dark">
+              Logout
+            </Nav.Item>
+          </Nav>
+        </Navbar.Collapse>
+        <div className="loggedIn">
           <Navbar.Text>Signed in as:{"  "} </Navbar.Text>
-          <Navbar.Text as={Link} to="/myprofile" >
+          <Navbar.Text as={Link} to="/myprofile">
             {currentUserData.firstname}
           </Navbar.Text>
           <img
@@ -94,7 +95,7 @@ function Navigation() {
             width="130"
             height="130"
           />
-          </div>
+        </div>
       </Navbar>
     </>
   );
