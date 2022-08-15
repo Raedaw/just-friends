@@ -24,7 +24,7 @@ const Interests = () => {
     setInterest(e.target.value);
   }
 
-  let count = 1;
+
 
   
 
@@ -36,14 +36,14 @@ const Interests = () => {
       <form className="interest-grid">
         {interests.map((interest) => {
           return (
-            <label className={`div${count++}`} key={`${interest}`}>
+            <label className="interests" key={`${interest}`}>
               <input
                 type="radio"
                 value={interest}
                 name="interest"
                 onChange={handleSelect}
               />
-              {interest}
+              {` ${interest}`}
             </label>
           );
         })}

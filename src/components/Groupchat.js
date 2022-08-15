@@ -1,6 +1,7 @@
 import { useEffect, useState, useTransition } from "react";
 import { useNavigate } from "react-router-dom";
 import { setChat } from "../utils/firebase";
+import "../Styles/chatroom.css";
 import { auth, db, logout, sendMessage } from "../utils/firebase";
 import {
   query,
@@ -12,7 +13,7 @@ import {
 } from "firebase/firestore";
 import { async } from "@firebase/util";
 import "../Styles/Groupchat.css";
-
+import Online from "./online";
 const Groupchat = (props) => {
   const navigate = useNavigate();
   const { userData } = props;
@@ -137,28 +138,31 @@ const Groupchat = (props) => {
         Welcome to the <br></br>
         {userData.area} {userData.interest} Chat
       </h2>
-      <h3>Members online:</h3>
+      <h3 className ="active_member_header">Members online:</h3>
       <ul>
         {onlineUsers.map((user) => {
-          return <li key={user.uid}>{user.firstname + "🟢"}</li>;
+          return <li className ="isActive" key={user.uid}>{user.firstname} <Online /></li>
+          
         })}
       </ul>
-      <h3>Messages:</h3>
-      <ul>
+      <ul className ="messages_box">
         {messagesData.map((message) => {
           // const date = new Date(message.data().createdAt.seconds * 1000);
           return (
-            <li key={message.id} className="message-card">
-              <p>
-                {message.data().firstname} {message.data().surname}:{" "}
-                {message.data().message}
-                <img
+            <li key={message.id} className={message.data().firstname === userData.firstname && message.data().surname === userData.surname ? "myMessageCard" : "messageCard"}>
+              <img
                   src={message.data().avatarURL}
                   alt={message.firstname}
-                  className="message-avatar"
+                  className={message.data().avatarURL === userData.avatarURL? "myMessage-avatar" : "message-avatar"}
                 ></img>
+              <p className={message.data().firstname === userData.firstname && message.data().surname === userData.surname ? "myName" : "name"}>
+                {message.data().firstname} {message.data().surname }:{" "}</p>
+                
+  <p className={message.data().firstname === userData.firstname && message.data().surname === userData.surname ? "myMessage" : "message"} >
+                {message.data().message}
+              
               </p>
-              <p>
+              <p className={message.data().firstname === userData.firstname && message.data().surname === userData.surname ? "myMessageSent" : "messageSent"}>
                 Sent at:{" "}
                 {`${new Date(message.data().createdAt)
                   .toString()
@@ -168,8 +172,9 @@ const Groupchat = (props) => {
           );
         })}
       </ul>
-      <label htmlFor="messageInput">Write Message</label>
+      <label htmlFor="messageInput"></label>
       <textarea
+      className ="writeMessage"
         id="messageInput"
         value={currentMessageInput}
         placeholder="Type message here..."
@@ -178,6 +183,7 @@ const Groupchat = (props) => {
         }}
       ></textarea>
       <button
+      className="send_message_button"
         onClick={(e) => {
           clickHandler(e);
         }}
