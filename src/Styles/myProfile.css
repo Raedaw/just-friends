@@ -80,8 +80,9 @@ p{
     background-color: rgba(0, 0, 0, 0.372);
     padding: 2%;
     border-radius: 10px;
-   
-
+   padding-bottom: 1%;
+width: 500px;
+max-width: 90%;
 }
 
 .editGenderBox{

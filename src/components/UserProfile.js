@@ -3,6 +3,7 @@ import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../utils/firebase";
+import "../Styles/usersProfile.css";
 
 export default function UserProfile() {
   const [user, loading, error] = useAuthState(auth);
@@ -44,24 +45,21 @@ export default function UserProfile() {
   //   });
   return (
     <div className="userProfile">
-      <h2>My Profile</h2>
       <img
         src={currentUserData.avatarURL}
         className="user_picture"
         alt="your avatar"
       />
-      <h3>Account Info</h3>
-      <p>
-        Name: {currentUserData.firstname} {currentUserData.surname}
-      </p>
-      <p>Email: {currentUserData.email}</p>
-      <p>Gender: {currentUserData.My_gender}</p>
-      <h3>Area</h3>
-      <p>{currentUserData.area}</p>
-      <h3>Interest</h3>
-      <p>{currentUserData.interest}</p>
-      <h3>Bio</h3>
-      <p>{currentUserData.bio}</p>
+       <h3 className ="usersName">
+       {currentUserData.firstname} {currentUserData.surname}
+      </h3>
+      <div className="infoArea">
+      <h3>Gender: {currentUserData.My_gender}</h3>
+      <h3>Area: {currentUserData.area}</h3>
+      <h3>Interest: {currentUserData.interest}</h3>
+      </div>
+      <h3 className="usersBio"> {currentUserData.firstname}'s Bio <p className="usersBioArea">{currentUserData.bio}</p> </h3>
+     
     </div>
   );
 }
