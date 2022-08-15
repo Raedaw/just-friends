@@ -67,7 +67,7 @@ max-width:90%;
 width: 500px;
 background-color: rgba(1, 1, 10, 0.34);
 border-radius: 10px;
-
+max-height:45%;
 }
 
 .myMessage-avatar{
@@ -199,6 +199,7 @@ margin-bottom: 3%;
   touch-action: manipulation;
   vertical-align: top;
   white-space: nowrap;
+  margin-bottom: 10%;
 }
 
 .send_message_button:active,
