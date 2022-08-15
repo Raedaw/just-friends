@@ -16,6 +16,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 function Navigation() {
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
+  const [err, setErr] = useState(null);
   const [currentUserData, setCurrentUserData] = useState("");
   const navigate = useNavigate();
 
@@ -28,8 +29,7 @@ function Navigation() {
       setName(data.name);
       setCurrentUserData(data);
     } catch (err) {
-      console.error(err);
-      alert("An error occured while fetching user data");
+      setErr("An error occured while fetching user data");
     }
   };
   useEffect(() => {
@@ -69,12 +69,19 @@ function Navigation() {
             <Nav.Link as={Link} to="/myprofile" className="navLinks">
               View profile
             </Nav.Link>
+
+            <Nav.Link as={Link} to="/gender">
+              Edit profile
+            </Nav.Link>
+
             <Nav.Link as={Link} to="/chatroom">
               View chat
             </Nav.Link>
+
             <Nav.Link as={Link} to="/safety">
               Staying safe
             </Nav.Link>
+
             <Nav.Item onClick={logout} bg="dark" variant="dark">
               Logout
             </Nav.Item>

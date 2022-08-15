@@ -9,6 +9,7 @@ export default function UserProfile() {
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
   const [currentUserData, setCurrentUserData] = useState("");
+  const [err, setErr] = useState(null);
   const navigate = useNavigate();
   const { uid } = useParams();
   const db = getFirestore();
@@ -20,17 +21,17 @@ export default function UserProfile() {
       const docSnap = await getDoc(docRef);
       console.log(docSnap.data());
     } catch (error) {
-      console.log(error);
+      setErr(error);
     }
     try {
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         console.log(docSnap.data());
       } else {
-        console.log("Document does not exist");
+        setErr("Document does not exist");
       }
     } catch (error) {
-      console.log(error);
+      setErr(error);
     }
   };
 
@@ -44,7 +45,10 @@ export default function UserProfile() {
   //     fetchUserProfile();
   //   });
   return (
-    <div className="userProfile">
+      {err ? (
+        <p> {err.message}</p>
+      ) : (
+            <div className="userProfile">
       <img
         src={currentUserData.avatarURL}
         className="user_picture"
@@ -59,7 +63,7 @@ export default function UserProfile() {
       <h3>Interest: {currentUserData.interest}</h3>
       </div>
       <h3 className="usersBio"> {currentUserData.firstname}'s Bio <p className="usersBioArea">{currentUserData.bio}</p> </h3>
-     
-    </div>
+       </div>
+      )}
   );
 }

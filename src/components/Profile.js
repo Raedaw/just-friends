@@ -21,6 +21,7 @@ const schema = yup.object().shape({
 
 function Profile() {
   const navigate = useNavigate();
+  const [err, setErr] = useState(null);
   const [imageUpload, setImageUpload] = useState(null);
   const [imageUrl, setImageUrl] = useState(
     "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
@@ -49,6 +50,9 @@ function Profile() {
         .then((info) => {
           setProfile(info);
           navigate("/chatroom");
+        })
+        .catch((err) => {
+          setErr(err);
         });
     });
   };
@@ -67,6 +71,55 @@ function Profile() {
 
   return (
     <div className="selectArea">
+
+      {err ? (
+        <p>{err.message}</p>
+      ) : (
+        <>
+          <img src={avatarURL} className="upload_picture" alt=" your avatar" />
+          <h2>Edit Profile:</h2>
+          <form>
+            <label className="custom-file-upload">
+              {" "}
+              Upload Photo
+              <input
+                type="file"
+                onChange={(event) => {
+                  onImageChange(event);
+                  setImageUpload(event.target.files[0]);
+                }}
+                accept="image/*"
+              />
+            </label>
+            {/* <label className="write_bio" htmlFor="bio">
+      Write Bio:
+    </label>
+    {/* <textarea id="bio" {...register("bio")}></textarea> */}
+            {/* <p>{errors.bio?.message}</p> */}
+            {/* <input type="submit" className="submit" /> */}
+            <br></br>
+            <label className="write_bio" htmlFor="bio">
+              Write Bio:
+            </label>
+            <textarea
+              id="bio"
+              onChange={(e) => {
+                setChangeBio(e.target.value);
+              }}
+              value={changeBio}
+            ></textarea>
+            <p>{errors.bio?.message}</p>
+            <button
+              onClick={(e) => {
+                uploadFile(e);
+              }}
+            >
+              Submit
+            </button>
+          </form>
+        </>
+      )}
+
       <img src={avatarURL} className="upload_picture" alt=" your avatar" />
       <h2>Edit Profile:</h2>
       <form>
@@ -104,6 +157,7 @@ function Profile() {
           Submit
         </button>
       </form>
+
     </div>
   );
 }
