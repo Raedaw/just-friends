@@ -41,37 +41,6 @@ function Login() {
   return (
     <div className="login_area">
       <div className="login">
-
-        <div className="login__container" role="login">
-          <img
-            className="login_logo"
-            alt="just friends logo"
-            src={require("../Just-friends_images/just-friends_logo.png")}
-          />
-          <input
-            type="text"
-            className="login__textBox"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email Address"
-            aria-required="true"
-          />
-          <input
-            type="password"
-            className="login__textBox"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-            aria-required="true"
-          />
-          <button
-            className="login__btn"
-            onClick={() =>
-              signInWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                  user = userCredential.user;
-                })
-
         <div className="login__container">
           {err ? (
             <p> {err.message}</p>
@@ -88,6 +57,7 @@ function Login() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email Address"
+                aria-required="true"
               />
               <input
                 type="password"
@@ -95,6 +65,7 @@ function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
+                aria-required="true"
               />
               <button
                 className="login__btn"
@@ -103,8 +74,6 @@ function Login() {
                     .then((userCredential) => {
                       user = userCredential.user;
                     })
-
-
                     .catch((error) => {
                       setErr(error);
                     })

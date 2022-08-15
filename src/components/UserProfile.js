@@ -41,9 +41,6 @@ export default function UserProfile() {
     fetchUserProfile();
   }, [user, loading]);
 
-  //   useEffect(() => {
-  //     fetchUserProfile();
-  //   });
   return (
     <>
       {err ? (
