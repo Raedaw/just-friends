@@ -45,25 +45,31 @@ export default function UserProfile() {
   //     fetchUserProfile();
   //   });
   return (
+    <>
       {err ? (
         <p> {err.message}</p>
       ) : (
-            <div className="userProfile">
-      <img
-        src={currentUserData.avatarURL}
-        className="user_picture"
-        alt="your avatar"
-      />
-       <h3 className ="usersName">
-       {currentUserData.firstname} {currentUserData.surname}
-      </h3>
-      <div className="infoArea">
-      <h3>Gender: {currentUserData.My_gender}</h3>
-      <h3>Area: {currentUserData.area}</h3>
-      <h3>Interest: {currentUserData.interest}</h3>
-      </div>
-      <h3 className="usersBio"> {currentUserData.firstname}'s Bio <p className="usersBioArea">{currentUserData.bio}</p> </h3>
-       </div>
+        <div className="userProfile">
+          <img
+            src={currentUserData.avatarURL}
+            className="user_picture"
+            alt="your avatar"
+          />
+          <h3 className="usersName">
+            {currentUserData.firstname} {currentUserData.surname}
+          </h3>
+          <div className="infoArea">
+            <h3>Gender: {currentUserData.My_gender}</h3>
+            <h3>Area: {currentUserData.area}</h3>
+            <h3>Interest: {currentUserData.interest}</h3>
+          </div>
+          <h3 className="usersBio">
+            {" "}
+            {currentUserData.firstname}'s Bio{" "}
+            <p className="usersBioArea">{currentUserData.bio}</p>{" "}
+          </h3>
+        </div>
       )}
+    </>
   );
 }
