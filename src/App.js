@@ -15,6 +15,7 @@ import Chatroom from "./components/Chatroom";
 import Groupchat from "./components/Groupchat";
 import Nav from "./components/Navbar";
 import NotFoundPage from "./components/NotFoundPage";
+import Safety from "./components/Safety";
 // import Upload from "./components/Upload";
 
 function App() {
@@ -45,7 +46,11 @@ function App() {
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/chatroom" element={<Chatroom />} />
           <Route exact path="/myprofile" element={<MyProfile />} />
+
+          <Route exact path="/safety" element={<Safety />} />
+
           <Route exact path="/profile/:uid" element={<UserProfile />} />
+
           {/* <Route exact path="/upload" element={<Upload />} /> */}
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
