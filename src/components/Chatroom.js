@@ -3,9 +3,11 @@ import { useState } from "react";
 import { setChat } from "../utils/firebase";
 import Groupchat from "./Groupchat";
 import "../Styles/chatroom.css";
+import { setUserProperties } from "firebase/analytics";
 const Chatroom = () => {
   const [userData, setUserData] = useState({});
   const [joined, setJoined] = useState(false);
+  const [err, setErr] = useState(null);
 
   const clickHandler = () => {
     return setChat()
@@ -14,14 +16,20 @@ const Chatroom = () => {
       })
       .then(() => {
         setJoined(true);
+      })
+      .catch((err) => {
+        console.log(err);
+        setErr(err.msg);
       });
   };
 
   return (
     <div className="chatContainer">
-      {!joined ? (
+      {err ? (
+        <p> {err.message}</p>
+      ) : !joined ? (
         <div className="selectArea">
-          <h1 >Click to Join Chat:</h1>
+          <h1>Click to Join Chat:</h1>
           <button className="chat" onClick={clickHandler}>
             Join Chat
           </button>
