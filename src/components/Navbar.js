@@ -72,9 +72,6 @@ function Navigation() {
             <Nav.Link as={Link} to="/chatroom">
               View chat
             </Nav.Link>
-            <Nav.Link as={Link} to="/chatmembers">
-              View chat members
-            </Nav.Link>
             <Nav.Link as={Link} to="/safety">
               Staying safe
             </Nav.Link>

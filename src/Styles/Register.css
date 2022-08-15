@@ -22,9 +22,9 @@
   border-radius: 5%;
   }
   .register__textBox {
-    padding: 10px;
+   padding:5px;
     font-size: 18px;
-    margin-bottom: 10px;
+   
     border-radius: 20px;
     font-family: 'PT Sans', sans-serif;
     font-weight: bold;
@@ -91,7 +91,7 @@
 
   .login_logo{
     margin-top: 1%;
-    width: 250px;
+    width: 100px;
     display: flex;
     flex-direction: row;
    align-self: center;
@@ -99,4 +99,9 @@
   box-shadow: 15px 15px 20px #000000b9;
     background-clip: content-box;
     padding: 1px;
+  }
+
+  .dateOfBirthLabel{
+    color: black;
+    font-size: small;
   }
