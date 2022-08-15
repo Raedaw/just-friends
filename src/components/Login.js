@@ -56,9 +56,14 @@ function Login() {
                 className="login__textBox"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                name="email"
                 placeholder="Email Address"
                 aria-required="true"
+                aria-label="email-address"
               />
+              <label for="password" hidden="hidden">
+                Password
+              </label>
               <input
                 type="password"
                 className="login__textBox"
