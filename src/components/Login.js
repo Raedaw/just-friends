@@ -14,6 +14,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, loading, error] = useAuthState(auth);
+  const [err, setErr] = useState(null);
   const navigate = useNavigate();
   useEffect(() => {
     if (loading) {
@@ -21,18 +22,18 @@ function Login() {
       return;
     }
     if (user) {
-      console.log(user.uid);
       const docRef = doc(db, "users", user.uid);
       const data = {
         isOnline: true,
       };
 
       setDoc(docRef, data, { merge: true })
-        .then((docRef) => {
-          console.log(docRef);
-        })
+        // .then((docRef) => {})
         .then(() => {
           navigate("/chatroom");
+        })
+        .catch((err) => {
+          setErr(err);
         });
     }
   }, [user, loading]);
@@ -40,6 +41,7 @@ function Login() {
   return (
     <div className="login_area">
       <div className="login">
+
         <div className="login__container" role="login">
           <img
             className="login_logo"
@@ -70,16 +72,51 @@ function Login() {
                   user = userCredential.user;
                 })
 
-                .catch((error) => {
-                  console.log(error);
-                })
-            }
-          >
-            Login
-          </button>
+        <div className="login__container">
+          {err ? (
+            <p> {err.message}</p>
+          ) : (
+            <>
+              <img
+                className="login_logo"
+                alt="just friends logo"
+                src={require("../Just-friends_images/just-friends_logo.png")}
+              />
+              <input
+                type="text"
+                className="login__textBox"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email Address"
+              />
+              <input
+                type="password"
+                className="login__textBox"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+              />
+              <button
+                className="login__btn"
+                onClick={() =>
+                  signInWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                      user = userCredential.user;
+                    })
+
+
+                    .catch((error) => {
+                      setErr(error);
+                    })
+                }
+              >
+                Login
+              </button>
+            </>
+          )}
           {/* <button className="login__btn login__google" onClick={signInWithGoogle}>
-          Login with Google
-        </button> */}
+ Login with Google
+</button> */}
           <div>
             <Link to="/reset">Forgot Password</Link>
           </div>

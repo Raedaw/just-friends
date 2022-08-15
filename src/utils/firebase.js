@@ -58,7 +58,6 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 export const storage = getStorage(app);
-
 // const googleProvider = new GoogleAuthProvider();
 // const signInWithGoogle = async () => {
 //   try {
@@ -85,7 +84,7 @@ const logInWithEmailAndPassword = async (email, password) => {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
     console.error(err);
-    alert(err.message);
+    console.log(err.message);
   }
 };
 const registerWithEmailAndPassword = async (
