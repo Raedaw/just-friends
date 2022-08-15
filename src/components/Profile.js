@@ -88,27 +88,24 @@ function Profile() {
                   setImageUpload(event.target.files[0]);
                 }}
                 accept="image/*"
+                role="button"
               />
             </label>
-            <label className="write_bio" htmlFor="bio">
-              Write Bio:
-            </label>
-            <textarea id="bio" {...register("bio")}></textarea>
-            <p>{errors.bio?.message}</p>
-            <input type="submit" className="submit" />
             <br></br>
             <label className="write_bio" htmlFor="bio">
               Write Bio:
             </label>
             <textarea
+              className="writeBioHere"
               id="bio"
               onChange={(e) => {
                 setChangeBio(e.target.value);
               }}
               value={changeBio}
             ></textarea>
-            <p>{errors.bio?.message}</p>
+            <p role="alert">{errors.bio?.message}</p>
             <button
+              className="submit"
               onClick={(e) => {
                 uploadFile(e);
               }}
@@ -118,45 +115,6 @@ function Profile() {
           </form>
         </>
       )}
-
-      {/* <img src={avatarURL} className="upload_picture" alt=" your avatar" />
-      <h2>Edit Profile:</h2>
-      <form>
-        <label className="custom-file-upload">
-          {" "}
-          Upload Photo
-          <input
-            type="file"
-            onChange={(event) => {
-              onImageChange(event);
-              setImageUpload(event.target.files[0]);
-            }}
-            accept="image/*"
-            role="button"
-          />
-        </label>
-        <br></br>
-        <label className="write_bio" htmlFor="bio">
-          Write Bio:
-        </label>
-        <textarea
-        className="writeBioHere"
-          id="bio"
-          onChange={(e) => {
-            setChangeBio(e.target.value);
-          }}
-          value={changeBio}
-        ></textarea>
-        <p role="alert">{errors.bio?.message}</p>
-        <button
-        className = "submit"
-          onClick={(e) => {
-            uploadFile(e);
-          }}
-        >
-          Submit
-        </button>
-      </form> */}
     </div>
   );
 }

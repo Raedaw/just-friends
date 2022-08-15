@@ -57,6 +57,7 @@ function Login() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email Address"
+                aria-required="true"
               />
               <input
                 type="password"
@@ -64,6 +65,7 @@ function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
+                aria-required="true"
               />
               <button
                 className="login__btn"
@@ -72,7 +74,6 @@ function Login() {
                     .then((userCredential) => {
                       user = userCredential.user;
                     })
-
                     .catch((error) => {
                       setErr(error);
                     })
