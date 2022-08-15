@@ -69,15 +69,22 @@ function Navigation() {
             <Nav.Link as={Link} to="/myprofile" className="navLinks">
               View profile
             </Nav.Link>
+
             <Nav.Link as={Link} to="/gender">
               Edit profile
             </Nav.Link>
+
             <Nav.Link as={Link} to="/chatroom">
               View chat
             </Nav.Link>
             <Nav.Link as={Link} to="/chatmembers">
               View chat members
             </Nav.Link>
+
+            <Nav.Link as={Link} to="/safety">
+              Staying safe
+            </Nav.Link>
+
             <Nav.Item onClick={logout} bg="dark" variant="dark">
               Logout
             </Nav.Item>

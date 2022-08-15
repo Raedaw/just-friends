@@ -6,11 +6,16 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { auth, registerWithEmailAndPassword } from "../utils/firebase";
 import "../Styles/Register.css";
+import { sub } from "date-fns/fp";
 
 const schema = yup.object().shape({
   firstname: yup.string().required().min(2),
   surname: yup.string().required().min(2),
   email: yup.string().email().required(),
+  dob: yup
+    .date()
+    .required()
+    .max(sub({ years: 18 }, new Date()), "Must be over 18 years old"),
   password: yup.string().min(4).max(15).required(),
   confirmPassword: yup.string().oneOf([yup.ref("password"), null]),
 });
@@ -70,12 +75,22 @@ function Register() {
             {...register("email")}
           />
           <p>{errors.email?.message}</p>
+          <label>D.O.B</label>
+          <input
+            type="date"
+            className="register__textBox"
+            placeholder="Date of birth"
+            {...register("dob")}
+          />
+          <p>{errors.dob?.message}</p>
+
           <input
             type="password"
             className="register__textBox"
             placeholder="Password"
             {...register("password")}
           />
+
           <p>{errors.password?.message}</p>
           <input
             type="password"

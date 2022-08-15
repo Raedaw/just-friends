@@ -11,6 +11,7 @@
     "bad-words": "^3.0.4",
     "bootstrap": "^5.2.0",
     "capitalize-sentence": "^0.1.5",
+    "date-fns": "^2.29.1",
     "firebase": "^9.9.2",
     "firestore": "^1.1.6",
     "lottie-web": "^5.9.6",

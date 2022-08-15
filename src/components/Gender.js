@@ -11,10 +11,6 @@ const Gender = () => {
     setGender(e.target.value);
   };
 
-  const genderPreferenceHandler = (e) => {
-    setGenderPreference(e.target.value);
-  };
-
   const containertwo = useRef(null);
 
   useEffect(() => {
@@ -38,7 +34,7 @@ const Gender = () => {
       <h2>Select your gender</h2>
       <div className="selectGender">
         <div className="gender_radio_buttons">
-        Male Identifying
+          Male Identifying
           <input
             type="radio"
             value="Male identifying"
@@ -65,7 +61,7 @@ const Gender = () => {
               myGenderHandler(e);
             }}
           />{" "}
-           Prefer Not to Say
+          Prefer Not to Say
           <input
             type="radio"
             value="Prefer not to say"

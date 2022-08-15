@@ -17,10 +17,6 @@ import { setBio, setNewAvatar, setProfile, storage } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 const schema = yup.object().shape({
   bio: yup.string().min(10).required(),
-  // avatarURL: yup
-  //   .string()
-  //   .matches(imageRegex, "Please enter a valid image url")
-  //   .required(),
 });
 
 function Profile() {
@@ -41,9 +37,7 @@ function Profile() {
   ]);
   const [images, setImages] = useState([]);
   const [changeBio, setChangeBio] = useState("");
-  const [submitInfo, setSubmitInfo] = useState({});
 
-  const imagesListRef = ref(storage, "images/");
   const uploadFile = (e) => {
     e.preventDefault();
     if (imageUpload == null) return;
@@ -62,17 +56,6 @@ function Profile() {
         });
     });
   };
-
-  //   useEffect(() => {
-  //     listAll(imagesListRef).then((response) => {
-  //       response.items.forEach((item) => {
-  //         getDownloadURL(item).then((url) => {
-  //           setImageUrls((prev) => [...prev, url]);
-  //         });
-  //       });
-  //     });
-  //   }, []);
-
   function onImageChange(e) {
     console.log(e.target.files);
     setImages([...e.target.files]);
@@ -82,14 +65,13 @@ function Profile() {
     if (images.length < 1) return;
     const newImageUrls = [];
     images.forEach((image) => newImageUrls.push(URL.createObjectURL(image)));
-    // images.forEach((image) => newImageUrls.push(URL.createObjectURL(image)));
 
     setAvatarURL(newImageUrls);
-    console.log(avatarURL);
   }, [images]);
 
   return (
     <div className="selectArea">
+
       {err ? (
         <p>{err.message}</p>
       ) : (
@@ -137,32 +119,45 @@ function Profile() {
           </form>
         </>
       )}
+
+      <img src={avatarURL} className="upload_picture" alt=" your avatar" />
+      <h2>Edit Profile:</h2>
+      <form>
+        <label className="custom-file-upload">
+          {" "}
+          Upload Photo
+          <input
+            type="file"
+            onChange={(event) => {
+              onImageChange(event);
+              setImageUpload(event.target.files[0]);
+            }}
+            accept="image/*"
+          />
+        </label>
+        <br></br>
+        <label className="write_bio" htmlFor="bio">
+          Write Bio:
+        </label>
+        <textarea
+          id="bio"
+          onChange={(e) => {
+            setChangeBio(e.target.value);
+          }}
+          value={changeBio}
+        ></textarea>
+        <p>{errors.bio?.message}</p>
+        <button
+          onClick={(e) => {
+            uploadFile(e);
+          }}
+        >
+          Submit
+        </button>
+      </form>
+
     </div>
   );
-}
-
-{
-  /* <div className="random">
-      <input></input>
-      <input
-        type="file"
-        onChange={(event) => {
-          setImageUpload(event.target.files[0]);
-        }}
-      />
-      <input
-        type="file"
-        multiple
-        accepts="image/*"
-        onChange={(event) => {
-          setImageUpload(event.target.files[0]);
-        }}
-      />
-      <button onClick={uploadFile}> Upload Image</button>
-      {imageUrls.map((url) => {
-        return <img src={url} />;
-      })}
-    </div> */
 }
 
 export default Profile;
