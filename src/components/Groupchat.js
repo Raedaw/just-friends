@@ -13,7 +13,7 @@ import {
 } from "firebase/firestore";
 import { async } from "@firebase/util";
 import "../Styles/Groupchat.css";
-
+import Online from "./online";
 const Groupchat = (props) => {
   const navigate = useNavigate();
   const { userData } = props;
@@ -138,10 +138,11 @@ const Groupchat = (props) => {
         Welcome to the <br></br>
         {userData.area} {userData.interest} Chat
       </h2>
-      <h3>Members online:</h3>
+      <h3 className ="active_member_header">Members online:</h3>
       <ul>
         {onlineUsers.map((user) => {
-          return <li key={user.uid}>{user.firstname + "🟢"}</li>;
+          return <li className ="isActive" key={user.uid}>{user.firstname} <Online /></li>
+          
         })}
       </ul>
       <ul className ="messages_box">
@@ -182,6 +183,7 @@ const Groupchat = (props) => {
         }}
       ></textarea>
       <button
+      className="send_message_button"
         onClick={(e) => {
           clickHandler(e);
         }}
