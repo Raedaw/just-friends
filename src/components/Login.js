@@ -40,7 +40,7 @@ function Login() {
   return (
     <div className="login_area">
       <div className="login">
-        <div className="login__container">
+        <div className="login__container" role="login">
           <img
             className="login_logo"
             alt="just friends logo"
@@ -52,6 +52,7 @@ function Login() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email Address"
+            aria-required="true"
           />
           <input
             type="password"
@@ -59,6 +60,7 @@ function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
+            aria-required="true"
           />
           <button
             className="login__btn"

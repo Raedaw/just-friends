@@ -59,46 +59,63 @@ function Register() {
             className="register__textBox"
             placeholder="First Name"
             {...register("firstname")}
+            aria-required="true"
+            aria-invalid={errors.firstname ? "true" : "false"}
+            aria-describedby="error-firstname-required error-firstname-minLength"
           />
-          <p>{errors.firstname?.message}</p>
+          <p role="alert">{errors.firstname?.message}</p>
           <input
             type="text"
             className="register__textBox"
             placeholder="Surname"
             {...register("surname")}
+            aria-required="true"
+            aria-invalid={errors.surname ? "true" : "false"}
+            aria-describedby="error-surname-required error-surname-minLength"
           />
-          <p>{errors.surname?.message}</p>
+          <p role="alert">{errors.surname?.message}</p>
           <input
             type="text"
             className="register__textBox"
             placeholder="E-mail Address"
             {...register("email")}
+            aria-required="true"
+            aria-invalid={errors.email ? "true" : "false"}
+            aria-describedby="error-email-required"
           />
-          <p>{errors.email?.message}</p>
+          <p role="alert">{errors.email?.message}</p>
           <label>D.O.B</label>
           <input
             type="date"
             className="register__textBox"
             placeholder="Date of birth"
             {...register("dob")}
+            aria-required="true"
+            aria-invalid={errors.dob ? "true" : "false"}
           />
-          <p>{errors.dob?.message}</p>
+          <p role="alert">{errors.dob?.message}</p>
 
           <input
             type="password"
             className="register__textBox"
             placeholder="Password"
             {...register("password")}
+            aria-required="true"
+            aria-invalid={errors.password ? "true" : "false"}
           />
 
-          <p>{errors.password?.message}</p>
+          <p role="alert">{errors.password?.message}</p>
           <input
             type="password"
             className="register__textBox"
             placeholder="Confirm password"
             {...register("confirmPassword")}
+            aria-required="true"
+            aria-invalid={errors.confirmPassword ? "true" : "false"}
           />
-          <p>{errors.confirmPassword?.message && "Passwords must match"}</p>
+          <p role="alert">
+            {errors.confirmPassword?.message && "Passwords must match"}
+          </p>
           <input type="submit" className="register__btn" />
         </form>
 
