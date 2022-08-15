@@ -191,12 +191,12 @@ const setBio = async (bio) => {
   }
 };
 
-const setNewAvatar = async (bio) => {
+const setNewAvatar = async (avatarURL) => {
   const user = await auth.currentUser;
   const currentUserDoc = doc(db, "users", user.uid);
   try {
     await updateDoc(currentUserDoc, {
-      bio,
+      avatarURL,
     });
   } catch (err) {
     console.error(err);
