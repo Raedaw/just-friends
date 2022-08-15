@@ -1,4 +1,8 @@
+import "../Styles/Saftey.css";
+
 const Safety = () => {
+
+
   return (
     <article className="safety">
       <h3>Staying safe on Just Friends:</h3>
@@ -26,6 +30,14 @@ const Safety = () => {
         <li>
           Feeling uncomfortable? Trust your gut and leave! Your safety is more
           important than being polite
+        </li>
+        <li>
+          Share your location with a trusted friend or family member when meeting up for the first time with people.
+          You can find a link below on how you can do this on different devices. 
+<h4> Iphone </h4>
+          <iframe width="560"  height="315" src="https://www.youtube.com/embed/vl2cMa8wCU4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <h4> Android </h4>
+          <iframe width="560" maxWidth="50%" height="315" src="https://www.youtube.com/embed/Lg2szAx4eFA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </li>
       </ul>
     </article>
