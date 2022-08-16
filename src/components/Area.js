@@ -2,9 +2,14 @@ import { useNavigate } from "react-router-dom";
 import { setArea } from "../utils/firebase";
 import "../Styles/area.css";
 import lottie from "lottie-web";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+// import { getDistance } from "geolib";
+import getDistance from "geolib/es/getDistance";
+
 const Area = () => {
+  const [locationPosition, setLocationPosition] = useState({});
   const navigate = useNavigate();
+  const geolib = require("geolib");
 
   const clickHandler = () => {
     setArea().then(() => {
@@ -13,6 +18,63 @@ const Area = () => {
   };
 
   const container = useRef(null);
+
+  useEffect(() => {
+    if (!navigator.geolocation) {
+      console.log("geolocation not available");
+    } else {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setLocationPosition({
+          ...position,
+          defaultLatitude: position.coords.latitude,
+          defaultLongitude: position.coords.longitude,
+        });
+      });
+    }
+  }, []);
+
+  const coords = [
+    {
+      name: "manchester",
+      latitude: 53.4808,
+      longitude: -2.2426,
+    },
+    {
+      name: "birmingham",
+      latitude: 52.4862,
+      longitude: -1.8904,
+    },
+    {
+      name: "london",
+      latitude: 51.5072,
+      longitude: 0.1276,
+    },
+  ];
+
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      console.log(position.coords);
+      coords.forEach((coord) => {
+        console.log(
+          "You are ",
+          geolib.getDistance(
+            {
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude,
+            },
+            {
+              latitude: coord.latitude,
+              longitude: coord.longitude,
+            }
+          ) / 1000,
+          `kms away from ${coord.name}`
+        );
+      });
+    },
+    () => {
+      console.log("Position could not be determined.");
+    }
+  );
 
   useEffect(() => {
     lottie.loadAnimation({
