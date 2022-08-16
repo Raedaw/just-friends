@@ -18,11 +18,23 @@ const CameraCapture = (props) => {
         // }}
         sizeFactor={1}
         onTakePhoto={(dataURI) => {
-          setDataURI(dataURI);
-          setAvatarURL(dataURI);
-          setImageUpload(dataURI);
-          setTakePic(false);
-          // console.log(dataURI);
+          fetch(dataURI)
+            .then((response) => response.blob())
+            .then((myBlob) => {
+              // console.log(myBlob);
+              const objectURL = URL.createObjectURL(myBlob);
+              setAvatarURL(objectURL);
+
+              return myBlob;
+              // dataURI = objectURL;
+            })
+            .then((dataURI) => {
+              setDataURI(dataURI);
+              setImageUpload(dataURI);
+              setTakePic(false);
+              console.log(dataURI);
+              // console.log(dataURI);
+            });
         }}
       />
       {/* <a href={dataURI} download>
