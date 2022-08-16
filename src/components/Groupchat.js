@@ -110,7 +110,8 @@ const Groupchat = (props) => {
   const fetchOnlineUsers = () => {
     const q = query(
       collection(db, "users"),
-      where("interest", "==", userData.interest)
+      where("interest", "==", userData.interest),
+      where("area", "==", userData.area)
     );
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const allPeopleOnline = [];
