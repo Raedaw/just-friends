@@ -7,7 +7,9 @@
     justify-content: center;
     background: linear-gradient(-45deg, #ffffff, #fca211c6, #000c46, #8ECAE6);
     background-size: 400% 400%;
-  animation: gradient 10s ease infinite;  
+  animation: gradient 10s ease infinite; 
+  overflow-y: scroll; 
+  background-repeat: repeat;
 }
 
 
@@ -17,10 +19,11 @@ display: flex;
 flex-wrap: wrap;
 width: 370px;
 max-width: 90%;
-max-height: 90%;
+max-height: 80%;
 background: #06060677;
 padding: 5%;
 border-radius: 20px;
+margin-top: -1%;
 }
 
 
@@ -47,7 +50,7 @@ border-radius: 20px;
         user-select: none;
         -webkit-user-select: none;
         touch-action: manipulation;
-       margin-top: -5%;
+       margin-top: -3%;
       }
     
       @keyframes gradient {
@@ -97,7 +100,7 @@ border-radius: 20px;
       }
 
      h1{
-margin-top: -5%;
+
 font-size: xx-large;
      }
 

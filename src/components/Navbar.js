@@ -71,10 +71,6 @@ function Navigation() {
               View profile
             </Nav.Link>
 
-            <Nav.Link as={Link} to="/gender">
-              Edit profile
-            </Nav.Link>
-
             <Nav.Link as={Link} to="/chatroom">
               View chat
             </Nav.Link>

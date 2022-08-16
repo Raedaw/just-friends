@@ -90,13 +90,10 @@ function Register() {
             aria-invalid={errors.email ? "true" : "false"}
             aria-describedby="error-email-required"
           />
-
-          <p className="error-msg" role="alert">
-            {errors.email?.message}
-          </p>
-
-          <label className="dateOfBirthLabel">D.O.B:</label>
-
+          <p role="alert">{errors.email?.message}</p>
+          <p>{errors.email?.message}</p>
+          <label className="dateOfBirthLabel">D.O.B</label>
+          <br/>
           <input
             type="date"
             className="register__textBox"
