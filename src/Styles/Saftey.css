@@ -1,5 +1,8 @@
 iframe{
-    max-width: 95%;
+    max-width: 80%;
+   border-radius: 20px;
+   margin: 3%;
+ 
 }
 
 .stayingSafeBody{
@@ -7,13 +10,14 @@ iframe{
     width: 100vw;
     display: flex;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     background: linear-gradient(-45deg, #ffffff, #fca211c6, #000c46, #8ECAE6);
   background-size: 400% 400%;
   overflow-y: scroll;
   animation: gradient 10s ease infinite;
   color: #ffffff;
+  text-align: center;
 }
 
 article{
@@ -23,3 +27,107 @@ article{
     max-height: 90%;
     margin-bottom: 5%;
 }
+
+.videoContainer{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10%;
+    overflow-y: scroll;
+}
+
+
+
+.onlineSafteyInfo{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.262);
+    padding: 3%;
+}
+
+.meetingUpInfo{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.262);
+    padding: 3%;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) 
+   {
+
+    .containerfive{
+        display: flex;
+        flex-direction: row;
+       align-self: center;
+max-width: 70%;
+    }
+    
+    .containersix{
+        display: flex;
+        flex-direction: row;
+       align-self: center;
+max-width: 70%;
+    } 
+
+    .videoContainer{
+        display: flex;
+        width: 90%;
+        height: 20%;
+        margin-bottom: 65%;
+        overflow-y: scroll;
+      margin-left: 10%;
+    }
+   
+  }
+
+
+  @media only screen and (min-width: 1024px) {
+    .containerfive{
+        display: flex;
+        flex-direction: row;
+       align-self: center;
+max-width: 30%;
+    }
+    
+    .containersix{
+        display: flex;
+        flex-direction: row;
+       align-self: center;
+max-width: 30%;
+    }  
+
+    .onlineSafteyInfo{
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.262);
+        padding: 3%;
+        width: 80%;
+        margin-left: 10%;
+        font-size: large;
+    }
+    
+    .safteyHeader{
+margin-top: 5%;
+font-size: xx-large;
+    }
+
+    .meetingUpInfo{
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.262);
+        padding: 3%;
+        width: 80%;
+        margin-left: 10%;
+        font-size: large;
+    }
+    .videoContainer{
+        display: flex;
+        flex-direction: row;
+        width: 90%;
+        height: 20%;
+       
+        overflow-y: scroll;
+      margin-left: 15%;
+    }
+   
+  }
+  

@@ -239,7 +239,7 @@ const MyProfile = () => {
               <h3>Area</h3>
               {editArea ? (
                 <div className="myProfArea">
-                  <h2 className="myProfAreaTitle">Select your location</h2>
+                  <h4 className="myProfAreaTitle">Select your location</h4>
 
                   <div className="inline">
                     <Button
