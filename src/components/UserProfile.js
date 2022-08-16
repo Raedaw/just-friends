@@ -56,9 +56,9 @@ export default function UserProfile() {
             {currentUserData.firstname} {currentUserData.surname}
           </h3>
           <div className="infoArea">
-            <h3>Gender: {currentUserData.My_gender}</h3>
-            <h3>Area: {currentUserData.area}</h3>
-            <h3>Interest: {currentUserData.interest}</h3>
+            <h3 className="info">Gender: {currentUserData.My_gender}</h3>
+            <h3 className="info">Area: {currentUserData.area}</h3>
+            <h3 className="info">Interest: {currentUserData.interest}</h3>
           </div>
           <h3 className="usersBio">
             {" "}

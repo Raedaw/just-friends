@@ -285,8 +285,8 @@ input[type=file]{
   /*Computer/desktop/**/
   @media only screen and (min-width: 1024px) {
     .uploaded_picture{
-        width: 350px;
-        height: 350px;
+        width: 300px;
+        height: 300px;
         border-radius: 50%;
         -moz-box-shadow:    3px 3px 5px 6px rgb(47, 47, 47);
         -webkit-box-shadow: 3px 3px 5px 6px rgb(27, 27, 27);
@@ -320,7 +320,7 @@ input[type=file]{
         overflow-y: scroll;
         padding:2%;
         margin-top: 1%;
-        width: 900px;
+        width: 800px;
         height: 1000px;
         max-width: 90%;
         margin-bottom: 2%;

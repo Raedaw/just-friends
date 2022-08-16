@@ -139,7 +139,7 @@ const Groupchat = (props) => {
 
   return (
     <div className="selectArea">
-      <h2>
+      <h2 className="roomName">
         Welcome to the <br></br>
         {userData.area} {userData.interest} Chat
       </h2>
@@ -155,9 +155,9 @@ const Groupchat = (props) => {
           );
         })}
       </ul> */}
-      <Dropdown>
+      <Dropdown className="dropDownBox">
         <Dropdown.Toggle variant="success" id="dropdown-basic">
-          {onlineUsers.length} users on line
+          {onlineUsers.length} users online
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
