@@ -5,14 +5,26 @@ import lottie from "lottie-web";
 import { useEffect, useRef, useState } from "react";
 // import { getDistance } from "geolib";
 import getDistance from "geolib/es/getDistance";
+import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
 
 const Area = () => {
   const [locationPosition, setLocationPosition] = useState({});
+  const [nearestLocation, setNearestLocation] = useState("");
+  const [show, setShow] = useState(false);
+
   const navigate = useNavigate();
   const geolib = require("geolib");
 
-  const clickHandler = () => {
-    setArea().then(() => {
+  const clickHandler = (e) => {
+    setArea(e.target.value).then(() => {
+      console.log(e);
+      // navigate("/gender");
+    });
+  };
+
+  const clickHandlerNearest = () => {
+    setArea(nearestLocation).then(() => {
       navigate("/gender");
     });
   };
@@ -35,46 +47,59 @@ const Area = () => {
 
   const coords = [
     {
-      name: "manchester",
+      name: "Manchester",
       latitude: 53.4808,
       longitude: -2.2426,
     },
     {
-      name: "birmingham",
+      name: "Birmingham",
       latitude: 52.4862,
       longitude: -1.8904,
     },
     {
-      name: "london",
+      name: "London",
       latitude: 51.5072,
       longitude: 0.1276,
     },
   ];
 
-  navigator.geolocation.getCurrentPosition(
-    (position) => {
-      console.log(position.coords);
-      coords.forEach((coord) => {
-        console.log(
-          "You are ",
-          geolib.getDistance(
-            {
-              latitude: position.coords.latitude,
-              longitude: position.coords.longitude,
-            },
-            {
-              latitude: coord.latitude,
-              longitude: coord.longitude,
-            }
-          ) / 1000,
-          `kms away from ${coord.name}`
-        );
-      });
-    },
-    () => {
-      console.log("Position could not be determined.");
-    }
-  );
+  // navigator.geolocation.getCurrentPosition(
+  //   (position) => {
+  //     console.log(position.coords);
+  //     coords.forEach((coord) => {
+  //       console.log(
+  //         "You are ",
+  //         geolib.getDistance(
+  //           {
+  //             latitude: position.coords.latitude,
+  //             longitude: position.coords.longitude,
+  //           },
+  //           {
+  //             latitude: coord.latitude,
+  //             longitude: coord.longitude,
+  //           }
+  //         ) / 1000,
+  //         `kms away from ${coord.name}`
+  //       );
+  //     });
+  //   },
+  //   () => {
+  //     console.log("Position could not be determined.");
+  //   }
+  // );
+
+  function findNearest() {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const nearest = geolib.findNearest(
+        {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        },
+        coords
+      );
+      setNearestLocation(nearest.name);
+    });
+  }
 
   useEffect(() => {
     lottie.loadAnimation({
@@ -89,9 +114,45 @@ const Area = () => {
   return (
     <div className="selectArea" role="select location">
       <h1>Select your location</h1>
-      <button className="manchester" onClick={clickHandler}>
-        MANCHESTER
+      <button
+        className="find nearest"
+        onClick={findNearest}
+        visibility={!nearestLocation ? "visible" : "hidden"}
+      >
+        Find your nearest location
       </button>
+      {nearestLocation ? (
+        <div>
+          <p> Your nearest location is:</p>
+          <button className="manchester" onClick={clickHandlerNearest}>
+            {nearestLocation}
+          </button>
+        </div>
+      ) : (
+        <></>
+      )}
+      <br />
+      <p>or select from the following options:</p>
+      <ButtonGroup aria-label="locations" onClick={clickHandler}>
+        <Button variant="secondary" value="London">
+          London
+        </Button>
+        <Button variant="secondary" value="Manchester">
+          Manchester
+        </Button>
+        <Button variant="secondary" value="Birmingham">
+          Birmingham
+        </Button>
+      </ButtonGroup>
+      {/* <button className="manchester" onClick={clickHandler}>
+        Manchester
+      </button>
+      <button className="manchester" onClick={clickHandler}>
+        Birmingham
+      </button>
+      <button className="manchester" onClick={clickHandler}>
+        London
+      </button> */}
       <div className="container" ref={container}></div>
     </div>
   );
