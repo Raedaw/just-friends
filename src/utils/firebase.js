@@ -136,12 +136,12 @@ const logout = () => {
     });
 };
 
-const setArea = async () => {
+const setArea = async (location) => {
   const user = await auth.currentUser;
   const currentUserDoc = doc(db, "users", user.uid);
   try {
     await updateDoc(currentUserDoc, {
-      area: "Manchester",
+      area: location,
     });
   } catch (err) {
     console.error(err);
