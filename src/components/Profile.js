@@ -115,12 +115,23 @@ function Profile() {
               </button>
             </label>
             {takePic && (
-              <CameraCapture
-                setDataURI={setDataURI}
-                setAvatarURL={setAvatarURL}
-                setTakePic={setTakePic}
-                setImageUpload={setImageUpload}
-              />
+              <>
+                <br></br>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setTakePic(false);
+                  }}
+                >
+                  Cancel
+                </button>
+                <CameraCapture
+                  setDataURI={setDataURI}
+                  setAvatarURL={setAvatarURL}
+                  setTakePic={setTakePic}
+                  setImageUpload={setImageUpload}
+                />
+              </>
             )}
             <br></br>
             <label className="write_bio" htmlFor="bio">

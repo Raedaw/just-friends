@@ -27,6 +27,7 @@ import {
   list,
 } from "firebase/storage";
 import Button from "react-bootstrap/Button";
+import CameraCapture from "./CameraCapture";
 
 const schema = yup.object().shape({
   bio: yup.string().min(10).required(),
@@ -45,6 +46,8 @@ const MyProfile = () => {
   const [avatarURL, setAvatarURL] = useState([`${currentUserData.avatarURL}`]);
   const [images, setImages] = useState([]);
   const [err, setErr] = useState(null);
+  const [takePic, setTakePic] = useState(false);
+  const [dataURI, setDataURI] = useState("");
 
   const {
     register,
@@ -169,6 +172,36 @@ const MyProfile = () => {
           >
             Upload photo
           </button>
+          <label className="take-own-picture">
+            <button
+              className="takepic"
+              onClick={(e) => {
+                e.preventDefault();
+                setTakePic(true);
+              }}
+            >
+              Take Picture
+            </button>
+          </label>
+          {takePic && (
+            <>
+              <br></br>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  setTakePic(false);
+                }}
+              >
+                Cancel
+              </button>
+              <CameraCapture
+                setDataURI={setDataURI}
+                setAvatarURL={setAvatarURL}
+                setTakePic={setTakePic}
+                setImageUpload={setImageUpload}
+              />
+            </>
+          )}
           <div className="accountInfoBox">
             <h3>Account Info</h3>
             <p>
@@ -225,7 +258,7 @@ const MyProfile = () => {
                   <p>{currentUserData.My_gender}</p>
 
                   <button
-                      className="edit_button"
+                    className="edit_button"
                     onClick={() => {
                       setEditGender(true);
                     }}
@@ -269,14 +302,13 @@ const MyProfile = () => {
                       Birmingham
                     </Button>
                   </div>
-
                 </div>
               ) : (
                 <div className="editMyProfArea">
                   <p>{currentUserData.area}</p>
 
                   <button
-                      className="edit_button"
+                    className="edit_button"
                     onClick={() => {
                       setEditArea(true);
                     }}
@@ -310,8 +342,8 @@ const MyProfile = () => {
                 <div className="myInterests">
                   <p>{currentUserData.interest}</p>
 
-                  <button 
-                  className="edit_button"
+                  <button
+                    className="edit_button"
                     onClick={() => {
                       setEditInterest(true);
                     }}
@@ -335,13 +367,15 @@ const MyProfile = () => {
                     }}
                     value={changeBio}
                   ></textarea>
-                  <button     className="edit_button" onClick={updateBio}>Submit</button>
+                  <button className="edit_button" onClick={updateBio}>
+                    Submit
+                  </button>
                 </div>
               ) : (
                 <div className="myBio">
                   <p>{currentUserData.bio}</p>
                   <button
-                      className="edit_button"
+                    className="edit_button"
                     onClick={() => {
                       setEditBio(true);
                     }}
