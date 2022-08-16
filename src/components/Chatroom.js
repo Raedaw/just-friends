@@ -29,7 +29,7 @@ const Chatroom = () => {
         <p> {err.message}</p>
       ) : !joined ? (
         <div className="selectArea">
-          <h1>Click to Join Chat:</h1>
+          <h1 className="joinChat">Click to Join Chat:</h1>
           <button className="chat" onClick={clickHandler}>
             Join Chat
           </button>
