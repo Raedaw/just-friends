@@ -14,6 +14,10 @@ import {
 import { async } from "@firebase/util";
 import "../Styles/Groupchat.css";
 import Online from "./online";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import SplitButton from "react-bootstrap/SplitButton";
 
 const Groupchat = (props) => {
   const navigate = useNavigate();
@@ -139,7 +143,7 @@ const Groupchat = (props) => {
         Welcome to the <br></br>
         {userData.area} {userData.interest} Chat
       </h2>
-      <h3 className="active_member_header">Members online:</h3>
+      {/* <h3 className="active_member_header">Members online:</h3>
       <ul className="listOfActiveUsers">
         {onlineUsers.map((user) => {
           return (
@@ -150,7 +154,23 @@ const Groupchat = (props) => {
             </li>
           );
         })}
-      </ul>
+      </ul> */}
+      <Dropdown>
+        <Dropdown.Toggle variant="success" id="dropdown-basic">
+          {onlineUsers.length} users on line
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+          {onlineUsers.map((user) => {
+            return (
+              <Dropdown.Item as={Link} to={`/profile/${user.uid}`}>
+                <Online />
+                {user.firstname}
+              </Dropdown.Item>
+            );
+          })}
+        </Dropdown.Menu>
+      </Dropdown>
       <ul className="messages_box">
         {messagesData.map((message) => {
           // const date = new Date(message.data().createdAt.seconds * 1000);
