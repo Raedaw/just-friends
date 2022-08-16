@@ -43,7 +43,9 @@ const MyProfile = () => {
   const [editGender, setEditGender] = useState(false);
   const [changeBio, setChangeBio] = useState("");
   const [imageUpload, setImageUpload] = useState(null);
-  const [avatarURL, setAvatarURL] = useState([`${currentUserData.avatarURL}`]);
+  const [avatarURL, setAvatarURL] = useState(
+    "https://c.tenor.com/UnFx-k_lSckAAAAC/amalie-steiness.gif"
+  );
   const [images, setImages] = useState([]);
   const [err, setErr] = useState(null);
   const [takePic, setTakePic] = useState(false);
@@ -139,6 +141,13 @@ const MyProfile = () => {
 
     setAvatarURL(newImageUrls);
   }, [images]);
+
+  useEffect(() => {
+    if (Object.values(currentUserData).length > 0) {
+      console.log(currentUserData);
+      setAvatarURL(currentUserData.avatarURL);
+    }
+  }, [currentUserData]);
 
   return (
     <div className="myProfile">
