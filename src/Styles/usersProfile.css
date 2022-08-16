@@ -12,8 +12,8 @@
 }
 
 .user_picture{
-    width: 250px;
-    height: 250px;
+    width: 150px;
+    height: 150px;
     max-width: 100%;
     max-width: 100%;
     display: flex;
@@ -25,8 +25,9 @@
 }
 
 .usersName{
-   font-size: xx-large;
+   font-size:x-large;
    font-weight: bolder;
+   font-variant: small-caps;
 }
 
 .infoArea{
@@ -35,6 +36,7 @@
     background-color: rgba(0, 0, 0, 0.321);
     padding: 2%;
     border-radius: 10px;
+    
 }
 
 .usersBioArea{
@@ -47,5 +49,95 @@
     height: 200px;
     overflow-y: scroll;
     max-width:80%;
-    margin-left:10%
+    margin-left:10%;
+    font-size: small;
+}
+
+.usersBio{
+  font-size: medium;
+text-transform: capitalize;
+}
+
+@media only screen and (min-width: 1024px){
+
+
+  .user_picture{
+    margin-top: -5%;
+    width: 300px;
+    height: 300px;
+    max-width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+   align-self: center;
+  border-radius: 50%;
+  box-shadow: 15px 15px 20px #000000b9;
+  border-color: #000000b9;;
+}
+
+.usersName{
+  font-size:xx-large;
+  font-weight: bolder;
+  
+}
+.usersBioArea{
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.321);
+  padding: 2%;
+  border-radius: 10px;
+  width: 800px;
+  height: 300px;
+  overflow-y: scroll;
+  max-width:80%;
+  margin-left:10%;
+  font-size: large;
+}
+
+.info{
+font-size:x-large;
+}
+.infoArea{
+  width: 500px;
+  }
+
+  .usersBio{
+    font-size: x-large;
+  }
+}
+
+@media only screen and  (min-width: 300px)and (max-width: 700px) and (min-height: 800px) and (max-height: 1000px) {
+
+  .infoArea{
+    width: 300px;
+    }
+
+    .user_picture{
+      margin-top: -40%;
+    }
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+
+  .user_picture{
+    margin-top: -35%;
+    
+  }
+  .infoArea{
+    width: 400px;
+    }
+    .usersBioArea{
+      display: flex;
+      flex-direction: column;
+      background-color: rgba(0, 0, 0, 0.321);
+      padding: 2%;
+      border-radius: 10px;
+      width: 700px;
+      height: 200px;
+      overflow-y: scroll;
+      max-width:80%;
+      margin-left:10%;
+      font-size: large;
+    }
 }

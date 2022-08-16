@@ -144,7 +144,7 @@ const MyProfile = () => {
           <h2 className="myProfileTitle">My Profile</h2>
           <img
             src={currentUserData.avatarURL}
-            className="upload_picture"
+            className="uploaded_picture"
             alt=" your avatar"
           />
           <label className="edit-file-upload">
@@ -224,6 +224,7 @@ const MyProfile = () => {
                   <p>{currentUserData.My_gender}</p>
 
                   <button
+                      className="edit_button"
                     onClick={() => {
                       setEditGender(true);
                     }}
@@ -238,7 +239,7 @@ const MyProfile = () => {
               {editArea ? (
                 <div className="myProfArea">
                   <h2 className="myProfAreaTitle">Select your location</h2>
-                  <button className="myProfManchester" onClick={clickHandler}>
+                  <button  className="edit_button" onClick={clickHandler}>
                     MANCHESTER
                   </button>
                 </div>
@@ -247,6 +248,7 @@ const MyProfile = () => {
                   <p>{currentUserData.area}</p>
 
                   <button
+                      className="edit_button"
                     onClick={() => {
                       setEditArea(true);
                     }}
@@ -280,7 +282,8 @@ const MyProfile = () => {
                 <div className="myInterests">
                   <p>{currentUserData.interest}</p>
 
-                  <button
+                  <button 
+                  className="edit_button"
                     onClick={() => {
                       setEditInterest(true);
                     }}
@@ -304,12 +307,13 @@ const MyProfile = () => {
                     }}
                     value={changeBio}
                   ></textarea>
-                  <button onClick={updateBio}>Submit</button>
+                  <button     className="edit_button" onClick={updateBio}>Submit</button>
                 </div>
               ) : (
                 <div className="myBio">
                   <p>{currentUserData.bio}</p>
                   <button
+                      className="edit_button"
                     onClick={() => {
                       setEditBio(true);
                     }}
