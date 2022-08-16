@@ -18,8 +18,7 @@ const Area = () => {
 
   const clickHandler = (e) => {
     setArea(e.target.value).then(() => {
-      console.log(e);
-      // navigate("/gender");
+      navigate("/gender");
     });
   };
 
@@ -115,9 +114,8 @@ const Area = () => {
     <div className="selectArea" role="select location">
       <h1>Select your location</h1>
       <button
-        className="find nearest"
+        className={!nearestLocation ? "manchester" : "nearest_hidden"}
         onClick={findNearest}
-        visibility={!nearestLocation ? "visible" : "hidden"}
       >
         Find your nearest location
       </button>
@@ -133,17 +131,34 @@ const Area = () => {
       )}
       <br />
       <p>or select from the following options:</p>
-      <ButtonGroup aria-label="locations" onClick={clickHandler}>
-        <Button variant="secondary" value="London">
+      <div className="inline">
+        <Button
+          className="button"
+          variant="light"
+          value="London"
+          onClick={clickHandler}
+        >
           London
         </Button>
-        <Button variant="secondary" value="Manchester">
+        {"  "}
+        <Button
+          className="button"
+          variant="light"
+          value="Manchester"
+          onClick={clickHandler}
+        >
           Manchester
         </Button>
-        <Button variant="secondary" value="Birmingham">
+        {"  "}
+        <Button
+          className="button"
+          variant="light"
+          value="Birmingham"
+          onClick={clickHandler}
+        >
           Birmingham
         </Button>
-      </ButtonGroup>
+      </div>
       {/* <button className="manchester" onClick={clickHandler}>
         Manchester
       </button>
