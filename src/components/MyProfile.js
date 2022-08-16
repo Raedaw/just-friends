@@ -27,6 +27,7 @@ import {
   list,
 } from "firebase/storage";
 import Button from "react-bootstrap/Button";
+import CameraCapture from "./CameraCapture";
 
 const schema = yup.object().shape({
   bio: yup.string().min(10).required(),
@@ -42,9 +43,13 @@ const MyProfile = () => {
   const [editGender, setEditGender] = useState(false);
   const [changeBio, setChangeBio] = useState("");
   const [imageUpload, setImageUpload] = useState(null);
-  const [avatarURL, setAvatarURL] = useState([`${currentUserData.avatarURL}`]);
+  const [avatarURL, setAvatarURL] = useState(
+    "https://c.tenor.com/UnFx-k_lSckAAAAC/amalie-steiness.gif"
+  );
   const [images, setImages] = useState([]);
   const [err, setErr] = useState(null);
+  const [takePic, setTakePic] = useState(false);
+  const [dataURI, setDataURI] = useState("");
 
   const {
     register,
@@ -118,6 +123,7 @@ const MyProfile = () => {
       getDownloadURL(snapshot.ref)
         .then((url) => {
           setNewAvatar(url);
+          setAvatarURL(url);
         })
         .then(() => setEditAvatar(editAvatar + 1));
     });
@@ -136,6 +142,13 @@ const MyProfile = () => {
     setAvatarURL(newImageUrls);
   }, [images]);
 
+  useEffect(() => {
+    if (Object.values(currentUserData).length > 0) {
+      console.log(currentUserData);
+      setAvatarURL(currentUserData.avatarURL);
+    }
+  }, [currentUserData]);
+
   return (
     <div className="myProfile">
       {err ? (
@@ -144,7 +157,7 @@ const MyProfile = () => {
         <>
           <h2 className="myProfileTitle">My Profile</h2>
           <img
-            src={currentUserData.avatarURL}
+            src={avatarURL}
             className="uploaded_picture"
             alt=" your avatar"
           />
@@ -169,6 +182,36 @@ const MyProfile = () => {
           >
             Upload photo
           </button>
+          <label className="take-own-picture">
+            <button
+              className="takepic"
+              onClick={(e) => {
+                e.preventDefault();
+                setTakePic(true);
+              }}
+            >
+              Take Picture
+            </button>
+          </label>
+          {takePic && (
+            <>
+              <br></br>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  setTakePic(false);
+                }}
+              >
+                Cancel
+              </button>
+              <CameraCapture
+                setDataURI={setDataURI}
+                setAvatarURL={setAvatarURL}
+                setTakePic={setTakePic}
+                setImageUpload={setImageUpload}
+              />
+            </>
+          )}
           <div className="accountInfoBox">
             <h3>Account Info</h3>
             <p>
@@ -225,7 +268,7 @@ const MyProfile = () => {
                   <p>{currentUserData.My_gender}</p>
 
                   <button
-                      className="edit_button"
+                    className="edit_button"
                     onClick={() => {
                       setEditGender(true);
                     }}
@@ -269,14 +312,13 @@ const MyProfile = () => {
                       Birmingham
                     </Button>
                   </div>
-
                 </div>
               ) : (
                 <div className="editMyProfArea">
                   <p>{currentUserData.area}</p>
 
                   <button
-                      className="edit_button"
+                    className="edit_button"
                     onClick={() => {
                       setEditArea(true);
                     }}
@@ -310,8 +352,8 @@ const MyProfile = () => {
                 <div className="myInterests">
                   <p>{currentUserData.interest}</p>
 
-                  <button 
-                  className="edit_button"
+                  <button
+                    className="edit_button"
                     onClick={() => {
                       setEditInterest(true);
                     }}
@@ -335,13 +377,15 @@ const MyProfile = () => {
                     }}
                     value={changeBio}
                   ></textarea>
-                  <button     className="edit_button" onClick={updateBio}>Submit</button>
+                  <button className="edit_button" onClick={updateBio}>
+                    Submit
+                  </button>
                 </div>
               ) : (
                 <div className="myBio">
                   <p>{currentUserData.bio}</p>
                   <button
-                      className="edit_button"
+                    className="edit_button"
                     onClick={() => {
                       setEditBio(true);
                     }}

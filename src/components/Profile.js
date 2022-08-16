@@ -15,6 +15,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { setBio, setNewAvatar, setProfile, storage } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
+import { Camera, FACING_MODES } from "react-html5-camera-photo";
+import "react-html5-camera-photo/build/css/index.css";
+import CameraCapture from "./CameraCapture";
+
 const schema = yup.object().shape({
   bio: yup.string().min(10).required(),
 });
@@ -37,6 +41,8 @@ function Profile() {
   ]);
   const [images, setImages] = useState([]);
   const [changeBio, setChangeBio] = useState("");
+  const [takePic, setTakePic] = useState(false);
+  const [dataURI, setDataURI] = useState("");
 
   const uploadFile = (e) => {
     e.preventDefault();
@@ -69,6 +75,10 @@ function Profile() {
     setAvatarURL(newImageUrls);
   }, [images]);
 
+  useEffect(() => {
+    console.log(dataURI);
+  }, [dataURI]);
+
   return (
     <div className="selectArea">
       {err ? (
@@ -86,12 +96,43 @@ function Profile() {
                 onChange={(event) => {
                   onImageChange(event);
                   setImageUpload(event.target.files[0]);
+                  console.log(event.target.files[0]);
                 }}
                 accept="image/*"
                 role="button"
                 className="upload"
               />
             </label>
+            <label className="take-own-picture">
+              <button
+                className="takepic"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setTakePic(true);
+                }}
+              >
+                Take Picture
+              </button>
+            </label>
+            {takePic && (
+              <>
+                <br></br>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setTakePic(false);
+                  }}
+                >
+                  Cancel
+                </button>
+                <CameraCapture
+                  setDataURI={setDataURI}
+                  setAvatarURL={setAvatarURL}
+                  setTakePic={setTakePic}
+                  setImageUpload={setImageUpload}
+                />
+              </>
+            )}
             <br></br>
             <label className="write_bio" htmlFor="bio">
               Write Bio:
