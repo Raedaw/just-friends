@@ -213,3 +213,9 @@ margin-bottom: 3%;
 .send_message_button:focus:not(:active) {
   box-shadow: rgba(40, 170, 255, 0.25) 0 0 0 .125em;
 }
+
+.send_message_button:focus {
+  outline: 3px solid #fca211c6;
+  box-shadow: rgba(255, 255, 255, .2) 0 3px 15px inset, rgba(0, 0, 0, .1) 0 3px 5px, rgba(0, 0, 0, .1) 0 10px 13px;
+  transform: scale(1.05);
+}
