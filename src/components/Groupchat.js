@@ -140,12 +140,12 @@ const Groupchat = (props) => {
         {userData.area} {userData.interest} Chat
       </h2>
       <h3 className="active_member_header">Members online:</h3>
-      <ul>
+      <ul className="listOfActiveUsers">
         {onlineUsers.map((user) => {
           return (
             <li className="isActive" key={user.uid}>
               <Link className="isActive" to={`/profile/${user.uid}`}>
-              <Online />  {user.firstname} 
+              <Online /> {user.firstname} 
               </Link>
             </li>
           );
