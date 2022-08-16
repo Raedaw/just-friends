@@ -76,6 +76,20 @@ border-color: #000000b9;;
 
 }
 
+.login_logo_loginPage{
+  margin-top: 10%;
+  width: 150px;
+  max-width: 50%;
+  display: flex;
+  flex-direction: row;
+ align-self: center;
+border-radius: 50%;
+box-shadow: 15px 15px 20px #000000b9;
+margin-bottom:7% ;
+border-color: #000000b9;
+
+}
+
 .login_area{
   display: flex;
   flex-direction: column;
@@ -127,4 +141,83 @@ border-color: #000000b9;;
 ::placeholder {
 	 color: #767676;
 	 opacity: 1;
+}
+
+
+@media only screen and (min-width: 1024px) {
+  .login__container { display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 30px;
+  margin-bottom: 40%;
+  box-shadow: 15px 15px 20px #000000b9;
+  background-color:#ffffff;
+border-radius: 5%;
+width: 500px;
+height: 600px;
+  }
+
+  .login__textBox {
+    padding: 10px;
+    font-size: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    font-family: 'PT Sans', sans-serif;
+    font-weight: bold;
+  }
+  .login__btn {
+    margin-top: 5%;
+    padding: 10px;
+    font-size: 18px;
+    margin-bottom: 10px;
+    border: none;
+    background-color: #14213D;
+    border: 0;
+    border-radius: 56px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: 'PT Sans', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    font-weight: 600;
+    outline: 0;
+    padding: 16px 21px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: all .3s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  .login__google {
+    background-color: #4285f4;
+  }
+  .login div {
+    margin-top: 3%;
+  }
+  
+  .login_logo_loginPage{
+   margin-top: -2%;
+    width: 180px;
+    display: flex;
+    flex-direction: row;
+   align-self: center;
+  border-radius: 50%;
+  box-shadow: 15px 15px 20px #000000b9;
+  margin-bottom:7% ;
+  border-color: #000000b9;
+  
+  }
+ 
+
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  .login div {
+    margin-top: -0%;
+  }  
+  
+   
 }

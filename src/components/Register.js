@@ -51,7 +51,7 @@ function Register() {
     <div className="register">
       <div className="register__container">
         <img
-          className="login_logo"
+          className="login_logoForReg"
           alt="just friends logo"
           src={require("../Just-friends_images/just-friends_logo.png")}
         />
@@ -94,7 +94,9 @@ function Register() {
           />
           <p role="alert">{errors.email?.message}</p>
           <p>{errors.email?.message}</p>
+         
           <label className="dateOfBirthLabel">D.O.B</label>
+
           <br />
           <input
             type="date"

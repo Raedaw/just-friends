@@ -47,7 +47,7 @@ function Login() {
           ) : (
             <>
               <img
-                className="login_logo"
+                className="login_logo_loginPage"
                 alt="just friends logo"
                 src={require("../Just-friends_images/just-friends_logo.png")}
               />
