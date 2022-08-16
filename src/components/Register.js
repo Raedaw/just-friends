@@ -14,6 +14,8 @@ const schema = yup.object().shape({
   email: yup.string().email().required(),
   dob: yup
     .date()
+    .nullable()
+    .transform((curr, orig) => (orig === "" ? null : curr))
     .required()
     .max(sub({ years: 18 }, new Date()), "Must be over 18 years old"),
   password: yup.string().min(4).max(15).required(),
@@ -93,7 +95,7 @@ function Register() {
           <p role="alert">{errors.email?.message}</p>
           <p>{errors.email?.message}</p>
           <label className="dateOfBirthLabel">D.O.B</label>
-          <br/>
+          <br />
           <input
             type="date"
             className="register__textBox"
