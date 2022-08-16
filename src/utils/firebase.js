@@ -257,10 +257,10 @@ const setChat = async () => {
 const Filter = require("bad-words"),
   filter = new Filter();
 
-const sendMessage = async (message, userData) => {
+const sendMessage = async (message, userData, location) => {
   const cleanMessage = filter.clean(message);
   // const createdAt = await serverTimestamp();
-  await addDoc(collection(db, "Chatrooms", "Manchester", userData.interest), {
+  await addDoc(collection(db, "Chatrooms", location, userData.interest), {
     message: cleanMessage,
     author: userData.uid,
     createdAt: Date.now(),

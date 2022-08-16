@@ -26,6 +26,7 @@ import {
   listAll,
   list,
 } from "firebase/storage";
+import Button from "react-bootstrap/Button";
 
 const schema = yup.object().shape({
   bio: yup.string().min(10).required(),
@@ -70,8 +71,8 @@ const MyProfile = () => {
     fetchUserName();
   }, [user, loading, editGender, editArea, editInterest, editBio, editAvatar]);
 
-  const clickHandler = () => {
-    setArea();
+  const clickHandler = (e) => {
+    setArea(e.target.value);
     setEditArea(false);
   };
 
@@ -239,9 +240,36 @@ const MyProfile = () => {
               {editArea ? (
                 <div className="myProfArea">
                   <h2 className="myProfAreaTitle">Select your location</h2>
-                  <button  className="edit_button" onClick={clickHandler}>
-                    MANCHESTER
-                  </button>
+
+                  <div className="inline">
+                    <Button
+                      className="edit_button"
+                      variant="light"
+                      value="London"
+                      onClick={clickHandler}
+                    >
+                      London
+                    </Button>
+                    {"  "}
+                    <Button
+                      className="edit_button"
+                      variant="light"
+                      value="Manchester"
+                      onClick={clickHandler}
+                    >
+                      Manchester
+                    </Button>
+                    {"  "}
+                    <Button
+                      className="edit_button"
+                      variant="light"
+                      value="Birmingham"
+                      onClick={clickHandler}
+                    >
+                      Birmingham
+                    </Button>
+                  </div>
+
                 </div>
               ) : (
                 <div className="editMyProfArea">

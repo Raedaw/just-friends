@@ -61,7 +61,7 @@ const Groupchat = (props) => {
 
   const fetchMessages = async () => {
     const q = query(
-      collection(db, "Chatrooms", "Manchester", userData.interest),
+      collection(db, "Chatrooms", userData.area, userData.interest),
       orderBy("createdAt")
     );
     const messages = await onSnapshot(q, (querySnapshot) => {
@@ -129,7 +129,7 @@ const Groupchat = (props) => {
 
   useEffect(() => {
     if (message) {
-      sendMessage(message, userData);
+      sendMessage(message, userData, userData.area);
     }
   }, [message]);
 
@@ -149,7 +149,7 @@ const Groupchat = (props) => {
           return (
             <li className="isActive" key={user.uid}>
               <Link className="isActive" to={`/profile/${user.uid}`}>
-              <Online /> {user.firstname} 
+                <Online /> {user.firstname}
               </Link>
             </li>
           );
