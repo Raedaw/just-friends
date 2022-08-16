@@ -152,6 +152,7 @@ const MyProfile = () => {
             Select new photo
             <input
               type="file"
+              className="upload"
               onChange={(event) => {
                 onImageChange(event);
                 setImageUpload(event.target.files[0]);

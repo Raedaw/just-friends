@@ -59,26 +59,33 @@ function Register() {
             className="register__textBox"
             placeholder="First Name"
             {...register("firstname")}
+            aria-label="first name"
             aria-required="true"
             aria-invalid={errors.firstname ? "true" : "false"}
             aria-describedby="error-firstname-required error-firstname-minLength"
           />
-          <p role="alert">{errors.firstname?.message}</p>
+          <p className="error-msg" role="alert">
+            {errors.firstname?.message}
+          </p>
           <input
             type="text"
             className="register__textBox"
             placeholder="Surname"
             {...register("surname")}
+            aria-label="surname"
             aria-required="true"
             aria-invalid={errors.surname ? "true" : "false"}
             aria-describedby="error-surname-required error-surname-minLength"
           />
-          <p role="alert">{errors.surname?.message}</p>
+          <p className="error-msg" role="alert">
+            {errors.surname?.message}
+          </p>
           <input
             type="text"
             className="register__textBox"
             placeholder="E-mail Address"
             {...register("email")}
+            aria-label="email address"
             aria-required="true"
             aria-invalid={errors.email ? "true" : "false"}
             aria-describedby="error-email-required"
@@ -87,36 +94,42 @@ function Register() {
           <p>{errors.email?.message}</p>
           <label className="dateOfBirthLabel">D.O.B</label>
           <br/>
-
           <input
             type="date"
             className="register__textBox"
             placeholder="Date of birth"
             {...register("dob")}
+            aria-label="date of birth"
             aria-required="true"
             aria-invalid={errors.dob ? "true" : "false"}
           />
-          <p role="alert">{errors.dob?.message}</p>
+          <p className="error-msg" role="alert">
+            {errors.dob?.message}
+          </p>
 
           <input
             type="password"
             className="register__textBox"
             placeholder="Password"
             {...register("password")}
+            aria-label="password"
             aria-required="true"
             aria-invalid={errors.password ? "true" : "false"}
           />
 
-          <p role="alert">{errors.password?.message}</p>
+          <p className="error-msg" role="alert">
+            {errors.password?.message}
+          </p>
           <input
             type="password"
             className="register__textBox"
             placeholder="Confirm password"
             {...register("confirmPassword")}
+            aria-label="confirm password"
             aria-required="true"
             aria-invalid={errors.confirmPassword ? "true" : "false"}
           />
-          <p role="alert">
+          <p className="error-msg" role="alert">
             {errors.confirmPassword?.message && "Passwords must match"}
           </p>
           <input type="submit" className="register__btn" />

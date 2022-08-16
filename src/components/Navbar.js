@@ -79,9 +79,9 @@ function Navigation() {
               Staying safe
             </Nav.Link>
 
-            <Nav.Item onClick={logout} bg="dark" variant="dark">
+            <Nav.Link as={Link} to="/" onClick={logout}>
               Logout
-            </Nav.Item>
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
         <div className="loggedIn">
