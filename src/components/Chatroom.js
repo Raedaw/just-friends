@@ -1,9 +1,8 @@
 import { useState } from "react";
-
 import { setChat } from "../utils/firebase";
 import Groupchat from "./Groupchat";
 import "../Styles/chatroom.css";
-import { setUserProperties } from "firebase/analytics";
+
 const Chatroom = () => {
   const [userData, setUserData] = useState({});
   const [joined, setJoined] = useState(false);

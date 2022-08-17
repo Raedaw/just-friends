@@ -7,7 +7,7 @@ import "../Styles/usersProfile.css";
 
 export default function UserProfile() {
   const [user, loading, error] = useAuthState(auth);
-  const [name, setName] = useState("");
+  // const [name, setName] = useState("");
   const [currentUserData, setCurrentUserData] = useState("");
   const [err, setErr] = useState(null);
   const navigate = useNavigate();
@@ -19,14 +19,13 @@ export default function UserProfile() {
     setCurrentUserData(docSnap.data());
     try {
       const docSnap = await getDoc(docRef);
-      console.log(docSnap.data());
     } catch (error) {
       setErr(error);
     }
     try {
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
-        console.log(docSnap.data());
+        // console.log(docSnap.data());
       } else {
         setErr("Document does not exist");
       }

@@ -5,7 +5,6 @@ import "../Styles/myProfile.css";
 import {
   auth,
   db,
-  logout,
   setBio,
   setArea,
   setGender,
@@ -18,16 +17,9 @@ import { query, collection, getDocs, where } from "firebase/firestore";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { v4 } from "uuid";
-import {
-  getStorage,
-  ref,
-  uploadBytes,
-  getDownloadURL,
-  listAll,
-  list,
-} from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import Button from "react-bootstrap/Button";
-import CameraCapture from "./CameraCapture";
+//import CameraCapture from "./CameraCapture";
 
 const schema = yup.object().shape({
   bio: yup.string().min(10).required(),
@@ -50,11 +42,10 @@ const MyProfile = () => {
   const [err, setErr] = useState(null);
   const [preview, setPreview] = useState();
   const [selectedFile, setSelectedFile] = useState();
-  const [takePic, setTakePic] = useState(false);
-  const [dataURI, setDataURI] = useState("");
+  // const [takePic, setTakePic] = useState(false);
+  // const [dataURI, setDataURI] = useState("");
 
   const {
-    register,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -182,7 +173,6 @@ const MyProfile = () => {
 
   useEffect(() => {
     if (Object.values(currentUserData).length > 0) {
-      console.log(currentUserData);
       setAvatarURL(currentUserData.avatarURL);
     }
   }, [currentUserData]);

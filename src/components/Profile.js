@@ -1,21 +1,14 @@
 import { useState, useEffect } from "react";
-import {
-  getStorage,
-  ref,
-  uploadBytes,
-  getDownloadURL,
-  listAll,
-  list,
-} from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
 import React from "react";
 import "../Styles/profile.css";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { setBio, setNewAvatar, setProfile, storage } from "../utils/firebase";
+import { setProfile, storage } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
-import { Camera, FACING_MODES } from "react-html5-camera-photo";
+//import { Camera, FACING_MODES } from "react-html5-camera-photo";
 import "react-html5-camera-photo/build/css/index.css";
 import CameraCapture from "./CameraCapture";
 
@@ -27,11 +20,8 @@ function Profile() {
   const navigate = useNavigate();
   const [err, setErr] = useState(null);
   const [imageUpload, setImageUpload] = useState(null);
-  const [imageUrl, setImageUrl] = useState(
-    "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
-  );
+  //const [imageUrl, setImageUrl] = useState("https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png");
   const {
-    register,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -63,7 +53,6 @@ function Profile() {
     });
   };
   function onImageChange(e) {
-    console.log(e.target.files);
     setImages([...e.target.files]);
   }
 
@@ -75,9 +64,7 @@ function Profile() {
     setAvatarURL(newImageUrls);
   }, [images]);
 
-  useEffect(() => {
-    console.log(dataURI);
-  }, [dataURI]);
+  useEffect(() => {}, [dataURI]);
 
   return (
     <div className="selectArea">
@@ -96,7 +83,6 @@ function Profile() {
                 onChange={(event) => {
                   onImageChange(event);
                   setImageUpload(event.target.files[0]);
-                  console.log(event.target.files[0]);
                 }}
                 accept="image/*"
                 role="button"

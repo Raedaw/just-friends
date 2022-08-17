@@ -3,7 +3,6 @@ import { setArea } from "../utils/firebase";
 import "../Styles/area.css";
 import lottie from "lottie-web";
 import { useEffect, useRef, useState } from "react";
-// import { getDistance } from "geolib";
 import getDistance from "geolib/es/getDistance";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
@@ -61,31 +60,6 @@ const Area = () => {
       longitude: 0.1276,
     },
   ];
-
-  // navigator.geolocation.getCurrentPosition(
-  //   (position) => {
-  //     console.log(position.coords);
-  //     coords.forEach((coord) => {
-  //       console.log(
-  //         "You are ",
-  //         geolib.getDistance(
-  //           {
-  //             latitude: position.coords.latitude,
-  //             longitude: position.coords.longitude,
-  //           },
-  //           {
-  //             latitude: coord.latitude,
-  //             longitude: coord.longitude,
-  //           }
-  //         ) / 1000,
-  //         `kms away from ${coord.name}`
-  //       );
-  //     });
-  //   },
-  //   () => {
-  //     console.log("Position could not be determined.");
-  //   }
-  // );
 
   function findNearest() {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -159,15 +133,6 @@ const Area = () => {
           Birmingham
         </Button>
       </div>
-      {/* <button className="manchester" onClick={clickHandler}>
-        Manchester
-      </button>
-      <button className="manchester" onClick={clickHandler}>
-        Birmingham
-      </button>
-      <button className="manchester" onClick={clickHandler}>
-        London
-      </button> */}
       <div className="container" ref={container}></div>
     </div>
   );

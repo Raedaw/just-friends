@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { doc, setDoc } from "firebase/firestore";
-import { db, firebaseConfig } from "../utils/firebase";
+import { db } from "../utils/firebase";
 import {
   auth,
   signInWithEmailAndPassword,
@@ -95,9 +95,9 @@ function Login() {
           {/* <button className="login__btn login__google" onClick={signInWithGoogle}>
  Login with Google
 </button> */}
-          <div>
+          {/* <div>
             <Link to="/reset">Forgot Password</Link>
-          </div>
+          </div> */}
           <div>
             Don't have an account? <Link to="/register">Register</Link> now.
           </div>

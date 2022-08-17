@@ -1,8 +1,8 @@
-import { useEffect, useState, useRef, useTransition } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { setChat } from "../utils/firebase";
+// import { setChat } from "../utils/firebase";
 import "../Styles/chatroom.css";
-import { auth, db, logout, sendMessage } from "../utils/firebase";
+import { db, sendMessage } from "../utils/firebase";
 import {
   query,
   collection,
@@ -11,15 +11,14 @@ import {
   orderBy,
   onSnapshot,
 } from "firebase/firestore";
-import { async } from "@firebase/util";
+
 import "../Styles/Groupchat.css";
 import Online from "./online";
-import Calling from "./VideoCalling.js";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
+//import Calling from "./VideoCalling.js";
 import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
-import SplitButton from "react-bootstrap/SplitButton";
-import Button from "@mui/material/Button";
+// import DropdownButton from "react-bootstrap/DropdownButton";
+// import SplitButton from "react-bootstrap/SplitButton";
+// import Button from "@mui/material/Button";
 
 const Groupchat = (props) => {
   const navigate = useNavigate();
@@ -156,12 +155,18 @@ const Groupchat = (props) => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messagesData.length]);
 
+  const routeChange = () => {
+    let path = "/VideoCall";
+    navigate(path);
+  };
+
   return (
     <div className="selectArea">
       <h2 className="roomName">
         Welcome to the <br></br>
         {userData.area} {userData.interest} Chat
       </h2>
+      <button onClick={routeChange}>Video Call</button>
       {/* <h3 className="active_member_header">Members online:</h3>
       <ul className="listOfActiveUsers">
         {onlineUsers.map((user) => {
