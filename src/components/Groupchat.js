@@ -16,6 +16,9 @@ import "../Styles/Groupchat.css";
 import Online from "./online";
 //import Calling from "./VideoCalling.js";
 import Dropdown from "react-bootstrap/Dropdown";
+// import DropdownButton from "react-bootstrap/DropdownButton";
+// import SplitButton from "react-bootstrap/SplitButton";
+// import Button from "@mui/material/Button";
 
 const Groupchat = (props) => {
   const navigate = useNavigate();
@@ -128,6 +131,11 @@ const Groupchat = (props) => {
     });
   };
 
+  function addDefaultSrc(e) {
+    e.target.src =
+      "https://stonegatesl.com/wp-content/uploads/2021/01/avatar.jpg";
+  }
+
   useEffect(() => {
     fetchOnlineUsers();
   }, [onlineUsers.length]);
@@ -147,11 +155,10 @@ const Groupchat = (props) => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messagesData.length]);
 
-  const routeChange = () =>{ 
-    let path = ('/VideoCall')
+  const routeChange = () => {
+    let path = "/VideoCall";
     navigate(path);
-  }
-  
+  };
 
   return (
     <div className="selectArea">
@@ -159,9 +166,7 @@ const Groupchat = (props) => {
         Welcome to the <br></br>
         {userData.area} {userData.interest} Chat
       </h2>
-      <button onClick={routeChange}>
-            Video Call 
-          </button>
+      <button onClick={routeChange}>Video Call</button>
       {/* <h3 className="active_member_header">Members online:</h3>
       <ul className="listOfActiveUsers">
         {onlineUsers.map((user) => {
@@ -205,6 +210,7 @@ const Groupchat = (props) => {
             >
               <img
                 src={message.data().avatarURL}
+                onError={addDefaultSrc}
                 alt={message.firstname}
                 className={
                   message.data().avatarURL === userData.avatarURL
