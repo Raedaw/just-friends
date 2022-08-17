@@ -142,8 +142,9 @@ input[type='date']{
   margin-left: 15%;
 }
   .dateOfBirthLabel{
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
+    text-align: left;
     margin-top: 5%;
     margin-right: 5%;
     margin-left: 40%;
@@ -241,4 +242,30 @@ height: 600px;
 color: #000c46;
 font-size: x-large;
   }
+}
+
+p.login_section {
+  color:  #000c46;;
+}
+
+p.login_section a{
+  color: black;
+  font-weight: bold;
+  text-decoration: none; 
+}
+
+p.login_section a:hover{
+  color: black;
+  font-weight: bold;
+  
+}
+
+
+
+
+
+p.error-msg {
+  color: red;
+  margin:-15px;
+ 
 }
