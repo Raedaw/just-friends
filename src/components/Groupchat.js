@@ -1,4 +1,4 @@
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useState, useRef, useTransition } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { setChat } from "../utils/firebase";
 import "../Styles/chatroom.css";
@@ -27,6 +27,7 @@ const Groupchat = (props) => {
   const [message, setMessage] = useState("");
   const [messagesData, setMessagesData] = useState([]);
   const [onlineUsers, setOnlineUsers] = useState([]);
+  const bottomRef = useRef(null);
 
   useEffect(() => {
     fetchUsers();
@@ -142,6 +143,11 @@ const Groupchat = (props) => {
     fetchMessages();
   }, [messagesData.length]);
 
+  useEffect(() => {
+    // 👇️ scroll to bottom every time messages change
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messagesData.length]);
+
   return (
     <div className="selectArea">
       <h2 className="roomName">
@@ -235,7 +241,9 @@ const Groupchat = (props) => {
             </li>
           );
         })}
+        <div ref={bottomRef} />
       </ul>
+
       <label htmlFor="messageInput"></label>
       <textarea
         className="writeMessage"
