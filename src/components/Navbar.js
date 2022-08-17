@@ -36,7 +36,7 @@ function Navigation() {
     if (loading) return;
     if (!user && window.location.pathname !== "/register") return navigate("/");
     if (user) fetchUserName();
-  }, [user, loading, navigate]);
+  }, [user, loading, navigate, currentUserData]);
   // console.log(window.location.pathname);
   if (
     !user ||
