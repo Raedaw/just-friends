@@ -49,18 +49,19 @@ function Navigation() {
 
   return (
     <>
-      <Navbar className="navbar_container" bg="dark" variant="dark" expand="lg">
+      <Navbar className="navbar_container" expand="lg">
         <Container>
           <Navbar.Brand as={Link} to="/">
             <img
               alt="Just friends logo"
-              src={require("../Just-friends_images/just-friends_logo.png")}
+              src={require("../Just-friends_images/just-friends.png")}
               width="130"
               height="130"
               id="logo"
               className="d-inline-block-align-top"
               role="logo"
             />
+            
           </Navbar.Brand>
         </Container>
 
@@ -71,22 +72,22 @@ function Navigation() {
               View profile
             </Nav.Link>
 
-            <Nav.Link as={Link} to="/chatroom">
+            <Nav.Link className="navLinks" as={Link} to="/chatroom">
               View chat
             </Nav.Link>
 
-            <Nav.Link as={Link} to="/safety">
+            <Nav.Link  className="navLinks" as={Link} to="/safety">
               Staying safe
             </Nav.Link>
 
-            <Nav.Link as={Link} to="/" onClick={logout}>
+            <Nav.Link className="navLinks" as={Link} to="/" onClick={logout}>
               Logout
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
         <div className="loggedIn">
-          <Navbar.Text>Signed in as:{"  "} </Navbar.Text>
-          <Navbar.Text as={Link} to="/myprofile">
+          <Navbar.Text className="navLinks">Signed in as:{"  "} </Navbar.Text>
+          <Navbar.Text className="navLinks" as={Link} to="/myprofile">
             {currentUserData.firstname}
           </Navbar.Text>
           <img

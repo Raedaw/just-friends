@@ -27,6 +27,7 @@ import {
   list,
 } from "firebase/storage";
 import Button from "react-bootstrap/Button";
+import CameraCapture from "./CameraCapture";
 
 const schema = yup.object().shape({
   bio: yup.string().min(10).required(),
@@ -42,11 +43,15 @@ const MyProfile = () => {
   const [editGender, setEditGender] = useState(false);
   const [changeBio, setChangeBio] = useState("");
   const [imageUpload, setImageUpload] = useState(null);
-  const [avatarURL, setAvatarURL] = useState([`${currentUserData.avatarURL}`]);
+  const [avatarURL, setAvatarURL] = useState(
+    "https://c.tenor.com/UnFx-k_lSckAAAAC/amalie-steiness.gif"
+  );
   const [images, setImages] = useState([]);
   const [err, setErr] = useState(null);
   const [preview, setPreview] = useState();
   const [selectedFile, setSelectedFile] = useState();
+  const [takePic, setTakePic] = useState(false);
+  const [dataURI, setDataURI] = useState("");
 
   const {
     register,
@@ -174,6 +179,13 @@ const MyProfile = () => {
 
     setAvatarURL(newImageUrls);
   }, [images]);
+
+  useEffect(() => {
+    if (Object.values(currentUserData).length > 0) {
+      console.log(currentUserData);
+      setAvatarURL(currentUserData.avatarURL);
+    }
+  }, [currentUserData]);
 
   if (err) return <p>{err.message}</p>;
 
