@@ -19,12 +19,12 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import SplitButton from "react-bootstrap/SplitButton";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 
 const Groupchat = (props) => {
   const navigate = useNavigate();
   const { userData } = props;
- 
+
   const [chatUsers, setChatUsers] = useState([]);
   const [currentMessageInput, setCurrentMessageInput] = useState("");
   const [message, setMessage] = useState("");
@@ -132,6 +132,11 @@ const Groupchat = (props) => {
     });
   };
 
+  function addDefaultSrc(e) {
+    e.target.src =
+      "https://stonegatesl.com/wp-content/uploads/2021/01/avatar.jpg";
+  }
+
   useEffect(() => {
     fetchOnlineUsers();
   }, [onlineUsers.length]);
@@ -153,7 +158,6 @@ const Groupchat = (props) => {
 
   return (
     <div className="selectArea">
-        
       <h2 className="roomName">
         Welcome to the <br></br>
         {userData.area} {userData.interest} Chat
@@ -201,6 +205,7 @@ const Groupchat = (props) => {
             >
               <img
                 src={message.data().avatarURL}
+                onError={addDefaultSrc}
                 alt={message.firstname}
                 className={
                   message.data().avatarURL === userData.avatarURL
