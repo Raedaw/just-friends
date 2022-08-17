@@ -25,7 +25,7 @@ const schema = yup.object().shape({
   bio: yup.string().min(10).required(),
 });
 
-const MyProfile = () => {
+const MyProfile = ({ updatedAvatar, setUpdatedAvatar }) => {
   const [user, loading, error] = useAuthState(auth);
   const [currentUserData, setCurrentUserData] = useState({});
   const [editArea, setEditArea] = useState(false);
@@ -149,6 +149,7 @@ const MyProfile = () => {
         .then((url) => {
           setNewAvatar(url);
           setAvatarURL(url);
+          setUpdatedAvatar(url);
         })
         .then(() => setEditAvatar(editAvatar + 1));
     });

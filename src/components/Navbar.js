@@ -13,7 +13,7 @@ import Nav from "react-bootstrap/Nav";
 
 import NavDropdown from "react-bootstrap/NavDropdown";
 
-function Navigation() {
+function Navigation({ updatedAvatar, setUpdatedAvatar }) {
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
   const [err, setErr] = useState(null);
@@ -38,6 +38,7 @@ function Navigation() {
     if (user) fetchUserName();
   }, [user, loading, navigate]);
   // console.log(window.location.pathname);
+
   if (
     !user ||
     window.location.pathname === "/area" ||
@@ -49,7 +50,12 @@ function Navigation() {
 
   return (
     <>
-      <Navbar className="navbar_container" theme="dark" variant="dark" expand="lg">
+      <Navbar
+        className="navbar_container"
+        theme="dark"
+        variant="dark"
+        expand="lg"
+      >
         <Container>
           <Navbar.Brand as={Link} to="/">
             <img
@@ -58,7 +64,7 @@ function Navigation() {
               id="logo"
               className="d-inline-block-align-top"
               role="logo"
-            /> {' '} 
+            />{" "}
             Just Friends
           </Navbar.Brand>
         </Container>
@@ -74,7 +80,7 @@ function Navigation() {
               View chat
             </Nav.Link>
 
-            <Nav.Link  className="navLinks" as={Link} to="/safety">
+            <Nav.Link className="navLinks" as={Link} to="/safety">
               Staying safe
             </Nav.Link>
 
@@ -88,13 +94,23 @@ function Navigation() {
           <Navbar.Text className="navLinks" as={Link} to="/myprofile">
             {currentUserData.firstname}
           </Navbar.Text>
-          <img
-            className="navatar"
-            src={currentUserData.avatarURL}
-            alt="your avatar"
-            width="130"
-            height="130"
-          />
+          {updatedAvatar ? (
+            <img
+              className="navatar"
+              src={updatedAvatar}
+              alt="your avatar"
+              width="130"
+              height="130"
+            />
+          ) : (
+            <img
+              className="navatar"
+              src={currentUserData.avatarURL}
+              alt="your avatar"
+              width="130"
+              height="130"
+            />
+          )}
         </div>
       </Navbar>
     </>
