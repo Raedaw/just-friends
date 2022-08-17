@@ -36,7 +36,7 @@ function Navigation() {
     if (loading) return;
     if (!user && window.location.pathname !== "/register") return navigate("/");
     if (user) fetchUserName();
-  }, [user, loading, navigate, currentUserData]);
+  }, [user, loading, navigate]);
   // console.log(window.location.pathname);
   if (
     !user ||
@@ -61,7 +61,6 @@ function Navigation() {
               className="d-inline-block-align-top"
               role="logo"
             />
-            
           </Navbar.Brand>
         </Container>
 
@@ -76,7 +75,7 @@ function Navigation() {
               View chat
             </Nav.Link>
 
-            <Nav.Link  className="navLinks" as={Link} to="/safety">
+            <Nav.Link className="navLinks" as={Link} to="/safety">
               Staying safe
             </Nav.Link>
 
