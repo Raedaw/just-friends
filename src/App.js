@@ -19,28 +19,14 @@ import CameraCapture from "./components/CameraCapture";
 import { useState } from "react";
 import Calling from "./components/VideoCalling";
 function App() {
-  // axios
-  //   .get(
-  //     "https://just-friends-4c0f0-default-rtdb.europe-west1.firebasedatabase.app/.json"
-  //   )
-  //   .then(function (response) {
-  //     console.log(response);
-  //   })
-  //   .catch(function (error) {
-  //     console.log(error);
-  //   });
-
-
   return (
     <div className="app">
       <Router>
         <Nav />
         <Routes>
-        <Route exact path="/VideoCall" element={<Calling />} />
+          <Route exact path="/VideoCall" element={<Calling />} />
           <Route exact path="/" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
-          {/* <Route exact path="/reset" element={<Reset />} /> */}
-          {/* <Route exact path ="/chat" element={<Chat />} /> */}
           <Route exact path="/dashboard" element={<Dashboard />} />
           <Route exact path="/area" element={<Area />} />
           <Route exact path="/gender" element={<Gender />} />
@@ -49,12 +35,8 @@ function App() {
           <Route exact path="/chatroom" element={<Chatroom />} />
           <Route exact path="/myprofile" element={<MyProfile />} />
           <Route exact path="/camera" element={<CameraCapture />} />
-
           <Route exact path="/safety" element={<Safety />} />
-
           <Route exact path="/profile/:uid" element={<UserProfile />} />
-
-          {/* <Route exact path="/upload" element={<Upload />} /> */}
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>
