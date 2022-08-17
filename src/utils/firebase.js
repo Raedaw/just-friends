@@ -1,33 +1,37 @@
 // Import the functions you need from the SDKs you need
-import { useEffect, useState } from "react";
+//import { useEffect, useState } from "react";
 
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+//import { getAnalytics } from "firebase/analytics";
 import {
   getFirestore,
-  query,
-  getDocs,
   getDoc,
   collection,
-  where,
   setDoc,
   doc,
   updateDoc,
-  onSnapshot,
   addDoc,
-  serverTimestamp,
-  DocumentReference,
 } from "firebase/firestore";
+// import {
+//   query,
+//   getDocs,
+//   where,
+//   onSnapshot,
+//   serverTimestamp,
+//   DocumentReference,
+// } from "firebase/firestore";
 import {
-  GoogleAuthProvider,
   getAuth,
-  signInWithPopup,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signOut,
   // signInWithGoogle
 } from "firebase/auth";
+// import {
+//   GoogleAuthProvider,
+//   signInWithPopup,
+// } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -119,16 +123,16 @@ const registerWithEmailAndPassword = async (
     });
   } catch (err) {
     console.error(err);
-    alert(err.message);
+    //alert(err.message);
   }
 };
 const sendPasswordReset = async (email) => {
   try {
     await sendPasswordResetEmail(auth, email);
-    alert("Password reset link sent!");
+    //alert("Password reset link sent!");
   } catch (err) {
     console.error(err);
-    alert(err.message);
+    //alert(err.message);
   }
 };
 const logout = () => {
@@ -139,7 +143,7 @@ const logout = () => {
 
   setDoc(docRef, data, { merge: true })
     .then((docRef) => {
-      console.log(docRef);
+      // console.log(docRef);
     })
     .then(() => {
       signOut(auth);
@@ -158,7 +162,7 @@ const setArea = async (location) => {
     });
   } catch (err) {
     console.error(err);
-    alert(err.message);
+    //alert(err.message);
   }
 };
 
@@ -173,7 +177,7 @@ const setProfile = async (submitInfo) => {
     });
   } catch (err) {
     console.error(err);
-    alert(err.message);
+    // alert(err.message);
   }
 };
 
@@ -186,7 +190,7 @@ const setGender = async (myGender) => {
     });
   } catch (err) {
     console.error(err);
-    alert(err.message);
+    //alert(err.message);
   }
 };
 
@@ -199,7 +203,7 @@ const setBio = async (bio) => {
     });
   } catch (err) {
     console.error(err);
-    alert(err.message);
+    //alert(err.message);
   }
 };
 
@@ -212,7 +216,7 @@ const setNewAvatar = async (avatarURL) => {
     });
   } catch (err) {
     console.error(err);
-    alert(err.message);
+    //alert(err.message);
   }
 };
 
@@ -225,7 +229,7 @@ const setGenderPreference = async (preference) => {
     });
   } catch (err) {
     console.error(err);
-    alert(err.message);
+    // alert(err.message);
   }
 };
 
@@ -238,7 +242,7 @@ const setInterest = async (selectedInterest) => {
     });
   } catch (err) {
     console.error(err);
-    alert(err.message);
+    //alert(err.message);
   }
 };
 

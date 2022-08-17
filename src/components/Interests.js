@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { setInterest } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 

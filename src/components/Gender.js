@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { setGender, setGenderPreference } from "../utils/firebase";
+import { setGender } from "../utils/firebase";
 import "../Styles/gender.css";
 import lottie from "lottie-web";
 import { useEffect, useRef } from "react";

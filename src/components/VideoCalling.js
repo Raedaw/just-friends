@@ -1,5 +1,5 @@
-import { useState } from "react";
-import VideoCall from "../VideoCall";
+// import { useState } from "react";
+// import VideoCall from "../VideoCall";
 import "./calling-script";
 import {
   joinStream,
@@ -7,7 +7,7 @@ import {
   toggleMic,
   leaveAndRemoveLocalStream,
 } from "./calling-script";
-import "./random.css";
+import "../Styles/random.css";
 
 function Calling() {
   return (
