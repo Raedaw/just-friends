@@ -37,8 +37,8 @@ export default function Controls(props) {
   };
 
   return (
-    <Grid container spacing={2} alignItems="center">
-      <Grid item>
+    <div container spacing={2} alignItems="center">
+      <div item>
         <button
           variant="contained"
           color={trackState.audio ? "primary" : "secondary"}
@@ -46,8 +46,8 @@ export default function Controls(props) {
         >
           {trackState.audio ? <MicIcon /> : <MicOffIcon />}
         </button>
-      </Grid>
-      <Grid item>
+      </div>
+      <div item>
         <button
           variant="contained"
           color={trackState.video ? "primary" : "secondary"}
@@ -55,8 +55,8 @@ export default function Controls(props) {
         >
           {trackState.video ? <VideocamIcon /> : <VideocamOffIcon />}
         </button>
-      </Grid>
-      <Grid item>
+      </div>
+      <div item>
         <button
           variant="contained"
           color="default"
@@ -65,7 +65,7 @@ export default function Controls(props) {
           Leave
           <ExitToAppIcon />
         </button>
-      </Grid>
-    </Grid>
+      </div>
+    </div>
   );
 }

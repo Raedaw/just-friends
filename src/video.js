@@ -1,6 +1,6 @@
 
 import { AgoraVideoPlayer } from "agora-rtc-react";
-import Grid from '@mui/material/Grid';
+
 import { useState, useEffect } from "react";
 
 export default function Video(props) {
@@ -12,27 +12,27 @@ export default function Video(props) {
   }, [users, tracks]);
 
   return (
-    <Grid container style={{ height: "100%" }}>
-      <Grid item xs={gridSpacing}>
+    <div container style={{ height: "100%" }}>
+      <div item xs={gridSpacing}>
         <AgoraVideoPlayer
           videoTrack={tracks[1]}
           style={{ height: "100%", width: "100%" }}
         />
-      </Grid>
+      </div>
       {users.length > 0 &&
         users.map((user) => {
           if (user.videoTrack) {
             return (
-              <Grid item xs={gridSpacing}>
+              <div item xs={gridSpacing}>
                 <AgoraVideoPlayer
                   videoTrack={user.videoTrack}
                   key={user.uid}
                   style={{ height: "100%", width: "100%" }}
                 />
-              </Grid>
+              </div>
             );
           } else return null;
         })}
-    </Grid>
+    </div>
   );
 }
