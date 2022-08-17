@@ -45,7 +45,9 @@ const MyProfile = () => {
   const [avatarURL, setAvatarURL] = useState([`${currentUserData.avatarURL}`]);
   const [images, setImages] = useState([]);
   const [err, setErr] = useState(null);
-
+  const [preview, setPreview] = useState();
+  const [selectedFile, setSelectedFile] = useState();
+  console.log(avatarURL);
   const {
     register,
     formState: { errors },
@@ -59,17 +61,50 @@ const MyProfile = () => {
       const doc = await getDocs(q);
       const data = doc.docs[0].data();
       setCurrentUserData(data);
+      console.log(data.avatarURL);
+      setAvatarURL(data.avatarURL);
     } catch (err) {
       setErr(err);
       // alert("An error occured while fetching user data");
     }
   };
 
+  // create a preview as a side effect, whenever selected file is changed
+  useEffect(() => {
+    if (!selectedFile) {
+      setPreview(undefined);
+      return;
+    }
+
+    const objectUrl = URL.createObjectURL(selectedFile);
+    setPreview(objectUrl);
+
+    // free memory when ever this component is unmounted
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [selectedFile]);
+
+  const onSelectFile = (e) => {
+    if (!e.target.files || e.target.files.length === 0) {
+      setSelectedFile(undefined);
+      return;
+    }
+    setSelectedFile(e.target.files[0]);
+  };
+
   useEffect(() => {
     if (loading) return;
     // if (!user) return navigate("/");
     fetchUserName();
-  }, [user, loading, editGender, editArea, editInterest, editBio, editAvatar]);
+  }, [
+    user,
+    loading,
+    editGender,
+    editArea,
+    editInterest,
+    editBio,
+    editAvatar,
+    avatarURL,
+  ]);
 
   const clickHandler = (e) => {
     setArea(e.target.value);
@@ -124,6 +159,11 @@ const MyProfile = () => {
     });
   };
 
+  // console.log(
+  //   currentUserData.firstname[0].toUpperCase() +
+  //     currentUserData.firstname.substring(1)
+  // );
+
   function onImageChange(e) {
     console.log(e.target.files);
     setImages([...e.target.files]);
@@ -137,225 +177,222 @@ const MyProfile = () => {
     setAvatarURL(newImageUrls);
   }, [images]);
 
+  if (err) return <p>{err.message}</p>;
+
   return (
     <div className="myProfile">
-      {err ? (
-        <p>{err.message}</p>
-      ) : (
-        <>
-          <h2 className="myProfileTitle">My Profile</h2>
-          <img
-            src={avatarURL}
-            className="uploaded_picture"
-            alt=" your avatar"
-          />
-          <label className="edit-file-upload">
-            {" "}
-            Select new photo
-            <input
-              type="file"
-              className="upload"
-              onChange={(event) => {
-                onImageChange(event);
-                setImageUpload(event.target.files[0]);
-              }}
-              accept="image/*"
-            />
-          </label>
-          <button
-            className="uploadPhoto"
-            onClick={(e) => {
-              uploadFile(e);
-            }}
-          >
-            Upload photo
-          </button>
-          <div className="accountInfoBox">
-            <h3>Account Info</h3>
-            <p>
-              Name: {currentUserData.firstname} {currentUserData.surname}
-            </p>
-            <p>Email: {currentUserData.email}</p>
-          </div>
-          <div className="profileBox">
-            <div className="editGenderBox">
-              <h3>Gender</h3>
-              {editGender ? (
-                <div className="editSelectGender">
-                  <div className="edit_gender_radio_buttons">
-                    Male Identifying
-                    <input
-                      type="radio"
-                      value="Male identifying"
-                      name="myGender"
-                      onChange={(e) => {
-                        myGenderHandler(e);
-                      }}
-                    />{" "}
-                    Female Identifying
-                    <input
-                      type="radio"
-                      value="Female identifying"
-                      name="myGender"
-                      onChange={(e) => {
-                        myGenderHandler(e);
-                      }}
-                    />{" "}
-                    Non Binary
-                    <input
-                      type="radio"
-                      value="Non Binary"
-                      name="myGender"
-                      onChange={(e) => {
-                        myGenderHandler(e);
-                      }}
-                    />{" "}
-                    Prefer Not to Say
-                    <input
-                      type="radio"
-                      value="Prefer not to say"
-                      name="myGender"
-                      onChange={(e) => {
-                        myGenderHandler(e);
-                      }}
-                    />{" "}
-                  </div>
-                </div>
-              ) : (
-                <div className="myGender">
-                  <p>{currentUserData.My_gender}</p>
-
-                  <button
-                    className="edit_button"
-                    onClick={() => {
-                      setEditGender(true);
-                    }}
-                  >
-                    Edit
-                  </button>
-                </div>
-              )}
+      <h2 className="myProfileTitle">My Profile</h2>
+      <img
+        src={selectedFile ? { preview } : { avatarURL }}
+        className="uploaded_picture"
+        alt=" your avatar"
+      />
+      <label className="edit-file-upload">
+        {" "}
+        Select new photo
+        <input
+          type="file"
+          className="upload"
+          onChange={(event) => {
+            onImageChange(event);
+            setImageUpload(event.target.files[0]);
+          }}
+          accept="image/*"
+          role="button"
+        />
+      </label>
+      <button
+        className="uploadPhoto"
+        onClick={(e) => {
+          uploadFile(e);
+        }}
+      >
+        Upload photo
+      </button>
+      <div className="accountInfoBox">
+        <h3>Account Info</h3>
+        <p>
+          Name: {currentUserData.firstname} {currentUserData.surname}
+        </p>
+        <p>Email: {currentUserData.email}</p>
+      </div>
+      <div className="profileBox">
+        <div className="editGenderBox">
+          <h3>Gender</h3>
+          {editGender ? (
+            <div className="editSelectGender">
+              <div className="edit_gender_radio_buttons">
+                Male Identifying
+                <input
+                  type="radio"
+                  value="Male identifying"
+                  name="myGender"
+                  onChange={(e) => {
+                    myGenderHandler(e);
+                  }}
+                />{" "}
+                Female Identifying
+                <input
+                  type="radio"
+                  value="Female identifying"
+                  name="myGender"
+                  onChange={(e) => {
+                    myGenderHandler(e);
+                  }}
+                />{" "}
+                Non Binary
+                <input
+                  type="radio"
+                  value="Non Binary"
+                  name="myGender"
+                  onChange={(e) => {
+                    myGenderHandler(e);
+                  }}
+                />{" "}
+                Prefer Not to Say
+                <input
+                  type="radio"
+                  value="Prefer not to say"
+                  name="myGender"
+                  onChange={(e) => {
+                    myGenderHandler(e);
+                  }}
+                />{" "}
+              </div>
             </div>
-            <div className="editAreaBox">
-              <h3>Area</h3>
-              {editArea ? (
-                <div className="myProfArea">
-                  <h2 className="myProfAreaTitle">Select your location</h2>
+          ) : (
+            <div className="myGender">
+              <p>{currentUserData.My_gender}</p>
 
-                  <div className="inline">
-                    <Button
-                      className="edit_button"
-                      variant="light"
-                      value="London"
-                      onClick={clickHandler}
-                    >
-                      London
-                    </Button>
-                    {"  "}
-                    <Button
-                      className="edit_button"
-                      variant="light"
-                      value="Manchester"
-                      onClick={clickHandler}
-                    >
-                      Manchester
-                    </Button>
-                    {"  "}
-                    <Button
-                      className="edit_button"
-                      variant="light"
-                      value="Birmingham"
-                      onClick={clickHandler}
-                    >
-                      Birmingham
-                    </Button>
-                  </div>
-                </div>
-              ) : (
-                <div className="editMyProfArea">
-                  <p>{currentUserData.area}</p>
+              <button
+                className="edit_button"
+                onClick={() => {
+                  setEditGender(true);
+                }}
+              >
+                Edit
+              </button>
+            </div>
+          )}
+        </div>
+        <div className="editAreaBox">
+          <h3>Area</h3>
+          {editArea ? (
+            <div className="myProfArea">
+              <h2 className="myProfAreaTitle">Select your location</h2>
 
-                  <button
-                    className="edit_button"
-                    onClick={() => {
-                      setEditArea(true);
-                    }}
-                  >
-                    Edit
-                  </button>
-                </div>
-              )}
+              <div className="inline">
+                <Button
+                  className="edit_button"
+                  variant="light"
+                  value="London"
+                  onClick={clickHandler}
+                >
+                  London
+                </Button>
+                {"  "}
+                <Button
+                  className="edit_button"
+                  variant="light"
+                  value="Manchester"
+                  onClick={clickHandler}
+                >
+                  Manchester
+                </Button>
+                {"  "}
+                <Button
+                  className="edit_button"
+                  variant="light"
+                  value="Birmingham"
+                  onClick={clickHandler}
+                >
+                  Birmingham
+                </Button>
+              </div>
             </div>
-            <div className="editInterestsBox">
-              <h3>Interest</h3>
-              {editInterest ? (
-                <div>
-                  <form>
-                    {interests.map((interest) => {
-                      return (
-                        <label className="interests" key={`${interest}`}>
-                          <input
-                            type="radio"
-                            value={interest}
-                            name="interest"
-                            onChange={handleSelect}
-                          />
-                          {` ${interest}`}
-                        </label>
-                      );
-                    })}
-                  </form>
-                </div>
-              ) : (
-                <div className="myInterests">
-                  <p>{currentUserData.interest}</p>
+          ) : (
+            <div className="editMyProfArea">
+              <p>{currentUserData.area}</p>
 
-                  <button
-                    className="edit_button"
-                    onClick={() => {
-                      setEditInterest(true);
-                    }}
-                  >
-                    Edit
-                  </button>
-                </div>
-              )}
+              <button
+                className="edit_button"
+                onClick={() => {
+                  setEditArea(true);
+                }}
+              >
+                Edit
+              </button>
             </div>
-            <div className="editBioBox">
-              <h3>Bio</h3>
-              {editBio ? (
-                <div className="editMyBio">
-                  <label className="updatebio" htmlFor="bio">
-                    Update your bio:
-                  </label>
-                  <textarea
-                    id="bio"
-                    onChange={(e) => {
-                      setChangeBio(e.target.value);
-                    }}
-                    value={changeBio}
-                  ></textarea>
-                  <button className="edit_button" onClick={updateBio}>
-                    Submit
-                  </button>
-                </div>
-              ) : (
-                <div className="myBio">
-                  <p>{currentUserData.bio}</p>
-                  <button
-                    className="edit_button"
-                    onClick={() => {
-                      setEditBio(true);
-                    }}
-                  >
-                    Edit
-                  </button>
-                </div>
-              )}
+          )}
+        </div>
+        <div className="editInterestsBox">
+          <h3>Interest</h3>
+          {editInterest ? (
+            <div>
+              <form>
+                {interests.map((interest) => {
+                  return (
+                    <label className="interests" key={`${interest}`}>
+                      <input
+                        type="radio"
+                        value={interest}
+                        name="interest"
+                        onChange={handleSelect}
+                      />
+                      {` ${interest}`}
+                    </label>
+                  );
+                })}
+              </form>
             </div>
-          </div>
-        </>
-      )}
+          ) : (
+            <div className="myInterests">
+              <p>{currentUserData.interest}</p>
+
+              <button
+                className="edit_button"
+                onClick={() => {
+                  setEditInterest(true);
+                }}
+              >
+                Edit
+              </button>
+            </div>
+          )}
+        </div>
+        <div className="editBioBox">
+          <h3>Bio</h3>
+          {editBio ? (
+            <div className="editMyBio">
+              <label className="updatebio" htmlFor="bio">
+                Update your bio:
+              </label>
+              <textarea
+                id="bio"
+                onChange={(e) => {
+                  setChangeBio(e.target.value);
+                }}
+                value={changeBio}
+              ></textarea>
+              <button className="edit_button" onClick={updateBio}>
+                Submit
+              </button>
+            </div>
+          ) : (
+            <div className="myBio">
+              <p>{currentUserData.bio}</p>
+              <button
+                className="edit_button"
+                onClick={() => {
+                  setEditBio(true);
+                }}
+              >
+                Edit
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
