@@ -49,18 +49,17 @@ function Navigation() {
 
   return (
     <>
-      <Navbar className="navbar_container" expand="lg">
+      <Navbar className="navbar_container" theme="dark" variant="dark" expand="lg">
         <Container>
           <Navbar.Brand as={Link} to="/">
             <img
               alt="Just friends logo"
               src={require("../Just-friends_images/just-friends.png")}
-              width="130"
-              height="130"
               id="logo"
               className="d-inline-block-align-top"
               role="logo"
-            />
+            /> {' '} 
+            Just Friends
           </Navbar.Brand>
         </Container>
 
@@ -75,7 +74,7 @@ function Navigation() {
               View chat
             </Nav.Link>
 
-            <Nav.Link className="navLinks" as={Link} to="/safety">
+            <Nav.Link  className="navLinks" as={Link} to="/safety">
               Staying safe
             </Nav.Link>
 
