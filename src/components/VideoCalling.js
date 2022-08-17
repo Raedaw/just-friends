@@ -8,8 +8,13 @@ import {
   leaveAndRemoveLocalStream,
 } from "./calling-script";
 import "../Styles/random.css";
+import "../Styles/videoCalling.css";
+
+
 
 function Calling() {
+
+
   return (
     <div className="App" style={{ height: "100%" }}>
       <button
@@ -20,6 +25,7 @@ function Calling() {
       >
         Join Stream
       </button>
+    
 
       <div id="stream-wrapper">
         <div id="video-streams"></div>
