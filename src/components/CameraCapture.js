@@ -32,7 +32,7 @@ const CameraCapture = (props) => {
               setDataURI(dataURI);
               setImageUpload(dataURI);
               setTakePic(false);
-              console.log(dataURI);
+              // console.log(dataURI);
               // console.log(dataURI);
             });
         }}
