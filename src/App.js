@@ -11,12 +11,12 @@ import Profile from "./components/Profile";
 import MyProfile from "./components/MyProfile";
 import UserProfile from "./components/UserProfile";
 import Chatroom from "./components/Chatroom";
-import Groupchat from "./components/Groupchat";
+//import Groupchat from "./components/Groupchat";
 import Nav from "./components/Navbar";
 import NotFoundPage from "./components/NotFoundPage";
 import Safety from "./components/Safety";
 import CameraCapture from "./components/CameraCapture";
-import { useState } from "react";
+//import { useState } from "react";
 import Calling from "./components/VideoCalling";
 function App() {
   return (

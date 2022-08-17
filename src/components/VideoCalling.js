@@ -7,7 +7,7 @@ import {
   toggleMic,
   leaveAndRemoveLocalStream,
 } from "./calling-script";
-import "./random.css";
+import "../Styles/random.css";
 
 function Calling() {
   return (

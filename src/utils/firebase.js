@@ -1,8 +1,8 @@
 // Import the functions you need from the SDKs you need
-import { useEffect, useState } from "react";
+//import { useEffect, useState } from "react";
 
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+//import { getAnalytics } from "firebase/analytics";
 import {
   getFirestore,
   getDoc,
@@ -143,7 +143,7 @@ const logout = () => {
 
   setDoc(docRef, data, { merge: true })
     .then((docRef) => {
-      console.log(docRef);
+      // console.log(docRef);
     })
     .then(() => {
       signOut(auth);

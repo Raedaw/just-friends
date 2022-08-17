@@ -20,11 +20,8 @@ function Profile() {
   const navigate = useNavigate();
   const [err, setErr] = useState(null);
   const [imageUpload, setImageUpload] = useState(null);
-  const [imageUrl, setImageUrl] = useState(
-    "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"
-  );
+  //const [imageUrl, setImageUrl] = useState("https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png");
   const {
-    register,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
