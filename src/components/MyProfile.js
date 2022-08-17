@@ -47,7 +47,7 @@ const MyProfile = () => {
   const [err, setErr] = useState(null);
   const [preview, setPreview] = useState();
   const [selectedFile, setSelectedFile] = useState();
-  console.log(avatarURL);
+
   const {
     register,
     formState: { errors },
@@ -61,7 +61,6 @@ const MyProfile = () => {
       const doc = await getDocs(q);
       const data = doc.docs[0].data();
       setCurrentUserData(data);
-      console.log(data.avatarURL);
       setAvatarURL(data.avatarURL);
     } catch (err) {
       setErr(err);
@@ -165,7 +164,6 @@ const MyProfile = () => {
   // );
 
   function onImageChange(e) {
-    console.log(e.target.files);
     setImages([...e.target.files]);
   }
 
@@ -182,11 +180,19 @@ const MyProfile = () => {
   return (
     <div className="myProfile">
       <h2 className="myProfileTitle">My Profile</h2>
-      <img
-        src={selectedFile ? { preview } : { avatarURL }}
-        className="uploaded_picture"
-        alt=" your avatar"
-      />
+      {loading ? (
+        <></>
+      ) : (
+        <img
+          src={
+            selectedFile
+              ? URL.createObjectURL(selectedFile)
+              : currentUserData.avatarURL
+          }
+          className="uploaded_picture"
+          alt=" your avatar"
+        />
+      )}
       <label className="edit-file-upload">
         {" "}
         Select new photo
@@ -194,6 +200,7 @@ const MyProfile = () => {
           type="file"
           className="upload"
           onChange={(event) => {
+            onSelectFile(event);
             onImageChange(event);
             setImageUpload(event.target.files[0]);
           }}
