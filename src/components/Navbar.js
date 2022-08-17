@@ -3,7 +3,14 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Switch, Route, Link, useNavigate } from "react-router-dom";
 import "../Styles/Nav.css";
 import { auth, db, logout } from "../utils/firebase";
-import { query, collection, getDocs, where } from "firebase/firestore";
+import {
+  query,
+  collection,
+  getDocs,
+  where,
+  onSnapshot,
+  doc,
+} from "firebase/firestore";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
@@ -19,6 +26,7 @@ function Navigation() {
   const [err, setErr] = useState(null);
   const [currentUserData, setCurrentUserData] = useState("");
   const navigate = useNavigate();
+  const [avatarURL, setAvatarURL] = useState("");
 
   const fetchUserName = async () => {
     try {
@@ -26,17 +34,40 @@ function Navigation() {
       const doc = await getDocs(q);
       const data = doc.docs[0].data();
       // console.log(data);
+      // setAvatarURL(data.avatarURL);
       setName(data.name);
       setCurrentUserData(data);
+      console.log("running");
+      const unsub = onSnapshot(doc(db, "cities", user.uid), (doc) => {
+        console.log("Current data: ", doc.data());
+      });
     } catch (err) {
       setErr("An error occured while fetching user data");
     }
   };
+
+  // const unsub = async () =>{
+  //   const doc = await getDoc(q);
+  //   onSnapshot(doc(db, "users", user.uid), (doc) => {
+  //    console.log("Current data: ", doc.data());
+  // });}
+
+  //   const unsub =
+  //     const doc = await getDoc(q);
+  //     onSnapshot(doc(db, "users", user.uid), (doc) => {
+  //      console.log("Current data: ", doc.data());
+  //   });}
+
+  //   const unsub = onSnapshot(doc(db, "cities", user.uid), (doc) => {
+  //     console.log("Current data: ", doc.data());
+  // });
+
   useEffect(() => {
     if (loading) return;
     if (!user && window.location.pathname !== "/register") return navigate("/");
     if (user) fetchUserName();
-  }, [user, loading, navigate]);
+    // console.log(avatarURL);
+  }, [user, loading, navigate, avatarURL]);
   // console.log(window.location.pathname);
   if (
     !user ||
