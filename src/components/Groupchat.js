@@ -1,4 +1,4 @@
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useState, useRef, useTransition } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { setChat } from "../utils/firebase";
 import "../Styles/chatroom.css";
@@ -14,19 +14,23 @@ import {
 import { async } from "@firebase/util";
 import "../Styles/Groupchat.css";
 import Online from "./online";
+import Calling from "./VideoCalling.js";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import SplitButton from "react-bootstrap/SplitButton";
+import Button from '@mui/material/Button';
 
 const Groupchat = (props) => {
   const navigate = useNavigate();
   const { userData } = props;
+ 
   const [chatUsers, setChatUsers] = useState([]);
   const [currentMessageInput, setCurrentMessageInput] = useState("");
   const [message, setMessage] = useState("");
   const [messagesData, setMessagesData] = useState([]);
   const [onlineUsers, setOnlineUsers] = useState([]);
+  const bottomRef = useRef(null);
 
   useEffect(() => {
     fetchUsers();
@@ -142,8 +146,14 @@ const Groupchat = (props) => {
     fetchMessages();
   }, [messagesData.length]);
 
+  useEffect(() => {
+    // 👇️ scroll to bottom every time messages change
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messagesData.length]);
+
   return (
     <div className="selectArea">
+        
       <h2 className="roomName">
         Welcome to the <br></br>
         {userData.area} {userData.interest} Chat
@@ -235,7 +245,9 @@ const Groupchat = (props) => {
             </li>
           );
         })}
+        <div ref={bottomRef} />
       </ul>
+
       <label htmlFor="messageInput"></label>
       <textarea
         className="writeMessage"

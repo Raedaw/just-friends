@@ -2,9 +2,9 @@
 /*need to sort logout button*/
 
 .navatar {
- margin-bottom: 5%;
-    width: 75px;
-    height:75px;
+margin-top: -80%;
+    width: 40px;
+    height:40px;
     max-width: 50%;
     max-height: 50%;
   border-radius: 50%;
@@ -15,23 +15,32 @@
 
 .d-inline-block-align-top{
   border-radius: 30%;
-  width: 230px;
-  height:120px;
+  width: 120px;
+  height:60px;
   max-width:50%;
   max-height:50%;
-  box-shadow: 15px 15px 20px #000000b9;
-margin-top:-10%;
-  display: flex;
- margin-bottom: 10%;
+  margin-top: -15%;
+
+
+
   
 }
 
+.navLinks{
+  color: white;
+  font-family: 'PT Sans', sans-serif;
+  font-size: small;
+}
+
 .toggle{
+  margin-bottom: -6%;
+  margin-top: -6%;
   margin-left: 10%;
+  color: white;
 }
 
 .navbar_container{
-display: flex;
+background-color: rgb(1, 1, 35);
 font-size: larger;
 color: white;
 }
@@ -41,23 +50,19 @@ color: white;
 
   .d-inline-block-align-top{
     border-radius: 30%;
-    width: 320px;
-    height:150px;
+    width: 200px;
+    height:100px;
     max-width:50%;
     max-height:50%;
-    box-shadow: 15px 15px 20px #000000b9;
-  margin-top:-10%;
-    display: flex;
-   margin-bottom: 10%;
-   margin-left: 20px;
-    
+   margin-left: 10px;
+    margin-top: -23%;
   }
 
 
   .navatar {
-    margin-bottom: 5%;
-       width: 100px;
-       height:100px;
+   margin-top: 0%;
+       width: 50px;
+       height:50px;
        max-width: 50%;
        max-height: 50%;
      border-radius: 50%;
@@ -65,4 +70,11 @@ color: white;
      border-color: #ffffffb9;;
      margin-right: 1%;
    }
+
+   .navLinks{
+    color: white;
+    font-family: 'PT Sans', sans-serif;
+    font-size: large;
+  }
+   
 }

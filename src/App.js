@@ -10,15 +10,14 @@ import Interests from "./components/Interests";
 import Profile from "./components/Profile";
 import MyProfile from "./components/MyProfile";
 import UserProfile from "./components/UserProfile";
-
 import Chatroom from "./components/Chatroom";
 import Groupchat from "./components/Groupchat";
 import Nav from "./components/Navbar";
 import NotFoundPage from "./components/NotFoundPage";
 import Safety from "./components/Safety";
 import CameraCapture from "./components/CameraCapture";
-// import Upload from "./components/Upload";
-
+import { useState } from "react";
+import Calling from "./components/VideoCalling";
 function App() {
   // axios
   //   .get(
@@ -31,11 +30,13 @@ function App() {
   //     console.log(error);
   //   });
 
+
   return (
     <div className="app">
       <Router>
         <Nav />
         <Routes>
+        <Route exact path="/VideoCall" element={<Calling />} />
           <Route exact path="/" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
           {/* <Route exact path="/reset" element={<Reset />} /> */}
