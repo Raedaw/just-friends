@@ -16,8 +16,9 @@ const schema = yup.object().shape({
     .date()
     .nullable()
     .transform((curr, orig) => (orig === "" ? null : curr))
-    .required()
-    .max(sub({ years: 18 }, new Date()), "Must be over 18 years old"),
+
+    .max(sub({ years: 18 }, new Date()), "Must be over 18 years old")
+    .required(),
   password: yup.string().min(4).max(15).required(),
   confirmPassword: yup.string().oneOf([yup.ref("password"), null]),
 });
@@ -65,7 +66,7 @@ function Register() {
             aria-required="true"
             aria-invalid={errors.firstname ? "true" : "false"}
             aria-describedby="error-firstname-required error-firstname-minLength"
-          />
+          />{" "}
           <p className="error-msg" role="alert">
             {errors.firstname?.message}
           </p>
@@ -78,7 +79,7 @@ function Register() {
             aria-required="true"
             aria-invalid={errors.surname ? "true" : "false"}
             aria-describedby="error-surname-required error-surname-minLength"
-          />
+          />{" "}
           <p className="error-msg" role="alert">
             {errors.surname?.message}
           </p>
@@ -92,25 +93,9 @@ function Register() {
             aria-invalid={errors.email ? "true" : "false"}
             aria-describedby="error-email-required"
           />
-          <p role="alert">{errors.email?.message}</p>
-          <p>{errors.email?.message}</p>
-         
-          <label className="dateOfBirthLabel">D.O.B</label>
-
-          <br />
-          <input
-            type="date"
-            className="register__textBox"
-            placeholder="Date of birth"
-            {...register("dob")}
-            aria-label="date of birth"
-            aria-required="true"
-            aria-invalid={errors.dob ? "true" : "false"}
-          />
           <p className="error-msg" role="alert">
-            {errors.dob?.message}
+            {errors.email?.message}
           </p>
-
           <input
             type="password"
             className="register__textBox"
@@ -119,8 +104,7 @@ function Register() {
             aria-label="password"
             aria-required="true"
             aria-invalid={errors.password ? "true" : "false"}
-          />
-
+          />{" "}
           <p className="error-msg" role="alert">
             {errors.password?.message}
           </p>
@@ -132,15 +116,38 @@ function Register() {
             aria-label="confirm password"
             aria-required="true"
             aria-invalid={errors.confirmPassword ? "true" : "false"}
-          />
+          />{" "}
           <p className="error-msg" role="alert">
             {errors.confirmPassword?.message && "Passwords must match"}
           </p>
+          <div className="dobdiv">
+            <label for="d.o.b" className="dateOfBirthLabel">
+              D.O.B:
+            </label>
+
+            <div>
+              <input
+                type="date"
+                className="register__textBox"
+                placeholder="Date of birth"
+                name="d.o.b"
+                {...register("dob")}
+                aria-label="date of birth"
+                aria-required="true"
+                aria-invalid={errors.dob ? "true" : "false"}
+              />{" "}
+              <p className="error-msg" role="alert">
+                {errors.dob?.message}
+              </p>
+            </div>
+          </div>
           <input type="submit" className="register__btn" />
         </form>
 
         <div>
-          Already have an account? <Link to="/">Login</Link> now.
+          <p className="login_section">
+            Already have an account? <Link to="/">Login</Link>
+          </p>
         </div>
       </div>
     </div>
