@@ -151,13 +151,21 @@ const Groupchat = (props) => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messagesData.length]);
 
+  const routeChange = () =>{ 
+    let path = ('/VideoCall')
+    navigate(path);
+  }
+  
+
   return (
     <div className="selectArea">
-        
       <h2 className="roomName">
         Welcome to the <br></br>
         {userData.area} {userData.interest} Chat
       </h2>
+      <button onClick={routeChange}>
+            Video Call 
+          </button>
       {/* <h3 className="active_member_header">Members online:</h3>
       <ul className="listOfActiveUsers">
         {onlineUsers.map((user) => {

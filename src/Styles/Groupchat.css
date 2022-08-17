@@ -6,6 +6,11 @@ ul {
 
 }
 
+button{
+  border-radius: 10px;
+
+}
+
 .message-avatar{
  
   width: 30px;
@@ -421,7 +426,7 @@ color: white;
 
   }
   .roomName{
-  margin-top: -37%;
+  margin-top: -30%;
      font-size: large;
      }
 
@@ -439,7 +444,7 @@ color: white;
 /*long phone/**/
 @media only screen and  (min-width: 300px)and (max-width: 700px) and (min-height: 800px) and (max-height: 1000px) {
   .roomName{
-   margin-top: -30%;
+   margin-top: -10%;
     font-size: large;
     }
     .messages_box{
