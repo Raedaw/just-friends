@@ -40,29 +40,29 @@ import { getStorage } from "firebase/storage";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyBtygjUBerjJXt4o5Esu5J0z42NcpKJTe8",
-//   authDomain: "just-friends-4c0f0.firebaseapp.com",
-//   databaseURL:
-//     "https://just-friends-4c0f0-default-rtdb.europe-west1.firebasedatabase.app",
-//   projectId: "just-friends-4c0f0",
-//   storageBucket: "just-friends-4c0f0.appspot.com",
-//   messagingSenderId: "16397584182",
-//   appId: "1:16397584182:web:387f23ee974fb12d8c1597",
-//   measurementId: "G-27CTFMZGCN",
-// };
-
 const firebaseConfig = {
-  apiKey: "AIzaSyB95tg0JnZRc6fE9ORJIutbjxFPXKXBF1w",
-  authDomain: "no-new-friends-4770c.firebaseapp.com",
+  apiKey: "AIzaSyBtygjUBerjJXt4o5Esu5J0z42NcpKJTe8",
+  authDomain: "just-friends-4c0f0.firebaseapp.com",
   databaseURL:
-    "https://no-new-friends-4770c-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "no-new-friends-4770c",
-  storageBucket: "no-new-friends-4770c.appspot.com",
-  messagingSenderId: "132501862510",
-  appId: "1:132501862510:web:94924a67233d83e3584e7f",
-  measurementId: "G-EEKB1CSJWZ",
+    "https://just-friends-4c0f0-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "just-friends-4c0f0",
+  storageBucket: "just-friends-4c0f0.appspot.com",
+  messagingSenderId: "16397584182",
+  appId: "1:16397584182:web:387f23ee974fb12d8c1597",
+  measurementId: "G-27CTFMZGCN",
 };
+
+// const firebaseConfig = {
+//   apiKey: "AIzaSyB95tg0JnZRc6fE9ORJIutbjxFPXKXBF1w",
+//   authDomain: "no-new-friends-4770c.firebaseapp.com",
+//   databaseURL:
+//     "https://no-new-friends-4770c-default-rtdb.europe-west1.firebasedatabase.app",
+//   projectId: "no-new-friends-4770c",
+//   storageBucket: "no-new-friends-4770c.appspot.com",
+//   messagingSenderId: "132501862510",
+//   appId: "1:132501862510:web:94924a67233d83e3584e7f",
+//   measurementId: "G-EEKB1CSJWZ",
+// };
 
 // Initialize Firebase
 // const app = initializeApp(firebaseConfig);
