@@ -111,6 +111,12 @@ const Groupchat = (props) => {
   //     });
   //   };
   // }, [onlineUsers]);
+
+  function addDefaultSrc(e) {
+    e.target.src =
+      "https://stonegatesl.com/wp-content/uploads/2021/01/avatar.jpg";
+  }
+
   const fetchOnlineUsers = () => {
     const q = query(
       collection(db, "users"),
@@ -131,6 +137,11 @@ const Groupchat = (props) => {
         setOnlineUsers(allPeopleOnline);
       });
     });
+  };
+
+  const routeChange = () => {
+    let path = "/VideoCall";
+    navigate(path);
   };
 
   useEffect(() => {
@@ -158,6 +169,8 @@ const Groupchat = (props) => {
         Welcome to the <br></br>
         {userData.area} {userData.interest} Chat
       </h2>
+      <button onClick={routeChange}>Video Call</button>
+
       {/* <h3 className="active_member_header">Members online:</h3>
       <ul className="listOfActiveUsers">
         {onlineUsers.map((user) => {
@@ -200,6 +213,7 @@ const Groupchat = (props) => {
               }
             >
               <img
+                onError={addDefaultSrc}
                 src={message.data().avatarURL}
                 alt={message.firstname}
                 className={
