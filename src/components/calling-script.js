@@ -2,7 +2,7 @@ import AgoraRTC from "agora-rtc-sdk-ng";
 
 const APP_ID = "bbc788fe2b494a8e8f3e0bae18ffe112";
 const TOKEN =
-  "006bbc788fe2b494a8e8f3e0bae18ffe112IACmoRRBBzmjTUk3tegwUQ4BKS5i6+DTvNAfJq71m3pLcKpIC90AAAAAEAASK8+Ib/r9YgEAAQBv+v1i";
+  "007eJxTYLh8wGlJe7lO79o3fMXsi+uvTpadUXx/2yoeZc9FnCcnW1koMCQlJZtbWKSlGiWZWJokWqRapBmnGiQlphpapKWlGhoaCf//mzQ54H/Se28NBkYoBPG5GbxKi0vcijJT81KKGRgAqdsl1w==";
 const CHANNEL = "JustFriends";
 
 const client = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
