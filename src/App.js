@@ -16,13 +16,17 @@ import Nav from "./components/Navbar";
 import NotFoundPage from "./components/NotFoundPage";
 import Safety from "./components/Safety";
 import CameraCapture from "./components/CameraCapture";
-//import { useState } from "react";
+import { useState } from "react";
 import Calling from "./components/VideoCalling";
 function App() {
+  const [updatedAvatar, setUpdatedAvatar] = useState();
   return (
     <div className="app">
       <Router>
-        <Nav />
+        <Nav
+          updatedAvatar={updatedAvatar}
+          setUpdatedAvatar={setUpdatedAvatar}
+        />
         <Routes>
           <Route exact path="/VideoCall" element={<Calling />} />
           <Route exact path="/" element={<Login />} />
@@ -33,7 +37,16 @@ function App() {
           <Route exact path="/interests" element={<Interests />} />
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/chatroom" element={<Chatroom />} />
-          <Route exact path="/myprofile" element={<MyProfile />} />
+          <Route
+            exact
+            path="/myprofile"
+            element={
+              <MyProfile
+                updatedAvatar={updatedAvatar}
+                setUpdatedAvatar={setUpdatedAvatar}
+              />
+            }
+          />
           <Route exact path="/camera" element={<CameraCapture />} />
           <Route exact path="/safety" element={<Safety />} />
           <Route exact path="/profile/:uid" element={<UserProfile />} />
