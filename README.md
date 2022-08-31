@@ -12,5 +12,5 @@ Being 1-2-1 can be quite intense, and there is not guarantee you will connect wi
 individual, but being in a group can provide more opportunities to create a connection and
 create friendship groups. 
 
-Tech Stack:![image](https://user-images.githubusercontent.com/103356169/187694550-c051a927-0d3b-4692-bb3b-a8897f8c9ea5.png)
+![image](https://user-images.githubusercontent.com/103356169/187694550-c051a927-0d3b-4692-bb3b-a8897f8c9ea5.png)
 
